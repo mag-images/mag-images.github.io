@@ -6,13 +6,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magazine image generator</title>
+    <style>
+        canvas#generatedImage {
+
+            outline: 1px solid grey;
+
+        }
+
+        main {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <h1>Magazine image editor</h1>
     </header>
-    <main>hello</main>
+    <main>
+        <section>
+            <h3>Options</h3>
+            <form action="POST"><button id="downloadButton" type="button" onClick="download()">Submit</button>
+                <a id="download" download="download.png">Download</a>
+            </form>
+        </section>
+        <section></section>
+        <section>
+            <h3>Preview</h3><canvas id="generatedImage" width="1080px" height="1920px">hello</canvas>
+        </section>
+
+
+    </main>
 </body>
+<script>
+    function download() {
+        var canvas = document.getElementById("generatedImage");
+
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'hotpink';
+        ctx.fillRect(0, 0, 100, 100);
+
+        var downloadLink = document.getElementById("download");
+        var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        downloadLink.setAttribute("href", img);
+
+
+
+    }
+
+</script>
 
 </html>
