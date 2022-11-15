@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magazine image generator</title>
+    <title>aAh Magazine Instagram Story Generator v1.0</title>
+    <link rel="stylesheet" href="https://use.typekit.net/xix1yoh.css">
     <style>
         canvas#generatedImage {
 
@@ -13,35 +14,187 @@
 
         }
 
+        body {
+            font-family: "itc-avant-garde-gothic-pro", sans-serif;
+
+        }
+
         main {
             display: flex;
             flex-direction: row;
+        }
+
+        h1,
+
+        h5 {
+            color: #da0974;
+
+        }
+
+        h5 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+
+
+        }
+
+        header {
+            margin-left: 20px;
+        }
+
+        p {
+            color: grey;
+        }
+
+        #controls {
+            margin: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        main button,
+        main a,
+        .fileButton {
+
+            background-color: #da0974;
+            outline: 0;
+            border: 0;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            font-family: "itc-avant-garde-gothic-pro", sans-serif;
+            font-size: 20px;
+        }
+
+        main a.inactive {
+            background-color: grey;
+        }
+
+        main a.active {
+            background-color: #da0974;
+            text-decoration: none;
+        }
+
+        .fileButton {
+            display: inline-block;
+        }
+
+        form p,
+        form label,
+        form input,
+        form button,
+        form a {
+            margin-left: 30px;
+        }
+
+        .colourLabel {
+            margin-left: unset;
+            font-size: 1.2rem;
+        }
+
+        input#colourChoice1,
+        input#colourChoice2,
+        input#colourChoice3 {
+
+            appearance: none;
+
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+
+            transition: 0.2s all linear;
+            margin-right: 5px;
+
+            position: relative;
+            top: 4px;
+            border: 2px grey solid;
+            padding: unset;
+
+        }
+
+        input#colourChoice1:checked {
+            border: 10px #da0974 solid;
+        }
+
+        input#colourChoice2:checked {
+            border: 10px #195f72 solid;
+        }
+
+        input#colourChoice3:checked {
+            border: 10px #fb5012 solid;
+        }
+
+        footer {
+            color: grey;
+            padding-left: 20px;
+        }
+
+        footer a {
+            color: #da0974;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Magazine image editor</h1>
+        <h1>aAh Magazine Instagram Story Generator</h1>
+        <p>Version 1.0, Nov 2022</p>
     </header>
     <main>
-        <section>
-            <h3>Options</h3>
+        <section id="controls">
+
+            <h3>A simple tool to generate an Instagram story image for aAh Magazine.</h3>
             <form action="POST">
-                <input type="text" id="headline" required>
+
+
+                <h5>1. Type the headline of the article</h5>
+                <p>Six or seven lines maximum, ideally less</p>
+                <input type="text" id="headline" placeholder="Headline..." required>
+                <h5>2. Choose an image for the story</h5>
+                <p>Landscape, 1080 by 1920 size if possible. Images of any other aspect ratio will be squashed to fit,
+                    which doesn't look nice</p>
+                <label for="file" class="fileButton">
+                    Choose file
+                </label>
                 <input type="file" name="file" id="file" accept="image/*" required>
+                <h5>3. Pick the colour scheme</h5>
+                <p>Pink for most articles, or use orange or blue</p>
+                <input type="radio" id="colourChoice1" name="colour" value="pink" checked required />
+                <label for="colourChoice1" class="colourLabel">Pink</label>
+                <br>
+                <input type="radio" id="colourChoice2" name="colour" value="blue" />
+                <label for="colourChoice2" class="colourLabel">Blue</label>
+                <br>
+                <input type="radio" id="colourChoice3" name="colour" value="orange" />
+                <label for="colourChoice3" class="colourLabel">Orange</label>
+                <h5>4. Click submit when you've chosen your options</h5>
+                <p>A full-size preview will appear to the right</p>
                 <button id="generateButton" type="button" onClick="generate()">Submit</button>
-                <button id="downloadButton" type="button" onClick="download()">Download</button>
-                <a id="download" download="download.png">Download</a>
+
+                <h5>5. Click generate when you're happy with it</h5>
+
+                <button id="downloadButton" type="button" onClick="download()">Generate</button>
+                <h5>6. Click download and then add to the Instagram</h5>
+                <p>Add a link using Instagram's Create mode</p>
+                <a id="download" download="download.png" class="inactive">Download</a>
             </form>
         </section>
-        <section></section>
         <section>
             <h3>Preview</h3><canvas id="generatedImage" width="1080px" height="1920px">hello</canvas>
         </section>
 
 
     </main>
+    <footer>
+        <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
+    </footer>
 </body>
 <script>
     var canvas = document.getElementById("generatedImage");
@@ -49,17 +202,56 @@
         //get inputs
         var headline = document.getElementById("headline").value;
         var picture = document.getElementById("file");
+        var colour = document.getElementsByName("colour");
+        for (i = 0; i < colour.length; i++) {
+            if (colour[i].checked)
+                colour = i;
+        }
+        console.log(colour);
+        if (colour === 0) {
+            colour = '#da0974';
+        } else if (colour === 1) {
+            colour = '#195f72';
+        } else if (colour === 2) {
+            colour = '#fb5012';
+        }
 
-        // set up canvas
+        // set up canvas and background
         const ctx = canvas.getContext('2d');
+        ctx.fillStyle = colour;
+        ctx.fillRect(0, 0, 1080, 1920);
 
-        ctx.fillStyle = 'hotpink';
-        ctx.fillRect(0, 0, 100, 100);
+        // split headline into multiple lines
+        function wrapText(context, text, x, y, maxWidth, lineHeight) {
+            var words = text.split(' ');
+            var line = '';
+
+            for (var n = 0; n < words.length; n++) {
+                var testLine = line + words[n] + ' ';
+                var metrics = context.measureText(testLine);
+                var testWidth = metrics.width;
+                if (testWidth > maxWidth && n > 0) {
+                    ctx.fillText(line, x, y);
+                    line = words[n] + ' ';
+                    y += lineHeight;
+                }
+                else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line, x, y);
+        }
 
         // add headline
         ctx.fillStyle = 'white';
-        ctx.font = '30px Arial';
-        ctx.fillText(headline, 10, 10);
+        ctx.font = '70px "itc-avant-garde-gothic-pro"';
+
+        wrapText(ctx, headline, 50, 300, 900, 70);
+        var downloadLink = document.getElementById("download");
+
+
+        var truncatedHeadline = headline.substring(0, 30);
+        downloadLink.setAttribute("download", "Instagram story " + truncatedHeadline + ".png")
 
         // add image
         let photoSrc = '';
@@ -68,7 +260,7 @@
         }
         const photo = new Image();
         photo.onload = function () {
-            ctx.drawImage(photo, 0, 0);
+            ctx.drawImage(photo, 0, 1230, 1080, 607.5);
         }
         photo.src = photoSrc;
 
@@ -80,6 +272,8 @@
         var downloadLink = document.getElementById("download");
         var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         downloadLink.setAttribute("href", img);
+
+        downloadLink.classList.add("active");
 
 
     }
