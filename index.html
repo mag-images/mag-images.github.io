@@ -27,7 +27,11 @@
     <main>
         <section>
             <h3>Options</h3>
-            <form action="POST"><button id="downloadButton" type="button" onClick="download()">Submit</button>
+            <form action="POST">
+                <input type="text" id="headline" required>
+                <input type="file" name="file" id="file" accept="image/*" required>
+                <button id="generateButton" type="button" onClick="generate()">Submit</button>
+                <button id="downloadButton" type="button" onClick="download()">Download</button>
                 <a id="download" download="download.png">Download</a>
             </form>
         </section>
@@ -40,17 +44,42 @@
     </main>
 </body>
 <script>
-    function download() {
-        var canvas = document.getElementById("generatedImage");
+    var canvas = document.getElementById("generatedImage");
+    function generate() {
+        //get inputs
+        var headline = document.getElementById("headline").value;
+        var picture = document.getElementById("file");
 
+        // set up canvas
         const ctx = canvas.getContext('2d');
+
         ctx.fillStyle = 'hotpink';
         ctx.fillRect(0, 0, 100, 100);
 
+        // add headline
+        ctx.fillStyle = 'white';
+        ctx.font = '30px Arial';
+        ctx.fillText(headline, 10, 10);
+
+        // add image
+        let photoSrc = '';
+        if (picture.value !== '') {
+            photoSrc = window.URL.createObjectURL(picture.files[0]);
+        }
+        const photo = new Image();
+        photo.onload = function () {
+            ctx.drawImage(photo, 0, 0);
+        }
+        photo.src = photoSrc;
+
+
+
+    }
+    function download() {
+        // generate download link
         var downloadLink = document.getElementById("download");
         var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         downloadLink.setAttribute("href", img);
-
 
 
     }
