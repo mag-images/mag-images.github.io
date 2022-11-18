@@ -5,13 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aAh Magazine Instagram Story Generator v1.0</title>
+
     <link rel="stylesheet" href="https://use.typekit.net/xix1yoh.css">
+    <!-- Primary Meta Tags -->
+    <title>aAh! Instagram Story Generator</title>
+    <meta name="title" content="aAh! Instagram Story Generator">
+    <meta name="description"
+        content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mag-images.github.io/">
+    <meta property="og:title" content="aAh! Instagram Story Generator">
+    <meta property="og:description"
+        content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
+    <meta property="og:image" content="https://mag-images.github.io/meta.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mag-images.github.io/">
+    <meta property="twitter:title" content="aAh! Instagram Story Generator">
+    <meta property="twitter:description"
+        content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
+    <meta property="twitter:image" content="https://mag-images.github.io/meta.png">
     <style>
         canvas#generatedImage {
 
             outline: 1px solid grey;
-
+            transform: scale(50%);
+            transform-origin: top left;
+            margin: 0;
+            margin-right: -540px;
+            margin-bottom: -960px
         }
 
         body {
@@ -41,7 +66,18 @@
         header {
             padding: 20px 20px 20px 50px;
             background-color: #da0974;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+        }
 
+        header img,
+        header h1 {
+            display: inline-block;
+            margin: 0;
         }
 
         h1 {
@@ -151,14 +187,14 @@
         }
 
         #blurb {
-            border: 6px solid #da0794;
+            border: 6px solid #da0974;
             padding: 24px;
             border-radius: 12px;
             margin: 0;
         }
 
         #preview {
-            margin-top: 20px;
+            margin: 20px;
         }
 
         #preview h3 {
@@ -170,8 +206,10 @@
 
 <body>
     <header>
-        <h1>aAh Magazine Instagram Story Generator</h1>
-        <p>Version 1.0, Nov 2022</p>
+        <img src="https://aah-magazine.co.uk/wp-content/uploads/2018/10/aah-magazine-logo.png" alt="aAh!" width="60px"
+            height="49px">
+        <h1>Instagram Story Generator</h1>
+
     </header>
     <main>
         <section id="controls">
@@ -203,7 +241,7 @@
                 <input type="radio" id="colourChoice3" name="colour" value="orange" />
                 <label for="colourChoice3" class="colourLabel">Orange</label>
                 <h5>4. Click submit when you've chosen your options</h5>
-                <p>A full-size preview will appear to the right.<br>If you make any more changes, click submit again</p>
+                <p>A half-size preview will appear to the right.<br>If you make any more changes, click submit again</p>
                 <button id="generateButton" type="button" onClick="generate()">Submit</button>
 
                 <h5>5. Click generate when you're happy with it</h5>
@@ -223,6 +261,8 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
+        <p>Version 1.1, built 2022-11-18. <a
+                href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
 </body>
 <script>
