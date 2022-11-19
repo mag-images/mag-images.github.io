@@ -105,6 +105,11 @@
             display: none;
         }
 
+        input#headline {
+            font-family: 'itc-avant-garde-gothic-pro';
+            font-size: 20px;
+        }
+
         main button,
         main a,
         .fileButton {
@@ -177,6 +182,18 @@
             border: 10px #fb5012 solid;
         }
 
+        #styleDropdown {
+            margin-left: 30px;
+            background-color: #da0974;
+            outline: none;
+            border: none;
+            padding: 10px;
+            border-radius: 12px;
+            color: white;
+            font-family: 'itc-avant-garde-gothic-pro';
+            font-size: 20px;
+        }
+
         footer {
             color: grey;
             padding-left: 20px;
@@ -221,6 +238,8 @@
                 <h5>1. Type the headline of the article</h5>
                 <p>Six or seven lines maximum, ideally less</p>
                 <input type="text" id="headline" placeholder="Headline..." required>
+
+
                 <h5>2. Choose an image for the story</h5>
                 <p>Landscape, size 1080 by 1920 pixels if possible. Images of any other aspect ratio will be squashed to
                     fit,
@@ -229,6 +248,8 @@
                     Choose file
                 </label>
                 <input type="file" name="file" id="file" accept="image/*" required>
+
+
                 <h5>3. Pick the colour scheme</h5>
                 <p>Pink for most articles, or use orange or blue for a bit of variety</p>
                 <input type="radio" id="colourChoice1" name="colour" value="pink" checked required />
@@ -239,14 +260,33 @@
                 <br>
                 <input type="radio" id="colourChoice3" name="colour" value="orange" />
                 <label for="colourChoice3" class="colourLabel">Orange</label>
-                <h5>4. Click submit when you've chosen your options</h5>
+
+                <h5>4. Choose a style for the story</h5>
+                <select name="storyStyle" id="styleDropdown">
+                    <option value="normal">Normal style</option>
+                    <option value="christmas">Christmas</option>
+                    <option value="news" disabled>News</option>
+                    <option value="culture" disabled>Culture</option>
+                    <option value="music" disabled>Music</option>
+                    <option value="features" disabled>Feature</option>
+                    <option value="gaming" disabled>Gaming</option>
+                    <option value="sport" disabled>Sport</option>
+                    <option value="opinion" disabled>Opinion</option>
+                    <option value="lifestyle" disabled>Lifestyle</option>
+                    <option value="fashion" disabled>Fashion</option>
+                    <option value="literature" disabled>Literature</option>
+                    <option value="creativeWriting" disabled>Creative Writing</option>
+                </select>
+                <p>More styles are coming soon once the sections' branding has been developed</p>
+
+                <h5>5. Click submit when you've chosen your options</h5>
                 <p>A half-size preview will appear to the right.<br>If you make any more changes, click submit again</p>
                 <button id="generateButton" type="button" onClick="generate()">Submit</button>
 
-                <h5>5. Click generate when you're happy with it</h5>
+                <h5>6. Click generate when you're happy with it</h5>
 
                 <button id="downloadButton" type="button" onClick="download()">Generate</button>
-                <h5>6. Click download and then add to the Instagram</h5>
+                <h5>7. Click download and then add to the Instagram</h5>
                 <p>Add a link using Instagram's Create mode</p>
                 <a id="download" download="download.png" class="inactive">Download</a><br><br><br>
 
@@ -260,7 +300,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.1, built 2022-11-18. <a
+        <p>Version 1.3, built 2022-11-19. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
 </body>
@@ -271,11 +311,15 @@
         var headline = document.getElementById("headline").value;
         var picture = document.getElementById("file");
         var colour = document.getElementsByName("colour");
+        var styleChoice = document.getElementById("styleDropdown").value;
+        var picPosition;
+        var trimSrc;
+
         for (i = 0; i < colour.length; i++) {
             if (colour[i].checked)
                 colour = i;
         }
-        console.log(colour);
+
         if (colour === 0) {
             colour = '#da0974';
         } else if (colour === 1) {
@@ -283,6 +327,21 @@
         } else if (colour === 2) {
             colour = '#fb5012';
         }
+
+
+        // set rules for each style
+        if (styleChoice === 'normal') {
+            picPosition = 1230;
+        } else if (styleChoice === 'christmas') {
+            picPosition = 860;
+            let trimSrc = 'trim-xmas.png';
+            const trim = new Image();
+            trim.onload = function () {
+                ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
+            }
+            trim.src = trimSrc;
+        }
+
 
         // set up canvas and background
         const ctx = canvas.getContext('2d');
@@ -328,7 +387,7 @@
         }
         const photo = new Image();
         photo.onload = function () {
-            ctx.drawImage(photo, 0, 1230, 1080, 607.5);
+            ctx.drawImage(photo, 0, picPosition, 1080, 607.5);
         }
         photo.src = photoSrc;
 
