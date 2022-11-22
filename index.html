@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://use.typekit.net/xix1yoh.css">
     <!-- Primary Meta Tags -->
     <title>aAh! Instagram Story Generator</title>
     <meta name="title" content="aAh! Instagram Story Generator">
@@ -29,6 +28,16 @@
         content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
     <meta property="twitter:image" content="https://mag-images.github.io/meta.png">
     <style>
+        @font-face {
+            font-family: 'AAHITCAvantGardeProBold';
+            src: url('fonts/AAHITCAvantGardeProBold.eot');
+            src: url('fonts/AAHITCAvantGardeProBold.eot') format('embedded-opentype'),
+                url('fonts/AAHITCAvantGardeProBold.woff2') format('woff2'),
+                url('fonts/AAHITCAvantGardeProBold.woff') format('woff'),
+                url('fonts/AAHITCAvantGardeProBold.ttf') format('truetype'),
+                url('fonts/AAHITCAvantGardeProBold.svg#AAHITCAvantGardeProBold') format('svg');
+        }
+
         canvas#generatedImage {
 
             outline: 1px solid grey;
@@ -36,11 +45,11 @@
             transform-origin: top left;
             margin: 0;
             margin-right: -540px;
-            margin-bottom: -960px
+            margin-bottom: -960px;
         }
 
         body {
-            font-family: "itc-avant-garde-gothic-pro", sans-serif;
+            font-family: "AAHITCAvantGardeProBold", sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -106,7 +115,7 @@
         }
 
         input#headline {
-            font-family: 'itc-avant-garde-gothic-pro';
+            font-family: 'AAHITCAvantGardeProBold';
             font-size: 20px;
         }
 
@@ -120,7 +129,7 @@
             padding: 10px;
             border-radius: 10px;
             color: white;
-            font-family: "itc-avant-garde-gothic-pro", sans-serif;
+            font-family: "AAHITCAvantGardeProBold", sans-serif;
             font-size: 20px;
         }
 
@@ -190,7 +199,7 @@
             padding: 10px;
             border-radius: 12px;
             color: white;
-            font-family: 'itc-avant-garde-gothic-pro';
+            font-family: 'AAHITCAvantGardeProBold';
             font-size: 20px;
         }
 
@@ -218,13 +227,31 @@
             margin-top: 0;
             padding-top: 26px;
         }
+
+        .logo {
+            font-size: 3rem;
+
+        }
+
+        #ligature {
+            margin-top: 10px;
+        }
+
+        #ligature:checked {
+            background-color: #da0974;
+        }
+
+        #lig {
+            color: grey;
+            margin: 5px;
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <img src="logo-small.png" alt="aAh!" width="60px" height="auto">
-        <h1>Instagram Story Generator</h1>
+
+        <h1><span class="logo">aah</span> Instagram Story Generator</h1>
 
     </header>
     <main>
@@ -237,7 +264,11 @@
 
                 <h5>1. Type the headline of the article</h5>
                 <p>Six or seven lines maximum, ideally less</p>
-                <input type="text" id="headline" placeholder="Headline..." required>
+                <input type="text" id="headline" placeholder="Headline..." required><br>
+                <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Use the aah
+                    logo
+                    instead of
+                    the letters</label>
 
 
                 <h5>2. Choose an image for the story</h5>
@@ -300,7 +331,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.3, built 2022-11-19. <a
+        <p>Version 1.4, built 2022-11-22. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
 </body>
@@ -314,6 +345,7 @@
         var styleChoice = document.getElementById("styleDropdown").value;
         var picPosition;
         var trimSrc;
+        var ligatureChoice = document.getElementById("ligature");
 
         for (i = 0; i < colour.length; i++) {
             if (colour[i].checked)
@@ -369,9 +401,18 @@
             ctx.fillText(line, x, y);
         }
 
+        // choose whether or not to use ligatures 
+        if (ligatureChoice.checked) {
+            document.getElementById("generatedImage").style.fontVariantLigatures = "normal";
+            document.getElementById("preview").style.fontVariantLigatures = "normal";
+        } else {
+            document.getElementById("generatedImage").style.fontVariantLigatures = "none";
+            document.getElementById("preview").style.fontVariantLigatures = "none";
+        };
+
         // add headline
         ctx.fillStyle = 'white';
-        ctx.font = '70px "itc-avant-garde-gothic-pro"';
+        ctx.font = '70px "AAHITCAvantGardeProBold"';
 
         wrapText(ctx, headline, 50, 300, 900, 70);
         var downloadLink = document.getElementById("download");
