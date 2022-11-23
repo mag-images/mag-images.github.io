@@ -161,7 +161,10 @@
 
         input#colourChoice1,
         input#colourChoice2,
-        input#colourChoice3 {
+        input#colourChoice3,
+        input#small,
+        input#medium,
+        input#large {
 
             appearance: none;
 
@@ -179,7 +182,10 @@
 
         }
 
-        input#colourChoice1:checked {
+        input#colourChoice1:checked,
+        input#small:checked,
+        input#medium:checked,
+        input#large:checked {
             border: 10px #da0974 solid;
         }
 
@@ -189,6 +195,19 @@
 
         input#colourChoice3:checked {
             border: 10px #fb5012 solid;
+        }
+
+        #smallLabel {
+            font-size: 12px;
+        }
+
+        #mediumLabel {
+            font-size: 20px;
+        }
+
+
+        #largeLabel {
+            font-size: 30px;
         }
 
         #styleDropdown {
@@ -310,14 +329,29 @@
                 </select>
                 <p>More styles are coming soon once the sections' branding has been developed</p>
 
+
                 <h5>5. Click submit when you've chosen your options</h5>
                 <p>A half-size preview will appear to the right.<br>If you make any more changes, click submit again</p>
                 <button id="generateButton" type="button" onClick="generate()">Submit</button>
 
-                <h5>6. Click generate when you're happy with it</h5>
+                <h5>6. Decide on a font size</h5>
+                <input type="radio" id="small" name="size" value="small" />
+                <label for="small" class="sizeLabel" id="smallLabel">A</label>
+                <br>
+                <input type="radio" id="medium" name="size" value="medium" checked required />
+                <label for="medium" class="sizeLabel" id="mediumLabel">A</label>
+                <br>
+                <input type="radio" id="large" name="size" value="large" />
+                <label for="large" class="sizeLabel" id="largeLabel">A</label>
+                <p>Generally stick with medium, but you can make it bigger or smaller if it would look better. <br> If
+                    you've
+                    changed it, go back to step 5 and press submit again</p>
 
+                <h5>7. Click generate when you're happy with it</h5>
                 <button id="downloadButton" type="button" onClick="download()">Generate</button>
-                <h5>7. Click download and then add to the Instagram</h5>
+
+
+                <h5>8. Click download and then add to the Instagram</h5>
                 <p>Add a link using Instagram's Create mode</p>
                 <a id="download" download="download.png" class="inactive">Download</a><br><br><br>
 
@@ -331,7 +365,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.4, built 2022-11-22. <a
+        <p>Version 1.5, built 2022-11-23. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
 </body>
@@ -346,7 +380,10 @@
         var picPosition;
         var trimSrc;
         var ligatureChoice = document.getElementById("ligature");
+        var size = document.getElementsByName("size");
+        var height;
 
+        // set story colour
         for (i = 0; i < colour.length; i++) {
             if (colour[i].checked)
                 colour = i;
@@ -410,11 +447,28 @@
             document.getElementById("preview").style.fontVariantLigatures = "none";
         };
 
+        // set font size
+        for (i = 0; i < size.length; i++) {
+            if (size[i].checked)
+                size = i;
+        }
+
+        if (size === 0) {
+            size = '50px';
+            height = 50;
+        } else if (size === 1) {
+            size = '70px';
+            height = 70;
+        } else if (size === 2) {
+            size = '90px';
+            height = 90;
+        }
+
         // add headline
         ctx.fillStyle = 'white';
-        ctx.font = '70px "AAHITCAvantGardeProBold"';
+        ctx.font = size + ' "AAHITCAvantGardeProBold"';
 
-        wrapText(ctx, headline, 50, 300, 900, 70);
+        wrapText(ctx, headline, 50, 300, 900, height);
         var downloadLink = document.getElementById("download");
 
 
