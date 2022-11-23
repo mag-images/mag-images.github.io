@@ -11,7 +11,7 @@
     <meta name="title" content="aAh! Instagram Story Generator">
     <meta name="description"
         content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
-    <meta name="theme-color" content="var(--aah-pink)">
+    <meta name="theme-color" content="#da0974">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -258,6 +258,7 @@
             padding: 24px;
             border-radius: 12px;
             margin: 0;
+            font-size: 1.3rem;
         }
 
         #preview {
@@ -267,6 +268,7 @@
         #preview h2 {
             margin-top: 0;
             padding-top: 26px;
+            font-size: 1.3rem;
         }
 
         .logo {
@@ -287,6 +289,24 @@
         #lig {
             color: var(--grey);
             margin: 5px;
+        }
+
+        span#direction::after {
+            content: "to the right.";
+        }
+
+        @media screen and (max-width:960px) {
+            main {
+                flex-direction: column;
+            }
+
+            span#direction::after {
+                content: "below.";
+            }
+
+            section#preview {
+                margin-left: 50px;
+            }
         }
     </style>
 </head>
@@ -356,7 +376,8 @@
 
 
                 <h3>5. Click submit when you've chosen your options</h3>
-                <p>A half-size preview will appear to the right.<br>If you make any more changes, click submit again</p>
+                <p>A half-size preview will appear <span id="direction"></span><br>If you make any more
+                    changes, click submit again</p>
                 <button id="generateButton" type="button" onClick="generate()">Submit</button>
 
                 <h3>6. Decide on a font size</h3>
@@ -390,7 +411,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.7.4, built 2022-11-23. <a
+        <p>Version 1.7.5, built 2022-11-23. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
 </body>
@@ -416,11 +437,11 @@
         }
 
         if (colour === 0) {
-            colour = 'var(--aah-pink)';
+            colour = '#da0974';
         } else if (colour === 1) {
-            colour = 'var(--aah-blue)';
+            colour = '#195f72';
         } else if (colour === 2) {
-            colour = 'var(--aah-orange)';
+            colour = '#fb5012';
         }
 
 
