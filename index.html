@@ -27,7 +27,10 @@
     <meta property="twitter:description"
         content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
     <meta property="twitter:image" content="https://mag-images.github.io/meta.png">
+
+    <link rel="stylesheet" href="https://use.typekit.net/yci6ngo.css" rel="preload">
     <style>
+        /* Avant Garde with aAh logo ligature */
         @font-face {
             font-family: 'AAHITCAvantGardeProBold';
             src: url('fonts/AAHITCAvantGardeProBold.eot');
@@ -37,6 +40,7 @@
                 url('fonts/AAHITCAvantGardeProBold.ttf') format('truetype'),
                 url('fonts/AAHITCAvantGardeProBold.svg#AAHITCAvantGardeProBold') format('svg');
         }
+
 
         canvas#generatedImage {
 
@@ -284,7 +288,7 @@
                 <h5>1. Type the headline of the article</h5>
                 <p>Six or seven lines maximum, ideally less</p>
                 <input type="text" id="headline" placeholder="Headline..." required><br>
-                <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Use the aah
+                <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Use aah
                     logo
                     instead of
                     the letters</label>
@@ -315,6 +319,7 @@
                 <select name="storyStyle" id="styleDropdown">
                     <option value="normal">Normal style</option>
                     <option value="christmas">Christmas</option>
+                    <option value="energy" style="font-family:'fragile-bombers-attack';">The Energy Issue</option>
                     <option value="news" disabled>News</option>
                     <option value="culture" disabled>Culture</option>
                     <option value="music" disabled>Music</option>
@@ -365,7 +370,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.5, built 2022-11-23. <a
+        <p>Version 1.6, built 2022-11-23. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
 </body>
@@ -382,6 +387,7 @@
         var ligatureChoice = document.getElementById("ligature");
         var size = document.getElementsByName("size");
         var height;
+        var typeface = "AAHITCAvantGardeProBold";
 
         // set story colour
         for (i = 0; i < colour.length; i++) {
@@ -409,6 +415,9 @@
                 ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
             }
             trim.src = trimSrc;
+        } else if (styleChoice === 'energy') {
+            picPosition = 1230;
+            typeface = 'fragile-bombers-attack';
         }
 
 
@@ -466,7 +475,7 @@
 
         // add headline
         ctx.fillStyle = 'white';
-        ctx.font = size + ' "AAHITCAvantGardeProBold"';
+        ctx.font = size + ' ' + typeface;
 
         wrapText(ctx, headline, 50, 300, 900, height);
         var downloadLink = document.getElementById("download");
