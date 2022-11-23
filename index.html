@@ -11,7 +11,7 @@
     <meta name="title" content="aAh! Instagram Story Generator">
     <meta name="description"
         content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
-    <meta name="theme-color" content="#da0974">
+    <meta name="theme-color" content="var(--aah-pink)">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -40,6 +40,13 @@
     <!-- Fragile Bombers font for Change issue -->
     <link rel="stylesheet" href="https://use.typekit.net/yci6ngo.css" rel="preload">
     <style>
+        :root {
+            --aah-pink: #da0974;
+            --aah-blue: #195f72;
+            --aah-orange: #fb5012;
+            --grey: #444444;
+        }
+
         /* Avant Garde with aAh logo ligature */
         @font-face {
             font-family: 'AAHITCAvantGardeProBold';
@@ -54,7 +61,7 @@
 
         canvas#generatedImage {
 
-            outline: 1px solid grey;
+            outline: 1px solid var(--grey);
             transform: scale(50%);
             transform-origin: top left;
             margin: 0;
@@ -74,12 +81,12 @@
         }
 
 
-        h5 {
-            color: #da0974;
+        h3 {
+            color: var(--aah-pink);
 
         }
 
-        h5 {
+        h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
 
@@ -88,7 +95,7 @@
 
         header {
             padding: 20px 20px 20px 50px;
-            background-color: #da0974;
+            background-color: var(--aah-pink);
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
@@ -108,7 +115,7 @@
         }
 
         p {
-            color: grey;
+            color: var(--grey);
         }
 
         header p {
@@ -122,6 +129,7 @@
         input {
             padding: 10px;
             border-radius: 10px;
+
         }
 
         input[type="file"] {
@@ -137,7 +145,7 @@
         main a,
         .fileButton {
 
-            background-color: #da0974;
+            background-color: var(--aah-pink);
             outline: 0;
             border: 0;
             padding: 10px;
@@ -148,11 +156,11 @@
         }
 
         main a.inactive {
-            background-color: grey;
+            background-color: var(--grey);
         }
 
         main a.active {
-            background-color: #da0974;
+            background-color: var(--aah-pink);
             text-decoration: none;
         }
 
@@ -183,15 +191,15 @@
             appearance: none;
 
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
+            width: 30px;
+            height: 30px;
 
             transition: 0.2s all linear;
             margin-right: 5px;
 
             position: relative;
             top: 4px;
-            border: 2px grey solid;
+            border: 2px var(--grey) solid;
             padding: unset;
 
         }
@@ -200,15 +208,15 @@
         input#small:checked,
         input#medium:checked,
         input#large:checked {
-            border: 10px #da0974 solid;
+            border: 10px var(--aah-pink) solid;
         }
 
         input#colourChoice2:checked {
-            border: 10px #195f72 solid;
+            border: 10px var(--aah-blue) solid;
         }
 
         input#colourChoice3:checked {
-            border: 10px #fb5012 solid;
+            border: 10px var(--aah-orange) solid;
         }
 
         #smallLabel {
@@ -226,7 +234,7 @@
 
         #styleDropdown {
             margin-left: 30px;
-            background-color: #da0974;
+            background-color: var(--aah-pink);
             outline: none;
             border: none;
             padding: 10px;
@@ -237,16 +245,16 @@
         }
 
         footer {
-            color: grey;
+            color: var(--grey);
             padding-left: 20px;
         }
 
         footer a {
-            color: #da0974;
+            color: var(--aah-pink);
         }
 
         #blurb {
-            border: 6px solid #da0974;
+            border: 6px solid var(--aah-pink);
             padding: 24px;
             border-radius: 12px;
             margin: 0;
@@ -256,7 +264,7 @@
             margin: 20px;
         }
 
-        #preview h3 {
+        #preview h2 {
             margin-top: 0;
             padding-top: 26px;
         }
@@ -268,14 +276,16 @@
 
         #ligature {
             margin-top: 10px;
+            width: 30px;
+            height: 30px;
         }
 
         #ligature:checked {
-            background-color: #da0974;
+            background-color: var(--aah-pink);
         }
 
         #lig {
-            color: grey;
+            color: var(--grey);
             margin: 5px;
         }
     </style>
@@ -290,12 +300,12 @@
     <main>
         <section id="controls">
 
-            <h3 id="blurb">A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the
-                details of the article below and then a story image will be produced</h3>
+            <h2 id="blurb">A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the
+                details of the article below and then a story image will be produced</h2>
             <form action="POST">
 
 
-                <h5>1. Type the headline of the article</h5>
+                <h3>1. Type the headline of the article</h3>
                 <p>Six or seven lines maximum, ideally less</p>
                 <input type="text" id="headline" placeholder="Headline..." required><br>
                 <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Use aah
@@ -304,7 +314,7 @@
                     the letters</label>
 
 
-                <h5>2. Choose an image for the story</h5>
+                <h3>2. Choose an image for the story</h3>
                 <p>Landscape, size 1080 by 1920 pixels if possible. Images of any other aspect ratio will be squashed to
                     fit,
                     which doesn't look nice</p>
@@ -314,7 +324,7 @@
                 <input type="file" name="file" id="file" accept="image/*" required>
 
 
-                <h5>3. Pick the colour scheme</h5>
+                <h3>3. Pick the colour scheme</h3>
                 <p>Pink for most articles, or use orange or blue for a bit of variety</p>
                 <input type="radio" id="colourChoice1" name="colour" value="pink" checked required />
                 <label for="colourChoice1" class="colourLabel">Pink</label>
@@ -325,7 +335,7 @@
                 <input type="radio" id="colourChoice3" name="colour" value="orange" />
                 <label for="colourChoice3" class="colourLabel">Orange</label>
 
-                <h5>4. Choose a style for the story</h5>
+                <h3>4. Choose a style for the story</h3>
                 <select name="storyStyle" id="styleDropdown">
                     <option value="normal">Normal style</option>
                     <option value="christmas">Christmas</option>
@@ -345,11 +355,11 @@
                 <p>More styles are coming soon once the sections' branding has been developed</p>
 
 
-                <h5>5. Click submit when you've chosen your options</h5>
+                <h3>5. Click submit when you've chosen your options</h3>
                 <p>A half-size preview will appear to the right.<br>If you make any more changes, click submit again</p>
                 <button id="generateButton" type="button" onClick="generate()">Submit</button>
 
-                <h5>6. Decide on a font size</h5>
+                <h3>6. Decide on a font size</h3>
                 <input type="radio" id="small" name="size" value="small" />
                 <label for="small" class="sizeLabel" id="smallLabel">A</label>
                 <br>
@@ -362,25 +372,25 @@
                     you've
                     changed it, go back to step 5 and press submit again</p>
 
-                <h5>7. Click generate when you're happy with it</h5>
+                <h3>7. Click generate when you're happy with it</h3>
                 <button id="downloadButton" type="button" onClick="download()">Generate</button>
 
 
-                <h5>8. Click download and then add to the Instagram</h5>
+                <h3>8. Click download and then add to the Instagram</h3>
                 <p>Add a link using Instagram's Create mode</p>
                 <a id="download" download="download.png" class="inactive">Download</a><br><br><br>
 
             </form>
         </section>
         <section id="preview">
-            <h3>Preview</h3><canvas id="generatedImage" width="1080px" height="1920px">hello</canvas>
+            <h2>Preview</h2><canvas id="generatedImage" width="1080px" height="1920px">hello</canvas>
         </section>
 
 
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.7.3, built 2022-11-23. <a
+        <p>Version 1.7.4, built 2022-11-23. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
 </body>
@@ -406,11 +416,11 @@
         }
 
         if (colour === 0) {
-            colour = '#da0974';
+            colour = 'var(--aah-pink)';
         } else if (colour === 1) {
-            colour = '#195f72';
+            colour = 'var(--aah-blue)';
         } else if (colour === 2) {
-            colour = '#fb5012';
+            colour = 'var(--aah-orange)';
         }
 
 

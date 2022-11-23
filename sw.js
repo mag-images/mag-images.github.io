@@ -1,6 +1,7 @@
 // Core assets
 let coreAssets = [
     'fonts/AAHITCAvantGardeProBold.eot',
+    'fonts/AAHITCAvantGardeProBold.woff2',
     'images/trim/christmas.png'
 
 ];
