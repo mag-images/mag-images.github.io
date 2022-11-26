@@ -55,7 +55,7 @@
 
         canvas#generatedImage {
             outline: 1px solid var(--grey);
-            transform: scale(50%);
+            transform: scale(0.5);
             transform-origin: top left;
             margin: 0;
             margin-right: -540px;
@@ -386,150 +386,151 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.8.2, built 2022-11-26. <a
+        <p>Version 1.8.3, built 2022-11-26. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
+    <script>
+        var canvas = document.getElementById("generatedImage");
+        function generate() {
+            //get inputs
+            var headline = document.getElementById("headline").value;
+            var picture = document.getElementById("file");
+            var colour = document.getElementsByName("colour");
+            var styleChoice = document.getElementById("styleDropdown").value;
+            var picPosition;
+            var trimSrc;
+            var ligatureChoice = document.getElementById("ligature");
+            var size = document.getElementsByName("size");
+            var height;
+            var typeface = "AAHITCAvantGardeProBold";
+
+            // set story colour
+            for (i = 0; i < colour.length; i++) {
+                if (colour[i].checked)
+                    colour = i;
+            }
+
+            if (colour === 0) {
+                colour = '#da0974';
+            } else if (colour === 1) {
+                colour = '#195f72';
+            } else if (colour === 2) {
+                colour = '#fb5012';
+            }
+
+
+            // set rules for each style
+            if (styleChoice === 'normal') {
+                picPosition = 1230;
+            } else if (styleChoice === 'christmas') {
+                picPosition = 860;
+                let trimSrc = 'images/trim/christmas.png';
+                const trim = new Image();
+                trim.onload = function () {
+                    ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
+                }
+                trim.src = trimSrc;
+            } else if (styleChoice === 'energy') {
+                picPosition = 1230;
+                typeface = 'fragile-bombers-attack';
+            }
+
+
+            // set up canvas and background
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = colour;
+            ctx.fillRect(0, 0, 1080, 1920);
+
+            // split headline into multiple lines
+            function wrapText(context, text, x, y, maxWidth, lineHeight) {
+                var words = text.split(' ');
+                var line = '';
+
+                for (var n = 0; n < words.length; n++) {
+                    var testLine = line + words[n] + ' ';
+                    var metrics = context.measureText(testLine);
+                    var testWidth = metrics.width;
+                    if (testWidth > maxWidth && n > 0) {
+                        ctx.fillText(line, x, y);
+                        line = words[n] + ' ';
+                        y += lineHeight;
+                    }
+                    else {
+                        line = testLine;
+                    }
+                }
+                ctx.fillText(line, x, y);
+            }
+
+            // choose whether or not to use ligatures 
+            if (ligatureChoice.checked) {
+                document.getElementById("generatedImage").style.fontVariantLigatures = "normal";
+                document.getElementById("preview").style.fontVariantLigatures = "normal";
+            } else {
+                document.getElementById("generatedImage").style.fontVariantLigatures = "none";
+                document.getElementById("preview").style.fontVariantLigatures = "none";
+            };
+
+            // set font size
+            for (i = 0; i < size.length; i++) {
+                if (size[i].checked)
+                    size = i;
+            }
+
+            if (size === 0) {
+                size = '50px';
+                height = 50;
+            } else if (size === 1) {
+                size = '70px';
+                height = 70;
+            } else if (size === 2) {
+                size = '90px';
+                height = 90;
+            }
+
+            // add headline
+            ctx.fillStyle = 'white';
+            ctx.font = size + ' ' + typeface;
+
+            wrapText(ctx, headline, 50, 300, 900, height);
+            var downloadLink = document.getElementById("download");
+
+
+            var truncatedHeadline = headline.substring(0, 30);
+            downloadLink.setAttribute("download", "Instagram story " + truncatedHeadline + ".png")
+
+            // add image
+            let photoSrc = '';
+            if (picture.value !== '') {
+                photoSrc = window.URL.createObjectURL(picture.files[0]);
+            }
+            const photo = new Image();
+            photo.onload = function () {
+                ctx.drawImage(photo, 0, picPosition, 1080, 607.5);
+            }
+            photo.src = photoSrc;
+
+
+
+        }
+        function download() {
+            // generate download link
+            var downloadLink = document.getElementById("download");
+            var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            downloadLink.setAttribute("href", img);
+
+            downloadLink.classList.add("active");
+
+
+        }
+
+    </script>
+    <script>
+        if (navigator && navigator.serviceWorker) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
 </body>
-<script>
-    var canvas = document.getElementById("generatedImage");
-    function generate() {
-        //get inputs
-        var headline = document.getElementById("headline").value;
-        var picture = document.getElementById("file");
-        var colour = document.getElementsByName("colour");
-        var styleChoice = document.getElementById("styleDropdown").value;
-        var picPosition;
-        var trimSrc;
-        var ligatureChoice = document.getElementById("ligature");
-        var size = document.getElementsByName("size");
-        var height;
-        var typeface = "AAHITCAvantGardeProBold";
 
-        // set story colour
-        for (i = 0; i < colour.length; i++) {
-            if (colour[i].checked)
-                colour = i;
-        }
-
-        if (colour === 0) {
-            colour = '#da0974';
-        } else if (colour === 1) {
-            colour = '#195f72';
-        } else if (colour === 2) {
-            colour = '#fb5012';
-        }
-
-
-        // set rules for each style
-        if (styleChoice === 'normal') {
-            picPosition = 1230;
-        } else if (styleChoice === 'christmas') {
-            picPosition = 860;
-            let trimSrc = 'images/trim/christmas.png';
-            const trim = new Image();
-            trim.onload = function () {
-                ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
-            }
-            trim.src = trimSrc;
-        } else if (styleChoice === 'energy') {
-            picPosition = 1230;
-            typeface = 'fragile-bombers-attack';
-        }
-
-
-        // set up canvas and background
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = colour;
-        ctx.fillRect(0, 0, 1080, 1920);
-
-        // split headline into multiple lines
-        function wrapText(context, text, x, y, maxWidth, lineHeight) {
-            var words = text.split(' ');
-            var line = '';
-
-            for (var n = 0; n < words.length; n++) {
-                var testLine = line + words[n] + ' ';
-                var metrics = context.measureText(testLine);
-                var testWidth = metrics.width;
-                if (testWidth > maxWidth && n > 0) {
-                    ctx.fillText(line, x, y);
-                    line = words[n] + ' ';
-                    y += lineHeight;
-                }
-                else {
-                    line = testLine;
-                }
-            }
-            ctx.fillText(line, x, y);
-        }
-
-        // choose whether or not to use ligatures 
-        if (ligatureChoice.checked) {
-            document.getElementById("generatedImage").style.fontVariantLigatures = "normal";
-            document.getElementById("preview").style.fontVariantLigatures = "normal";
-        } else {
-            document.getElementById("generatedImage").style.fontVariantLigatures = "none";
-            document.getElementById("preview").style.fontVariantLigatures = "none";
-        };
-
-        // set font size
-        for (i = 0; i < size.length; i++) {
-            if (size[i].checked)
-                size = i;
-        }
-
-        if (size === 0) {
-            size = '50px';
-            height = 50;
-        } else if (size === 1) {
-            size = '70px';
-            height = 70;
-        } else if (size === 2) {
-            size = '90px';
-            height = 90;
-        }
-
-        // add headline
-        ctx.fillStyle = 'white';
-        ctx.font = size + ' ' + typeface;
-
-        wrapText(ctx, headline, 50, 300, 900, height);
-        var downloadLink = document.getElementById("download");
-
-
-        var truncatedHeadline = headline.substring(0, 30);
-        downloadLink.setAttribute("download", "Instagram story " + truncatedHeadline + ".png")
-
-        // add image
-        let photoSrc = '';
-        if (picture.value !== '') {
-            photoSrc = window.URL.createObjectURL(picture.files[0]);
-        }
-        const photo = new Image();
-        photo.onload = function () {
-            ctx.drawImage(photo, 0, picPosition, 1080, 607.5);
-        }
-        photo.src = photoSrc;
-
-
-
-    }
-    function download() {
-        // generate download link
-        var downloadLink = document.getElementById("download");
-        var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        downloadLink.setAttribute("href", img);
-
-        downloadLink.classList.add("active");
-
-
-    }
-
-</script>
-<script>
-    if (navigator && navigator.serviceWorker) {
-        navigator.serviceWorker.register('sw.js');
-    }
-</script>
 
 </html>
