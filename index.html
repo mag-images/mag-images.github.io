@@ -44,54 +44,40 @@
             --aah-pink: #da0974;
             --aah-blue: #195f72;
             --aah-orange: #fb5012;
-            --grey: #444444;
+            --grey: #444
         }
 
-        /* Avant Garde with aAh logo ligature */
         @font-face {
             font-family: 'AAHITCAvantGardeProBold';
-            src: url('fonts/AAHITCAvantGardeProBold.eot');
-            src: url('fonts/AAHITCAvantGardeProBold.eot') format('embedded-opentype'),
-                url('fonts/AAHITCAvantGardeProBold.woff2') format('woff2'),
-                url('fonts/AAHITCAvantGardeProBold.woff') format('woff'),
-                url('fonts/AAHITCAvantGardeProBold.ttf') format('truetype'),
-                url('fonts/AAHITCAvantGardeProBold.svg#AAHITCAvantGardeProBold') format('svg');
+            src: url(fonts/AAHITCAvantGardeProBold.eot);
+            src: url(fonts/AAHITCAvantGardeProBold.eot) format("embedded-opentype"), url(fonts/AAHITCAvantGardeProBold.woff2) format("woff2"), url(fonts/AAHITCAvantGardeProBold.woff) format("woff"), url(fonts/AAHITCAvantGardeProBold.ttf) format("truetype"), url(fonts/AAHITCAvantGardeProBold.svg#AAHITCAvantGardeProBold) format("svg")
         }
 
-
         canvas#generatedImage {
-
             outline: 1px solid var(--grey);
             transform: scale(50%);
             transform-origin: top left;
             margin: 0;
             margin-right: -540px;
-            margin-bottom: -960px;
+            margin-bottom: -960px
         }
 
         body {
             font-family: "AAHITCAvantGardeProBold", sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0
         }
 
         main {
             display: flex;
             flex-direction: row;
-            accent-color: var(--aah-pink);
+            accent-color: var(--aah-pink)
         }
-
 
         h3 {
             color: var(--aah-pink);
-
-        }
-
-        h3 {
             font-size: 1.5rem;
-            margin-bottom: 10px;
-
-
+            margin-bottom: 10px
         }
 
         header {
@@ -102,71 +88,67 @@
             flex-wrap: nowrap;
             align-items: center;
             justify-content: flex-start;
-            gap: 20px;
+            gap: 20px
         }
 
         header img,
         header h1 {
             display: inline-block;
-            margin: 0;
+            margin: 0
         }
 
         h1 {
-            color: white;
+            color: #fff
         }
 
         p {
-            color: var(--grey);
+            color: var(--grey)
         }
 
         header p {
-            color: white;
+            color: #fff
         }
 
         #controls {
-            margin: 20px;
+            margin: 20px
         }
 
         input {
             padding: 10px;
-            border-radius: 10px;
-
+            border-radius: 10px
         }
 
         input[type="file"] {
-            display: none;
+            display: none
         }
 
         input#headline {
-            font-family: 'AAHITCAvantGardeProBold';
-            font-size: 20px;
+            font: 20px 'AAHITCAvantGardeProBold'
         }
 
         main button,
         main a,
         .fileButton {
-
             background-color: var(--aah-pink);
             outline: 0;
             border: 0;
             padding: 10px;
             border-radius: 10px;
-            color: white;
-            font-family: "AAHITCAvantGardeProBold", sans-serif;
-            font-size: 20px;
+            color: #fff;
+            font: 20px "AAHITCAvantGardeProBold", sans-serif
         }
 
         main a.inactive {
-            background-color: var(--grey);
+            background-color: var(--grey)
         }
 
         main a.active {
             background-color: var(--aah-pink);
-            text-decoration: none;
+            text-decoration: none
         }
 
         .fileButton {
-            display: inline-block;
+            display: inline-block
         }
 
         form p,
@@ -174,12 +156,12 @@
         form input,
         form button,
         form a {
-            margin-left: 30px;
+            margin-left: 30px
         }
 
         .colourLabel {
             margin-left: unset;
-            font-size: 1.2rem;
+            font-size: 1.2rem
         }
 
         input#colourChoice1,
@@ -188,49 +170,43 @@
         input#small,
         input#medium,
         input#large {
-
             appearance: none;
-
             border-radius: 50%;
             width: 30px;
             height: 30px;
-
-            transition: 0.2s all linear;
+            transition: .2s all linear;
             margin-right: 5px;
-
             position: relative;
             top: 4px;
             border: 2px var(--grey) solid;
-            padding: unset;
-
+            padding: unset
         }
 
         input#colourChoice1:checked,
         input#small:checked,
         input#medium:checked,
         input#large:checked {
-            border: 10px var(--aah-pink) solid;
+            border: 10px var(--aah-pink) solid
         }
 
         input#colourChoice2:checked {
-            border: 10px var(--aah-blue) solid;
+            border: 10px var(--aah-blue) solid
         }
 
         input#colourChoice3:checked {
-            border: 10px var(--aah-orange) solid;
+            border: 10px var(--aah-orange) solid
         }
 
         #smallLabel {
-            font-size: 12px;
+            font-size: 12px
         }
 
         #mediumLabel {
-            font-size: 20px;
+            font-size: 20px
         }
 
-
         #largeLabel {
-            font-size: 30px;
+            font-size: 30px
         }
 
         #styleDropdown {
@@ -240,18 +216,17 @@
             border: none;
             padding: 10px;
             border-radius: 12px;
-            color: white;
-            font-family: 'AAHITCAvantGardeProBold';
-            font-size: 20px;
+            color: #fff;
+            font: 20px 'AAHITCAvantGardeProBold'
         }
 
         footer {
             color: var(--grey);
-            padding-left: 20px;
+            padding-left: 20px
         }
 
         footer a {
-            color: var(--aah-pink);
+            color: var(--aah-pink)
         }
 
         #blurb {
@@ -259,54 +234,53 @@
             padding: 24px;
             border-radius: 12px;
             margin: 0;
-            font-size: 1.3rem;
+            font-size: 1.3rem
         }
 
         #preview {
-            margin: 20px;
+            margin: 20px
         }
 
         #preview h2 {
             margin-top: 0;
             padding-top: 26px;
-            font-size: 1.3rem;
+            font-size: 1.3rem
         }
 
         .logo {
-            font-size: 3rem;
-
+            font-size: 3rem
         }
 
         #ligature {
             margin-top: 10px;
             width: 30px;
-            height: 30px;
+            height: 30px
         }
 
         #ligature:checked {
-            background-color: var(--aah-pink);
+            background-color: var(--aah-pink)
         }
 
         #lig {
             color: var(--grey);
-            margin: 5px;
+            margin: 5px
         }
 
         span#direction::after {
-            content: "to the right.";
+            content: "to the right."
         }
 
         @media screen and (max-width:960px) {
             main {
-                flex-direction: column;
+                flex-direction: column
             }
 
             span#direction::after {
-                content: "below.";
+                content: "below."
             }
 
             section#preview {
-                margin-left: 50px;
+                margin-left: 50px
             }
         }
     </style>
@@ -412,7 +386,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.8, built 2022-11-26. <a
+        <p>Version 1.8.1, built 2022-11-26. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
 </body>
