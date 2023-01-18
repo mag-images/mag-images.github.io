@@ -331,12 +331,12 @@
                 <p>Landscape, size 1080 by 1920 pixels if possible. Images of any other aspect ratio will be squashed to
                     fit,
                     which doesn't look nice</p>
-                <label for="file" class="fileButton" id="fileUpload">
+                <label for="file" class="fileButton">
                     Choose file
                 </label>
+
+                <p id="fileLabel">&nbsp;</p>
                 <input type="file" name="file" id="file" accept="image/*" required>
-
-
                 <h3>3. Pick the colour scheme</h3>
                 <p>Most posts should be pink, or use blue or orange for a bit of variety</p>
                 <input type="radio" id="colourChoice1" name="colour" value="pink" checked required>
@@ -358,9 +358,11 @@
 
                     <option value="normal">Normal style</option>
                     <optgroup label="The Energy Issue">
-                        <option value="energyRegular" style="font-family:'fragile-bombers', sans-serif;">Fragile Bombers
+                        <option value="energyRegular" style="font-family:'fragile-bombers', sans-serif;">Fragile
+                            Bombers
                             Regular</option>
-                        <option value="energyAttack" style="font-family:'fragile-bombers-attack', sans-serif;">Fragile
+                        <option value="energyAttack" style="font-family:'fragile-bombers-attack', sans-serif;">
+                            Fragile
                             Bombers Attack</option>
                         <option value="energyDown" style="font-family:'fragile-bombers-down', sans-serif;">Fragile
                             Bombers Down</option>
@@ -415,7 +417,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 2.0, built 2023-01-18. <a
+        <p>Version 2.1, built 2023-01-18. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -423,7 +425,7 @@
 
         document.getElementById("formElement").addEventListener("click", generate);
         document.getElementById("formElement").addEventListener("keyup", generate);
-        document.getElementById("fileUpload").addEventListener("loadend", generate);
+        document.getElementById("file").addEventListener("change", generate);
 
         generate();
         function generate() {
@@ -439,6 +441,7 @@
             var height;
             var typeface = "AAHITCAvantGardeProBold";
             var root = getComputedStyle(document.documentElement);
+            var fileLabel = document.getElementById("fileLabel");
 
 
             // set story colour
@@ -564,22 +567,33 @@
                 ctx.drawImage(photo, 0, picPosition, 1080, 607.5);
             }
             photo.src = photoSrc;
+            fileLabel.innerHTML = picture.value.split("fakepath\\").pop();
+
+
 
 
 
         }
+        function waitThenGenerate() {
+            setTimeout(generate, 1000);
+        }
         function download() {
-            generate();
-            // generate download link
-            var downloadLink = document.getElementById("download");
-            var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-            downloadLink.setAttribute("href", img);
-            const event = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-            });
-            downloadLink.dispatchEvent(event);
+            setTimeout(waitThenDownload, 1000);
+            function waitThenDownload() {
+                // generate download link
+                var downloadLink = document.getElementById("download");
+                var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                downloadLink.setAttribute("href", img);
+                const event = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                });
+                downloadLink.dispatchEvent(event);
+
+
+            }
+
 
 
 
