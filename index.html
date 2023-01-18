@@ -44,7 +44,10 @@
             --aah-pink: #da0974;
             --aah-blue: #195f72;
             --aah-orange: #fb5012;
-            --grey: #444
+            --grey: #444;
+            --energy-yellow: #e1ad01;
+            --energy-green: #00a693;
+            --energy-terracota: #d47553;
         }
 
         @font-face {
@@ -59,7 +62,7 @@
             transform-origin: top left;
             margin: 0;
             margin-right: -540px;
-            margin-bottom: -960px
+            margin-bottom: -960px;
         }
 
         body {
@@ -167,6 +170,9 @@
         input#colourChoice1,
         input#colourChoice2,
         input#colourChoice3,
+        input#colourChoice4,
+        input#colourChoice5,
+        input#colourChoice6,
         input#small,
         input#medium,
         input#large {
@@ -195,6 +201,18 @@
 
         input#colourChoice3:checked {
             border: 10px var(--aah-orange) solid
+        }
+
+        input#colourChoice4:checked {
+            border: 10px var(--energy-yellow) solid
+        }
+
+        input#colourChoice5:checked {
+            border: 10px var(--energy-green) solid
+        }
+
+        input#colourChoice6:checked {
+            border: 10px var(--energy-terracota) solid
         }
 
         #smallLabel {
@@ -238,7 +256,7 @@
         }
 
         #preview {
-            margin: 20px
+            margin: 20px;
         }
 
         #preview h2 {
@@ -297,7 +315,7 @@
 
             <h2 id="blurb">A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the
                 details of the article below and then a story image will be produced</h2>
-            <form action="POST">
+            <form action="POST" id="formElement">
 
 
                 <h3>1. Type the headline of the article</h3>
@@ -313,49 +331,65 @@
                 <p>Landscape, size 1080 by 1920 pixels if possible. Images of any other aspect ratio will be squashed to
                     fit,
                     which doesn't look nice</p>
-                <label for="file" class="fileButton">
+                <label for="file" class="fileButton" id="fileUpload">
                     Choose file
                 </label>
                 <input type="file" name="file" id="file" accept="image/*" required>
 
 
                 <h3>3. Pick the colour scheme</h3>
-                <p>Pink for most articles, or use orange or blue for a bit of variety</p>
+                <p>Most posts should be pink, or use blue or orange for a bit of variety</p>
                 <input type="radio" id="colourChoice1" name="colour" value="pink" checked required>
                 <label for="colourChoice1" class="colourLabel">Pink</label>
-                <br>
                 <input type="radio" id="colourChoice2" name="colour" value="blue">
                 <label for="colourChoice2" class="colourLabel">Blue</label>
-                <br>
                 <input type="radio" id="colourChoice3" name="colour" value="orange">
-                <label for="colourChoice3" class="colourLabel">Orange</label>
+                <label for="colourChoice3" class="colourLabel">Orange</label><br>
+                <p>For posts about The Energy Issue, use one of these colours</p>
+                <input type="radio" id="colourChoice4" name="colour" value="yellow">
+                <label for="colourChoice4" class="colourLabel">Yellow</label>
+                <input type="radio" id="colourChoice5" name="colour" value="green">
+                <label for="colourChoice5" class="colourLabel">Green</label>
+                <input type="radio" id="colourChoice6" name="colour" value="terracota">
+                <label for="colourChoice6" class="colourLabel">Terracota</label>
 
-                <h3>4. Choose a style for the story</h3>
-                <select name="storyStyle" id="styleDropdown">
+                <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
+                <select name="storyStyle" id="styleDropdown" aria-labelledby="storyStyleLabel">
+
                     <option value="normal">Normal style</option>
+                    <optgroup label="The Energy Issue">
+                        <option value="energyRegular" style="font-family:'fragile-bombers', sans-serif;">Fragile Bombers
+                            Regular</option>
+                        <option value="energyAttack" style="font-family:'fragile-bombers-attack', sans-serif;">Fragile
+                            Bombers Attack</option>
+                        <option value="energyDown" style="font-family:'fragile-bombers-down', sans-serif;">Fragile
+                            Bombers Down</option>
+                        <option value="energyFolk" style="font-family:'ff-folk', sans-serif;">Folk</option>
+                        <option value="energyRough" style="font-family:'ff-folk-rough', sans-serif;">Folk Rough
+                        </option>
+
+                    </optgroup>
                     <option value="christmas">Christmas</option>
-                    <option value="energy" style="font-family:'fragile-bombers-attack';">The Energy Issue</option>
-                    <option value="news" disabled>News</option>
-                    <option value="culture" disabled>Culture</option>
-                    <option value="music" disabled>Music</option>
-                    <option value="features" disabled>Feature</option>
-                    <option value="gaming" disabled>Gaming</option>
-                    <option value="sport" disabled>Sport</option>
-                    <option value="opinion" disabled>Opinion</option>
-                    <option value="lifestyle" disabled>Lifestyle</option>
-                    <option value="fashion" disabled>Fashion</option>
-                    <option value="literature" disabled>Literature</option>
-                    <option value="creativeWriting" disabled>Creative Writing</option>
+                    <optgroup label="Coming soon" disabled>
+                        <option value="news" disabled>News</option>
+                        <option value="culture" disabled>Culture</option>
+                        <option value="music" disabled>Music</option>
+                        <option value="features" disabled>Feature</option>
+                        <option value="gaming" disabled>Gaming</option>
+                        <option value="sport" disabled>Sport</option>
+                        <option value="opinion" disabled>Opinion</option>
+                        <option value="lifestyle" disabled>Lifestyle</option>
+                        <option value="fashion" disabled>Fashion</option>
+                        <option value="literature" disabled>Literature</option>
+                        <option value="creativeWriting" disabled>Creative Writing</option>
+                    </optgroup>
                 </select>
                 <p>More styles are coming soon once the sections' branding has been developed</p>
 
 
-                <h3>5. Click submit when you've chosen your options</h3>
-                <p>A half-size preview will appear <span id="direction"></span><br>If you make any more
-                    changes, click submit again</p>
-                <button id="generateButton" type="button" onClick="generate()">Submit</button>
 
-                <h3>6. Decide on a font size</h3>
+
+                <h3>5. Decide on a font size</h3>
                 <input type="radio" id="small" name="size" value="small">
                 <label for="small" class="sizeLabel" id="smallLabel">A</label>
                 <br>
@@ -364,17 +398,12 @@
                 <br>
                 <input type="radio" id="large" name="size" value="large">
                 <label for="large" class="sizeLabel" id="largeLabel">A</label>
-                <p>Generally stick with medium, but you can make it bigger or smaller if it would look better. <br> If
-                    you've
-                    changed it, go back to step 5 and press submit again</p>
+                <p>Generally stick with medium, but you can make it bigger or smaller if it would look better.</p>
 
-                <h3>7. Click generate when you're happy with it</h3>
-                <button id="downloadButton" type="button" onClick="download()">Generate</button>
-
-
-                <h3>8. Click download and then add to the Instagram</h3>
-                <p>Add a link using Instagram's Create mode</p>
-                <a id="download" download="download.png" href="#" class="inactive">Download</a><br><br><br>
+                <h3>6. Once everything's finished, click Download and then add it to the Instagram</h3>
+                <button id="downloadButton" type="button" onClick="download()">Download</button>
+                <a id="download" download="download.png" href="#" class="inactive"
+                    style="display:none;">Download</a><br><br><br>
 
             </form>
         </section>
@@ -386,11 +415,17 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 1.8.3, built 2022-11-26. <a
+        <p>Version 2.0, built 2023-01-18. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
         var canvas = document.getElementById("generatedImage");
+
+        document.getElementById("formElement").addEventListener("click", generate);
+        document.getElementById("formElement").addEventListener("keyup", generate);
+        document.getElementById("fileUpload").addEventListener("loadend", generate);
+
+        generate();
         function generate() {
             //get inputs
             var headline = document.getElementById("headline").value;
@@ -403,6 +438,8 @@
             var size = document.getElementsByName("size");
             var height;
             var typeface = "AAHITCAvantGardeProBold";
+            var root = getComputedStyle(document.documentElement);
+
 
             // set story colour
             for (i = 0; i < colour.length; i++) {
@@ -411,11 +448,17 @@
             }
 
             if (colour === 0) {
-                colour = '#da0974';
+                colour = '--aah-pink';
             } else if (colour === 1) {
-                colour = '#195f72';
+                colour = '--aah-blue';
             } else if (colour === 2) {
-                colour = '#fb5012';
+                colour = '--aah-orange';
+            } else if (colour === 3) {
+                colour = '--energy-yellow';
+            } else if (colour === 4) {
+                colour = '--energy-green';
+            } else if (colour === 5) {
+                colour = '--energy-terracota';
             }
 
 
@@ -430,15 +473,27 @@
                     ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
                 }
                 trim.src = trimSrc;
-            } else if (styleChoice === 'energy') {
+            } else if (styleChoice === 'energyRegular') {
+                picPosition = 1230;
+                typeface = 'fragile-bombers';
+            } else if (styleChoice === 'energyAttack') {
                 picPosition = 1230;
                 typeface = 'fragile-bombers-attack';
+            } else if (styleChoice === 'energyDown') {
+                picPosition = 1230;
+                typeface = 'fragile-bombers-down';
+            } else if (styleChoice === 'energyFolk') {
+                picPosition = 1230;
+                typeface = 'ff-folk';
+            } else if (styleChoice === 'energyRough') {
+                picPosition = 1230;
+                typeface = 'ff-folk-rough';
             }
 
 
             // set up canvas and background
             const ctx = canvas.getContext('2d');
-            ctx.fillStyle = colour;
+            ctx.fillStyle = root.getPropertyValue(colour);
             ctx.fillRect(0, 0, 1080, 1920);
 
             // split headline into multiple lines
@@ -514,12 +569,18 @@
 
         }
         function download() {
+            generate();
             // generate download link
             var downloadLink = document.getElementById("download");
             var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
             downloadLink.setAttribute("href", img);
+            const event = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true
+            });
+            downloadLink.dispatchEvent(event);
 
-            downloadLink.classList.add("active");
 
 
         }
