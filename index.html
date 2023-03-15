@@ -162,9 +162,12 @@
             margin-left: 30px
         }
 
-        .colourLabel {
+        .colourLabel,
+        .positionLabel {
             margin-left: unset;
-            font-size: 1.2rem
+            font-size: 1.2rem;
+            bottom: 4px;
+            position: relative;
         }
 
         input#colourChoice1,
@@ -175,7 +178,8 @@
         input#colourChoice6,
         input#small,
         input#medium,
-        input#large {
+        input#large,
+        input.positionChoice {
             appearance: none;
             border-radius: 50%;
             width: 30px;
@@ -191,7 +195,8 @@
         input#colourChoice1:checked,
         input#small:checked,
         input#medium:checked,
-        input#large:checked {
+        input#large:checked,
+        input.positionChoice:checked {
             border: 10px var(--aah-pink) solid
         }
 
@@ -281,7 +286,9 @@
 
         #lig {
             color: var(--grey);
-            margin: 5px
+            margin: 5px;
+            position: relative;
+            bottom: 8px;
         }
 
         span#direction::after {
@@ -305,6 +312,24 @@
         .new {
             color: var(--aah-pink);
             text-transform: uppercase;
+        }
+
+        #fileChoices {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+
+        }
+
+        #fileLabel {
+            margin-block: 0;
+
+        }
+
+        .positionIcon {
+            height: 15px;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -335,27 +360,69 @@
                 <h3>2. Choose an image for the story</h3>
                 <p><span class="new">NEW</span> Images don't stretch any more, they crop automatically to fit within the
                     frame</p>
-                <label for="file" class="fileButton">
-                    Choose file
-                </label>
+                <div id="fileChoices"><label for="file" class="fileButton">
+                        Choose file
+                    </label>
 
-                <p id="fileLabel">&nbsp;</p>
+                    <p id="fileLabel">&nbsp;</p>
+                </div>
+
+
+
+
                 <input type="file" name="file" id="file" accept="image/*" required>
+                <div id="xPositionChoices" style="display:none;">
+                    <p>The image is wider than the box, choose which part to display</p>
+                    <input type="radio" id="xPositionChoice1" name="xPosition" value="left" class="positionChoice">
+                    <label for="xPositionChoice1" class="positionLabel"><img src="images/pictograms/left.svg"
+                            class="positionIcon">
+                        Left</label>
+                    <input type="radio" id="xPositionChoice2" name="xPosition" value="center" class="positionChoice"
+                        checked required>
+                    <label for="xPositionChoice2" class="positionLabel"><img src="images/pictograms/center.svg"
+                            class="positionIcon">Center</label>
+                    <input type="radio" id="xPositionChoice3" name="xPosition" value="right" class="positionChoice">
+                    <label for="xPositionChoice3" class="positionLabel"><img src="images/pictograms/right.svg"
+                            class="positionIcon">Right</label>
+                </div><br>
+                <div id="yPositionChoices" style="display:none;">
+                    <p>The image is taller than the box, choose which part to display</p>
+                    <input type="radio" id="yPositionChoice1" name="yPosition" value="top" class="positionChoice">
+                    <label for="yPositionChoice1" class="positionLabel"><img src="images/pictograms/top.svg"
+                            class="positionIcon">Top</label>
+                    <input type="radio" id="yPositionChoice2" name="yPosition" value="middle" class="positionChoice"
+                        checked required>
+                    <label for="yPositionChoice2" class="positionLabel"><img src="images/pictograms/middle.svg"
+                            class="positionIcon">Middle</label>
+                    <input type="radio" id="yPositionChoice3" name="yPosition" value="bottom" class="positionChoice">
+                    <label for="yPositionChoice3" class="positionLabel"><img src="images/pictograms/bottom.svg"
+                            class="positionIcon">Bottom</label>
+                </div>
+
+
+
+
+
+
                 <h3>3. Pick the colour scheme</h3>
                 <p>Pink is the house style, or use blue or orange for a bit of variety</p>
-                <input type="radio" id="colourChoice1" name="colour" value="pink" checked required>
-                <label for="colourChoice1" class="colourLabel">Pink</label>
-                <input type="radio" id="colourChoice2" name="colour" value="blue">
-                <label for="colourChoice2" class="colourLabel">Blue</label>
-                <input type="radio" id="colourChoice3" name="colour" value="orange">
-                <label for="colourChoice3" class="colourLabel">Orange</label><br>
+                <div class="radiosRow"><input type="radio" id="colourChoice1" name="colour" value="pink" checked
+                        required>
+                    <label for="colourChoice1" class="colourLabel">Pink</label>
+                    <input type="radio" id="colourChoice2" name="colour" value="blue">
+                    <label for="colourChoice2" class="colourLabel">Blue</label>
+                    <input type="radio" id="colourChoice3" name="colour" value="orange">
+                    <label for="colourChoice3" class="colourLabel">Orange</label>
+                </div>
+                <br>
                 <p>For posts about The Energy Issue, use one of these colours</p>
-                <input type="radio" id="colourChoice4" name="colour" value="yellow">
-                <label for="colourChoice4" class="colourLabel">Yellow</label>
-                <input type="radio" id="colourChoice5" name="colour" value="green">
-                <label for="colourChoice5" class="colourLabel">Green</label>
-                <input type="radio" id="colourChoice6" name="colour" value="terracota">
-                <label for="colourChoice6" class="colourLabel">Terracota</label>
+                <div class="radiosRow"><input type="radio" id="colourChoice4" name="colour" value="yellow">
+                    <label for="colourChoice4" class="colourLabel">Yellow</label>
+                    <input type="radio" id="colourChoice5" name="colour" value="green">
+                    <label for="colourChoice5" class="colourLabel">Green</label>
+                    <input type="radio" id="colourChoice6" name="colour" value="terracota">
+                    <label for="colourChoice6" class="colourLabel">Terracota</label>
+                </div>
 
 
                 <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
@@ -422,7 +489,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 2.3, built 2023-03-15. <a
+        <p>Version 2.4, built 2023-03-15. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -438,6 +505,8 @@
             var headline = document.getElementById("headline").value;
             var picture = document.getElementById("file");
             var colour = document.getElementsByName("colour");
+            var xPositionB = document.getElementsByName("xPosition");
+            var yPositionB = document.getElementsByName("yPosition");
             var styleChoice = document.getElementById("styleDropdown").value;
             var picPosition;
             var trimSrc;
@@ -578,19 +647,73 @@
                 var sixteenByNine = 16 / 9;
                 var resizedWidth;
                 var resizedHeight;
+                var xPosition;
+                var yPosition;
 
-                if (photoAspectRatio >= sixteenByNine) {
+
+                for (i = 0; i < xPositionB.length; i++) {
+                    if (xPositionB[i].checked)
+                        xPositionB = i;
+                }
+                if (xPositionB === 0) {
+                    xPosition = "left";
+                } else if (xPositionB === 1) {
+                    xPosition = "center";
+                } else if (xPositionB === 2) {
+                    xPosition = "right";
+                }
+                for (i = 0; i < yPositionB.length; i++) {
+                    if (yPositionB[i].checked)
+                        yPositionB = i;
+                }
+                if (yPositionB === 0) {
+                    yPosition = "top";
+                } else if (yPositionB === 1) {
+                    yPosition = "middle";
+                } else if (yPositionB === 2) {
+                    yPosition = "bottom";
+                }
+
+
+
+
+                if (photoAspectRatio > sixteenByNine) {
                     // Image is wider than the canvas, so clip the sides
                     resizedWidth = photoHeight * sixteenByNine;
                     resizedHeight = photoHeight;
-                    x = (photoWidth - resizedWidth) / 2;
+                    document.getElementById("xPositionChoices").style.display = "initial";
+                    document.getElementById("yPositionChoices").style.display = "none";
+                    if (xPosition === "center") {
+                        x = (photoWidth - resizedWidth) / 2;
+                    } else if (xPosition === "left") {
+                        x = 0;
+                    } else if (xPosition === "right") {
+                        x = (photoWidth - resizedWidth);
+                    }
+                    //console.log(x);
                     y = 0;
-                } else {
+                    //console.log(y);
+                } else if (photoAspectRatio < sixteenByNine) {
                     // Image is taller than the canvas, so clip the top/bottom
                     resizedWidth = photoWidth;
                     resizedHeight = photoWidth / sixteenByNine;
+                    document.getElementById("yPositionChoices").style.display = "initial";
+                    document.getElementById("xPositionChoices").style.display = "none";
                     x = 0;
-                    y = (photoHeight - resizedHeight) / 2;
+                    //console.log(x);
+                    if (yPosition === "middle") {
+                        y = (photoHeight - resizedHeight) / 2;
+                    } else if (yPosition === "top") {
+                        y = 0;
+                    } else if (yPosition === "bottom") {
+                        y = (photoHeight - resizedHeight);
+                    }
+                    //console.log(y);
+                } else {
+                    x = 0;
+                    y = 0;
+                    document.getElementById("yPositionChoices").style.display = "none";
+                    document.getElementById("xPositionChoices").innerHTML = "<p>The image fits perfectly within the box without needing to crop</p>";
                 }
 
                 // Draw the clipped image on the canvas
