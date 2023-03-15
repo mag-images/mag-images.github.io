@@ -489,7 +489,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 2.4, built 2023-03-15. <a
+        <p>Version 2.5, built 2023-03-15. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -710,10 +710,13 @@
                     }
                     //console.log(y);
                 } else {
+                    resizedWidth = photoWidth;
+                    resizedHeight = photoWidth / sixteenByNine;
+                    document.getElementById("yPositionChoices").style.display = "none";
+                    document.getElementById("xPositionChoices").style.display = "initial";
+                    document.getElementById("xPositionChoices").innerHTML = "<p>The image fits perfectly within the box without needing to crop</p>";
                     x = 0;
                     y = 0;
-                    document.getElementById("yPositionChoices").style.display = "none";
-                    document.getElementById("xPositionChoices").innerHTML = "<p>The image fits perfectly within the box without needing to crop</p>";
                 }
 
                 // Draw the clipped image on the canvas
