@@ -413,11 +413,11 @@
             <h2>Preview</h2><canvas id="generatedImage" width="1080" height="1920">hello</canvas>
         </section>
 
-
+        <div id="measure"></div>
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 2.1, built 2023-01-18. <a
+        <p>Version 2.2, built 2023-03-15. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -557,14 +557,41 @@
             var truncatedHeadline = headline.substring(0, 30);
             downloadLink.setAttribute("download", "Instagram story " + truncatedHeadline + ".png")
 
+
+
             // add image
             let photoSrc = '';
             if (picture.value !== '') {
                 photoSrc = window.URL.createObjectURL(picture.files[0]);
             }
+
             const photo = new Image();
             photo.onload = function () {
-                ctx.drawImage(photo, 0, picPosition, 1080, 607.5);
+                var photoHeight = photo.height;
+                var photoWidth = photo.width;
+                var photoAspectRatio = photoWidth / photoHeight;
+                var sixteenByNine = 16 / 9;
+                var resizedWidth;
+                var resizedHeight;
+
+                if (photoAspectRatio >= sixteenByNine) {
+                    // Image is wider than the canvas, so clip the sides
+                    resizedWidth = photoHeight * sixteenByNine;
+                    resizedHeight = photoHeight;
+                    x = (photoWidth - resizedWidth) / 2;
+                    y = 0;
+                } else {
+                    // Image is taller than the canvas, so clip the top/bottom
+                    resizedWidth = photoWidth;
+                    resizedHeight = photoWidth / sixteenByNine;
+                    x = 0;
+                    y = (photoHeight - resizedHeight) / 2;
+                }
+
+                // Draw the clipped image on the canvas
+                ctx.drawImage(photo, x, y, resizedWidth, resizedHeight, 0, picPosition, 1080, 607.5);
+
+
             }
             photo.src = photoSrc;
             fileLabel.innerHTML = picture.value.split("fakepath\\").pop();
