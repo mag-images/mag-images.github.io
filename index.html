@@ -301,6 +301,11 @@
                 margin-left: 50px
             }
         }
+
+        .new {
+            color: var(--aah-pink);
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -328,9 +333,8 @@
 
 
                 <h3>2. Choose an image for the story</h3>
-                <p>Landscape, size 1080 by 1920 pixels if possible. Images of any other aspect ratio will be squashed to
-                    fit,
-                    which doesn't look nice</p>
+                <p><span class="new">NEW</span> Images don't stretch any more, they crop automatically to fit within the
+                    frame</p>
                 <label for="file" class="fileButton">
                     Choose file
                 </label>
@@ -338,7 +342,7 @@
                 <p id="fileLabel">&nbsp;</p>
                 <input type="file" name="file" id="file" accept="image/*" required>
                 <h3>3. Pick the colour scheme</h3>
-                <p>Most posts should be pink, or use blue or orange for a bit of variety</p>
+                <p>Pink is the house style, or use blue or orange for a bit of variety</p>
                 <input type="radio" id="colourChoice1" name="colour" value="pink" checked required>
                 <label for="colourChoice1" class="colourLabel">Pink</label>
                 <input type="radio" id="colourChoice2" name="colour" value="blue">
@@ -352,6 +356,7 @@
                 <label for="colourChoice5" class="colourLabel">Green</label>
                 <input type="radio" id="colourChoice6" name="colour" value="terracota">
                 <label for="colourChoice6" class="colourLabel">Terracota</label>
+
 
                 <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
                 <select name="storyStyle" id="styleDropdown" aria-labelledby="storyStyleLabel">
@@ -417,7 +422,7 @@
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 2.2, built 2023-03-15. <a
+        <p>Version 2.3, built 2023-03-15. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
