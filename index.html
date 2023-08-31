@@ -37,8 +37,7 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
 
-    <!-- Fragile Bombers font for Change issue -->
-    <link rel="stylesheet" href="https://use.typekit.net/yci6ngo.css">
+
     <style>
         :root {
             --aah-pink: #da0974;
@@ -48,6 +47,10 @@
             --energy-yellow: #e1ad01;
             --energy-green: #00a693;
             --energy-terracota: #d47553;
+            --freshers23-tomato: #eb5a4d;
+            --freshers23-cherry: #a7191d;
+            --freshers23-mint: #61a5a0;
+            --freshers23-cream: #f6e7ce;
         }
 
         @font-face {
@@ -176,6 +179,7 @@
         input#colourChoice4,
         input#colourChoice5,
         input#colourChoice6,
+        input#colourChoice7,
         input#small,
         input#medium,
         input#large,
@@ -209,15 +213,19 @@
         }
 
         input#colourChoice4:checked {
-            border: 10px var(--energy-yellow) solid
+            border: 10px var(--freshers23-cherry) solid
         }
 
         input#colourChoice5:checked {
-            border: 10px var(--energy-green) solid
+            border: 10px var(--freshers23-mint) solid
         }
 
         input#colourChoice6:checked {
-            border: 10px var(--energy-terracota) solid
+            border: 10px var(--freshers23-tomato) solid
+        }
+
+        input#colourChoice7:checked {
+            border: 10px var(--freshers23-cream) solid
         }
 
         #smallLabel {
@@ -351,10 +359,9 @@
                 <h3>1. Type the headline of the article</h3>
                 <p>Six or seven lines maximum, ideally less</p>
                 <input type="text" id="headline" placeholder="Headline..." required><br>
-                <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Use aah
-                    logo
-                    instead of
-                    the letters</label>
+                <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Replace the
+                    word
+                    <span style="font-variant-ligatures: none;">'aAh'</span> with the aah logo</label>
 
 
                 <h3>2. Choose an image for the story</h3>
@@ -415,13 +422,15 @@
                     <label for="colourChoice3" class="colourLabel">Orange</label>
                 </div>
                 <br>
-                <p>For posts about The Energy Issue, use one of these colours</p>
-                <div class="radiosRow"><input type="radio" id="colourChoice4" name="colour" value="yellow">
-                    <label for="colourChoice4" class="colourLabel">Yellow</label>
-                    <input type="radio" id="colourChoice5" name="colour" value="green">
-                    <label for="colourChoice5" class="colourLabel">Green</label>
-                    <input type="radio" id="colourChoice6" name="colour" value="terracota">
-                    <label for="colourChoice6" class="colourLabel">Terracota</label>
+                <p>For posts about The Freshers Issue 2023, use one of these colours</p>
+                <div class="radiosRow"><input type="radio" id="colourChoice4" name="colour" value="cherry">
+                    <label for="colourChoice4" class="colourLabel">Cherry</label>
+                    <input type="radio" id="colourChoice5" name="colour" value="mint">
+                    <label for="colourChoice5" class="colourLabel">Mint</label>
+                    <input type="radio" id="colourChoice6" name="colour" value="tomato">
+                    <label for="colourChoice6" class="colourLabel">Tomato</label>
+                    <input type="radio" id="colourChoice7" name="colour" value="cream">
+                    <label for="colourChoice7" class="colourLabel">Cream</label>
                 </div>
 
 
@@ -429,36 +438,14 @@
                 <select name="storyStyle" id="styleDropdown" aria-labelledby="storyStyleLabel">
 
                     <option value="normal">Normal style</option>
-                    <optgroup label="The Energy Issue">
-                        <option value="energyRegular" style="font-family:'fragile-bombers', sans-serif;">Fragile
-                            Bombers
-                            Regular</option>
-                        <option value="energyAttack" style="font-family:'fragile-bombers-attack', sans-serif;">
-                            Fragile
-                            Bombers Attack</option>
-                        <option value="energyDown" style="font-family:'fragile-bombers-down', sans-serif;">Fragile
-                            Bombers Down</option>
-                        <option value="energyFolk" style="font-family:'ff-folk', sans-serif;">Folk</option>
-                        <option value="energyRough" style="font-family:'ff-folk-rough', sans-serif;">Folk Rough
-                        </option>
+                    <optgroup label="Freshers 2023" disabled>
+                        <option value="freshersPlaceholder" disabled>Coming soon</option>
+
 
                     </optgroup>
                     <option value="christmas">Christmas</option>
-                    <optgroup label="Coming soon" disabled>
-                        <option value="news" disabled>News</option>
-                        <option value="culture" disabled>Culture</option>
-                        <option value="music" disabled>Music</option>
-                        <option value="features" disabled>Feature</option>
-                        <option value="gaming" disabled>Gaming</option>
-                        <option value="sport" disabled>Sport</option>
-                        <option value="opinion" disabled>Opinion</option>
-                        <option value="lifestyle" disabled>Lifestyle</option>
-                        <option value="fashion" disabled>Fashion</option>
-                        <option value="literature" disabled>Literature</option>
-                        <option value="creativeWriting" disabled>Creative Writing</option>
-                    </optgroup>
+
                 </select>
-                <p>More styles are coming soon once the sections' branding has been developed</p>
 
 
 
@@ -488,8 +475,10 @@
         <div id="measure"></div>
     </main>
     <footer>
-        <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a></p>
-        <p>Version 2.5, built 2023-03-15. <a
+        <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
+            have any
+            problems.</p>
+        <p>Version 2.6, built 2023-08-31. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -516,6 +505,7 @@
             var typeface = "AAHITCAvantGardeProBold";
             var root = getComputedStyle(document.documentElement);
             var fileLabel = document.getElementById("fileLabel");
+            var fontColour;
 
 
             // set story colour
@@ -526,16 +516,25 @@
 
             if (colour === 0) {
                 colour = '--aah-pink';
+                fontColour = 'white';
             } else if (colour === 1) {
                 colour = '--aah-blue';
+                fontColour = 'white';
             } else if (colour === 2) {
                 colour = '--aah-orange';
+                fontColour = 'white';
             } else if (colour === 3) {
-                colour = '--energy-yellow';
+                colour = '--freshers23-cherry';
+                fontColour = 'white';
             } else if (colour === 4) {
-                colour = '--energy-green';
+                colour = '--freshers23-mint';
+                fontColour = 'white';
             } else if (colour === 5) {
-                colour = '--energy-terracota';
+                colour = '--freshers23-tomato';
+                fontColour = 'white';
+            } else if (colour === 6) {
+                colour = '--freshers23-cream';
+                fontColour = 'black';
             }
 
 
@@ -550,7 +549,7 @@
                     ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
                 }
                 trim.src = trimSrc;
-            } else if (styleChoice === 'energyRegular') {
+            } /* else if (styleChoice === 'energyRegular') {
                 picPosition = 1230;
                 typeface = 'fragile-bombers';
             } else if (styleChoice === 'energyAttack') {
@@ -565,7 +564,7 @@
             } else if (styleChoice === 'energyRough') {
                 picPosition = 1230;
                 typeface = 'ff-folk-rough';
-            }
+            } */
 
 
             // set up canvas and background
@@ -621,7 +620,7 @@
             }
 
             // add headline
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = fontColour;
             ctx.font = size + ' ' + typeface;
 
             wrapText(ctx, headline, 50, 300, 900, height);
