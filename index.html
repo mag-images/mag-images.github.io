@@ -339,6 +339,11 @@
             height: 15px;
             margin-right: 10px;
         }
+
+        .radiosGroup {
+            display: inline-block;
+
+        }
     </style>
 </head>
 
@@ -413,25 +418,39 @@
 
                 <h3>3. Pick the colour scheme</h3>
                 <p>Pink is the house style, or use blue or orange for a bit of variety</p>
-                <div class="radiosRow"><input type="radio" id="colourChoice1" name="colour" value="pink" checked
-                        required>
-                    <label for="colourChoice1" class="colourLabel">Pink</label>
-                    <input type="radio" id="colourChoice2" name="colour" value="blue">
-                    <label for="colourChoice2" class="colourLabel">Blue</label>
-                    <input type="radio" id="colourChoice3" name="colour" value="orange">
-                    <label for="colourChoice3" class="colourLabel">Orange</label>
+                <div class="radiosRow">
+                    <div class="radiosGroup"><input type="radio" id="colourChoice1" name="colour" value="pink" checked
+                            required>
+                        <label for="colourChoice1" class="colourLabel">Pink</label>
+                    </div>
+                    <div class="radiosGroup">
+                        <input type="radio" id="colourChoice2" name="colour" value="blue">
+                        <label for="colourChoice2" class="colourLabel">Blue</label>
+                    </div>
+                    <div class="radiosGroup">
+                        <input type="radio" id="colourChoice3" name="colour" value="orange">
+                        <label for="colourChoice3" class="colourLabel">Orange</label>
+                    </div>
                 </div>
                 <br>
                 <p>For posts about The Freshers Issue 2023, use one of these colours</p>
-                <div class="radiosRow"><input type="radio" id="colourChoice4" name="colour" value="cherry">
-                    <label for="colourChoice4" class="colourLabel">Cherry</label>
-                    <input type="radio" id="colourChoice5" name="colour" value="mint">
-                    <label for="colourChoice5" class="colourLabel">Mint</label>
-                    <input type="radio" id="colourChoice6" name="colour" value="tomato">
-                    <label for="colourChoice6" class="colourLabel">Tomato</label>
-                    <input type="radio" id="colourChoice7" name="colour" value="cream">
-                    <label for="colourChoice7" class="colourLabel">Cream</label>
+                <div class="radiosRow">
+                    <div class="radiosGroup"><input type="radio" id="colourChoice4" name="colour" value="cherry">
+                        <label for="colourChoice4" class="colourLabel">Cherry</label>
+                    </div>
+                    <div class="radiosGroup">
+                        <input type="radio" id="colourChoice5" name="colour" value="mint">
+                        <label for="colourChoice5" class="colourLabel">Mint</label>
+                    </div>
+                    <div class="radiosGroup">
+                        <input type="radio" id="colourChoice6" name="colour" value="tomato">
+                        <label for="colourChoice6" class="colourLabel">Tomato</label>
+                    </div>
+                    <div class="radiosGroup"> <input type="radio" id="colourChoice7" name="colour" value="cream">
+                        <label for="colourChoice7" class="colourLabel">Cream</label>
+                    </div>
                 </div>
+
 
 
                 <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
@@ -478,7 +497,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 2.6, built 2023-08-31. <a
+        <p>Version 2.7, built 2023-09-04. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
