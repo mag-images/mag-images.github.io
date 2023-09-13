@@ -37,6 +37,8 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
 
+    <!--Blenny-->
+    <link rel="stylesheet" href="https://use.typekit.net/lzt3qvd.css">
 
     <style>
         :root {
@@ -370,8 +372,7 @@
 
 
                 <h3>2. Choose an image for the story</h3>
-                <p><span class="new">NEW</span> Images don't stretch any more, they crop automatically to fit within the
-                    frame</p>
+
                 <div id="fileChoices"><label for="file" class="fileButton">
                         Choose file
                     </label>
@@ -457,12 +458,13 @@
                 <select name="storyStyle" id="styleDropdown" aria-labelledby="storyStyleLabel">
 
                     <option value="normal">Normal style</option>
-                    <optgroup label="Freshers 2023" disabled>
-                        <option value="freshersPlaceholder" disabled>Coming soon</option>
+                    <optgroup label="Freshers 2023">
+                        <option value="normal">Avant Garde</option>
+                        <option value="plainBlenny" style="font-family:'Blenny'">Blenny</option>
 
 
                     </optgroup>
-                    <option value="christmas">Christmas</option>
+                    <option value="christmas">🎄 Christmas</option>
 
                 </select>
 
@@ -497,7 +499,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 2.7, built 2023-09-04. <a
+        <p>Version 2.8, built 2023-09-13. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -568,7 +570,14 @@
                     ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
                 }
                 trim.src = trimSrc;
-            } /* else if (styleChoice === 'energyRegular') {
+            } else if (styleChoice === 'plainBlenny') {
+                picPosition = 1230;
+                typeface = 'blenny';
+            }
+
+
+
+            /* else if (styleChoice === 'energyRegular') {
                 picPosition = 1230;
                 typeface = 'fragile-bombers';
             } else if (styleChoice === 'energyAttack') {
