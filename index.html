@@ -918,14 +918,36 @@
                     console.log(openGraph);
                     var articleTitle = openGraph.htmlInferred.site_name;
                     console.log(articleTitle);
-                    articleImageUrl = openGraph.openGraph.image.url;
-                    console.log(articleImageUrl);
-                    async function fetchOGImage() {
-                        const response = await fetch(articleImageUrl);
-                        const articleImage = await response.json();
-                        console.log(articleImage);
+                    var articleTempImageUrl = openGraph.openGraph.image.url;
+                    console.log(articleTempImageUrl);
+                    articleImageWidth = openGraph.openGraph.image.width;
+                    articleImageHeight = openGraph.openGraph.image.height;
+
+
+                    var tempImageCanvas = document.createElement("canvas");
+                    context = tempImageCanvas.getContext('2d');
+                    tempImageCanvas.width = articleImageWidth;
+                    tempImageCanvas.height = articleImageHeight;
+
+                    make_base();
+
+                    function make_base() {
+                        base_image = new Image();
+                        base_image.src = articleTempImageUrl;
+                        base_image.crossOrigin = '*';
+                        base_image.onload = function () {
+                            context.drawImage(base_image, articleImageHeight, articleImageWidth);
+                            console.log(tempImageCanvas);
+                            var pngUrl = tempImageCanvas.toDataURL("image/png");
+                            console.log(pngUrl);
+                            articleImageUrl = pngUrl;
+                        }
                     }
-                    fetchOGImage();
+
+
+
+
+
                     document.getElementById("headline").value = articleTitle;
                     generate();
 
