@@ -113,6 +113,13 @@
             color: var(--grey)
         }
 
+        #formElement {
+            display: none;
+        }
+
+
+
+
         header p {
             color: #fff
         }
@@ -131,7 +138,8 @@
         }
 
         input#headline {
-            font: 20px 'AAHITCAvantGardeProBold'
+            font: 20px 'AAHITCAvantGardeProBold';
+            width: 40ch;
         }
 
         main button,
@@ -270,6 +278,38 @@
             font-size: 1.3rem
         }
 
+        aside.wizard {
+            border: 6px solid var(--aah-pink);
+            background-color: var(--aah-pink);
+            padding: 24px;
+            border-radius: 12px;
+            margin-block: 10px;
+            font-size: 1.3rem
+        }
+
+        aside.wizard p {
+            color: black;
+            margin-inline-start: 0;
+        }
+
+        aside.wizard #articleUrlInput {
+            margin-inline: 0;
+            width: 45ch;
+            border: 0;
+            outline: 0;
+            font: 15px 'AAHITCAvantGardeProBold';
+            font-variant-ligatures: none;
+        }
+
+        aside.wizard #wizardSubmitButton {
+            background-color: black;
+            color: white;
+            border: 0;
+            outline: 0;
+            margin: 0;
+            font: 15px 'AAHITCAvantGardeProBold';
+        }
+
         #preview {
             margin: 20px;
         }
@@ -320,7 +360,8 @@
         }
 
         .new {
-            color: var(--aah-pink);
+            color: transparent;
+            text-shadow: 0 0 0 white;
             text-transform: uppercase;
         }
 
@@ -346,6 +387,35 @@
             display: inline-block;
 
         }
+
+        #orFillOut {
+            font-size: 1rem;
+            display: inline-block;
+            margin-block-start: 30px;
+            color: white;
+        }
+
+        #hopefully,
+        #loading,
+        #didNotWork {
+            margin-block-start: 10px;
+            display: none;
+        }
+
+        #manualButton {
+            display: inline;
+            background-color: black;
+            color: white;
+            border: 0;
+            outline: 0;
+            margin: 0;
+            font: 15px 'AAHITCAvantGardeProBold';
+
+        }
+
+        input[type="button"] {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -358,20 +428,41 @@
     <main>
         <section id="controls">
 
-            <h2 id="blurb">A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the
-                details of the article below and then a story image will be produced</h2>
+            <h2 id="blurb">A simple tool to generate an Instagram story image for aAh Magazine.</h2>
+            <form action="POST" id="wizardFormElement">
+                <aside class="wizard">
+                    <p id="pasteInBelow"><span class="new">✨ NEW</span> Paste in an article URL below, and the template
+                        will be filled out
+                        automatically!
+                    </p>
+                    <input type="url" name="articleUrlInput" id="articleUrlInput"
+                        placeholder="Paste an aah-magazine.co.uk URL here">
+                    <input type="button" value="Generate" id="wizardSubmitButton">
+                    <p id="didNotWork">That URL doesn't look right. Make sure you're pasting in the link to the article.
+                    </p>
+                    <p id="orFillOut">Or, if you'd prefer, you can </p>
+                    <input type="button" value="fill out the form manually" id="manualButton">
+                    <p id="loading">Loading...</p>
+
+                    <p id="hopefully">Hopefully that worked, but if not, you can make changes below:</p>
+                </aside>
+
+            </form>
+
+
+
             <form action="POST" id="formElement">
 
 
-                <h3>1. Type the headline of the article</h3>
-                <p>Six or seven lines maximum, ideally less</p>
+                <h3 id="typeTheHeadline">1. Type the headline of the article</h3>
+                <p id="howManyLines">Six or seven lines maximum, ideally less</p>
                 <input type="text" id="headline" placeholder="Headline..." required><br>
                 <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Replace the
                     word
                     <span style="font-variant-ligatures: none;">'aAh'</span> with the aah logo</label>
 
 
-                <h3>2. Choose an image for the story</h3>
+                <h3 id="chooseAnImage">2. Choose an image for the story</h3>
 
                 <div id="fileChoices"><label for="file" class="fileButton">
                         Choose file
@@ -417,8 +508,8 @@
 
 
 
-                <h3>3. Pick the colour scheme</h3>
-                <p>Pink is the house style, or use blue or orange for a bit of variety</p>
+                <h3 id="pickTheColour">3. Pick the colour scheme</h3>
+                <p id="pinkIs">Pink is the house style, or use blue or orange for a bit of variety</p>
                 <div class="radiosRow">
                     <div class="radiosGroup"><input type="radio" id="colourChoice1" name="colour" value="pink" checked
                             required>
@@ -434,7 +525,7 @@
                     </div>
                 </div>
                 <br>
-                <p>For posts about The Freshers Issue 2023, use one of these colours</p>
+                <p id="forFreshers">For posts about The Freshers Issue 2023, use one of these colours</p>
                 <div class="radiosRow">
                     <div class="radiosGroup"><input type="radio" id="colourChoice4" name="colour" value="cherry">
                         <label for="colourChoice4" class="colourLabel">Cherry</label>
@@ -471,7 +562,7 @@
 
 
 
-                <h3>5. Decide on a font size</h3>
+                <h3 id="decideFontSize">5. Decide on a font size</h3>
                 <input type="radio" id="small" name="size" value="small">
                 <label for="small" class="sizeLabel" id="smallLabel">A</label>
                 <br>
@@ -480,9 +571,11 @@
                 <br>
                 <input type="radio" id="large" name="size" value="large">
                 <label for="large" class="sizeLabel" id="largeLabel">A</label>
-                <p>Generally stick with medium, but you can make it bigger or smaller if it would look better.</p>
+                <p id="fontSizeTip">Generally stick with medium, but you can make it bigger or smaller if it would look
+                    better.</p>
 
-                <h3>6. Once everything's finished, click Download and then add it to the Instagram</h3>
+                <h3 id="onceFinishedDownload">6. Once everything's finished, click Download and then add it to the
+                    Instagram</h3>
                 <button id="downloadButton" type="button" onClick="download()">Download</button>
                 <a id="download" download="download.png" href="#" class="inactive"
                     style="display:none;">Download</a><br><br><br>
@@ -499,11 +592,13 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 2.8, built 2023-09-13. <a
+        <p>Version 3.0, built 2023-11-07. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
         var canvas = document.getElementById("generatedImage");
+
+        var articleImageUrl = null;
 
         document.getElementById("formElement").addEventListener("click", generate);
         document.getElementById("formElement").addEventListener("keyup", generate);
@@ -513,6 +608,7 @@
         function generate() {
             //get inputs
             var headline = document.getElementById("headline").value;
+
             var picture = document.getElementById("file");
             var colour = document.getElementsByName("colour");
             var xPositionB = document.getElementsByName("xPosition");
@@ -662,6 +758,9 @@
 
             // add image
             let photoSrc = '';
+            if (articleImageUrl !== null) {
+                photoSrc = articleImageUrl;
+            }
             if (picture.value !== '') {
                 photoSrc = window.URL.createObjectURL(picture.files[0]);
             }
@@ -749,10 +848,12 @@
                 // Draw the clipped image on the canvas
                 ctx.drawImage(photo, x, y, resizedWidth, resizedHeight, 0, picPosition, 1080, 607.5);
 
+                document.querySelector("#fileChoices > label").innerHTML = "Change image"
 
             }
             photo.src = photoSrc;
             fileLabel.innerHTML = picture.value.split("fakepath\\").pop();
+
 
 
 
@@ -783,6 +884,89 @@
 
 
         }
+
+
+        document.getElementById("wizardSubmitButton").addEventListener("click", generateFromUrl);
+        document.getElementById("wizardSubmitButton").addEventListener("keyup", generateFromUrl);
+
+        document.getElementById('wizardFormElement').addEventListener('keypress', function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                generateFromUrl();
+            }
+        });
+
+        function generateFromUrl() {
+
+            document.getElementById("manualButton").style.display = "none";
+            document.getElementById("didNotWork").style.display = "none";
+            document.getElementById("orFillOut").style.display = "none";
+            document.getElementById("loading").style.marginBLockStart = "10px";
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("loading").style.color = "white";
+            var articleUrl = document.getElementById("articleUrlInput").value;
+            console.log(articleUrl);
+            if (articleUrl.includes("aah-magazine.co.uk")) {
+                var encodedArticleUrl = encodeURIComponent(articleUrl);
+                console.log(encodedArticleUrl);
+                var fetchUrl = "https://opengraph.io/api/1.1/site/" + encodedArticleUrl + "?accept_lang=auto&app_id=08403b1a-b864-4f36-971a-aeca3978e71a"
+                console.log(fetchUrl);
+                async function fetchOG() {
+                    const response = await fetch(fetchUrl);
+                    const openGraph = await response.json();
+                    console.log(openGraph);
+                    var articleTitle = openGraph.htmlInferred.site_name;
+                    console.log(articleTitle);
+                    articleImageUrl = openGraph.openGraph.image.url;
+                    console.log(articleImageUrl);
+                    document.getElementById("headline").value = articleTitle;
+                    generate();
+
+                    document.getElementById("loading").style.display = "none";
+
+                    document.getElementById("hopefully").style.marginBLockStart = "10px";
+                    document.getElementById("hopefully").style.display = "block";
+
+                    document.getElementById("formElement").style.display = "block";
+
+                    document.querySelector("#fileChoices > label").innerHTML = "Change image";
+                    document.querySelector("#typeTheHeadline").innerHTML = "Headline";
+
+                    document.querySelector("#typeTheHeadline").style.marginLeft = "30px";
+                    document.querySelector("#howManyLines").style.display = "none";
+                    document.querySelector("#chooseAnImage").innerHTML = "Featured image";
+                    document.querySelector("#chooseAnImage").style.marginLeft = "30px";
+                    document.querySelector("#pickTheColour").innerHTML = "Colour scheme";
+                    document.querySelector("#pickTheColour").style.marginLeft = "30px";
+
+                    document.querySelector("#pickTheColour").style.marginBlockStart = "0";
+                    document.querySelector("#storyStyleLabel").innerHTML = "Story style";
+
+                    document.querySelector("#storyStyleLabel").style.marginLeft = "30px";
+                    document.querySelector("#decideFontSize").innerHTML = "Font size";
+                    document.querySelector("#decideFontSize").style.marginLeft = "30px";
+                    document.querySelector("#fontSizeTip").style.display = "none";
+                    document.querySelector("#onceFinishedDownload").innerHTML = "Finally, click Download and then add the story to the Instagram";
+                    document.querySelector("#onceFinishedDownload").style.marginLeft = "30px";
+                }
+                fetchOG();
+            } else {
+                document.getElementById("loading").style.display = "none";
+
+                document.getElementById("orFillOut").style.display = "inline-block";
+                document.getElementById("didNotWork").style.marginBLockStart = "10px";
+                document.getElementById("didNotWork").style.display = "block";
+                document.getElementById("manualButton").style.display = "inline";
+            }
+
+        }
+        function fillOutManually() {
+
+            document.getElementById("wizardFormElement").style.display = "none";
+
+            document.getElementById("formElement").style.display = "block";
+        }
+        document.getElementById("manualButton").addEventListener("click", fillOutManually);
 
     </script>
     <script>
