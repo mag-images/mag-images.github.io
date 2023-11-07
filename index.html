@@ -904,6 +904,7 @@
             document.getElementById("loading").style.marginBLockStart = "10px";
             document.getElementById("loading").style.display = "block";
             document.getElementById("loading").style.color = "white";
+
             var articleUrl = document.getElementById("articleUrlInput").value;
             console.log(articleUrl);
             if (articleUrl.includes("aah-magazine.co.uk")) {
@@ -919,29 +920,32 @@
                     console.log(articleTitle);
                     articleImageUrl = openGraph.openGraph.image.url;
                     console.log(articleImageUrl);
+                    async function fetchOGImage() {
+                        const response = await fetch(articleImageUrl);
+                        const articleImage = await response.json();
+                        console.log(articleImage);
+                    }
+                    fetchOGImage();
                     document.getElementById("headline").value = articleTitle;
                     generate();
 
-                    document.getElementById("loading").style.display = "none";
 
+
+
+                    document.getElementById("loading").style.display = "none";
                     document.getElementById("hopefully").style.marginBLockStart = "10px";
                     document.getElementById("hopefully").style.display = "block";
-
                     document.getElementById("formElement").style.display = "block";
-
                     document.querySelector("#fileChoices > label").innerHTML = "Change image";
                     document.querySelector("#typeTheHeadline").innerHTML = "Headline";
-
                     document.querySelector("#typeTheHeadline").style.marginLeft = "30px";
                     document.querySelector("#howManyLines").style.display = "none";
                     document.querySelector("#chooseAnImage").innerHTML = "Featured image";
                     document.querySelector("#chooseAnImage").style.marginLeft = "30px";
                     document.querySelector("#pickTheColour").innerHTML = "Colour scheme";
                     document.querySelector("#pickTheColour").style.marginLeft = "30px";
-
                     document.querySelector("#pickTheColour").style.marginBlockStart = "0";
                     document.querySelector("#storyStyleLabel").innerHTML = "Story style";
-
                     document.querySelector("#storyStyleLabel").style.marginLeft = "30px";
                     document.querySelector("#decideFontSize").innerHTML = "Font size";
                     document.querySelector("#decideFontSize").style.marginLeft = "30px";
