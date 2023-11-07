@@ -416,6 +416,19 @@
         input[type="button"] {
             cursor: pointer;
         }
+
+        #complicatedReasons {
+            display: none;
+        }
+
+        #imageDownloadLink {
+            background-color: unset;
+            padding: unset;
+            font: unset;
+            color: var(--aah-pink);
+            margin: unset;
+
+        }
     </style>
 </head>
 
@@ -444,7 +457,7 @@
                     <input type="button" value="fill out the form manually" id="manualButton">
                     <p id="loading">Loading...</p>
 
-                    <p id="hopefully">Hopefully that worked, but if not, you can make changes below:</p>
+                    <p id="hopefully">Hopefully that worked. If not, make changes below.</p>
                 </aside>
 
             </form>
@@ -463,7 +476,12 @@
 
 
                 <h3 id="chooseAnImage">2. Choose an image for the story</h3>
-
+                <p id="complicatedReasons">For annoying technical reasons, this app can't automatically place the
+                    article image on to the
+                    template. But you can <a href="#" id="imageDownloadLink" target="_blank" download="true">open
+                        the article's
+                        featured
+                        image,</a> download it, and then upload it below.</p>
                 <div id="fileChoices"><label for="file" class="fileButton">
                         Choose file
                     </label>
@@ -592,7 +610,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 3.0, built 2023-11-07. <a
+        <p>Version 3.2, built 2023-11-07. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -850,6 +868,7 @@
 
                 document.querySelector("#fileChoices > label").innerHTML = "Change image"
 
+                document.querySelector("#complicatedReasons").style.display = "none";
             }
             photo.src = photoSrc;
             fileLabel.innerHTML = picture.value.split("fakepath\\").pop();
@@ -918,13 +937,16 @@
                     console.log(openGraph);
                     var articleTitle = openGraph.htmlInferred.site_name;
                     console.log(articleTitle);
-                    var articleTempImageUrl = openGraph.openGraph.image.url;
-                    console.log(articleTempImageUrl);
-                    articleImageWidth = openGraph.openGraph.image.width;
+                    var articleImageUrl = openGraph.openGraph.image.url;
+                    console.log(articleImageUrl);
+                    document.getElementById("imageDownloadLink").href = articleImageUrl;
+
+
+                    /* articleImageWidth = openGraph.openGraph.image.width;
                     articleImageHeight = openGraph.openGraph.image.height;
 
 
-                    var tempImageCanvas = document.createElement("canvas");
+                     var tempImageCanvas = document.createElement("canvas");
                     context = tempImageCanvas.getContext('2d');
                     tempImageCanvas.width = articleImageWidth;
                     tempImageCanvas.height = articleImageHeight;
@@ -942,7 +964,7 @@
                             console.log(pngUrl);
                             articleImageUrl = pngUrl;
                         }
-                    }
+                    } */
 
 
 
@@ -958,9 +980,12 @@
                     document.getElementById("hopefully").style.marginBLockStart = "10px";
                     document.getElementById("hopefully").style.display = "block";
                     document.getElementById("formElement").style.display = "block";
-                    document.querySelector("#fileChoices > label").innerHTML = "Change image";
+
+                    document.querySelector("#fileChoices > label").innerHTML = "Upload image";
+
                     document.querySelector("#typeTheHeadline").innerHTML = "Headline";
                     document.querySelector("#typeTheHeadline").style.marginLeft = "30px";
+                    document.querySelector("#complicatedReasons").style.display = "block";
                     document.querySelector("#howManyLines").style.display = "none";
                     document.querySelector("#chooseAnImage").innerHTML = "Featured image";
                     document.querySelector("#chooseAnImage").style.marginLeft = "30px";
