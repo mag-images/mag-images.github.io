@@ -115,6 +115,9 @@
 
         #formElement {
             display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
 
@@ -139,7 +142,7 @@
 
         input#headline {
             font: 20px 'AAHITCAvantGardeProBold';
-            width: 40ch;
+            max-width: calc(100vw - 60px)
         }
 
         main button,
@@ -294,7 +297,8 @@
 
         aside.wizard #articleUrlInput {
             margin-inline: 0;
-            width: 45ch;
+            width: calc(100% - 30px);
+            max-width: 45ch;
             border: 0;
             outline: 0;
             font: 15px 'AAHITCAvantGardeProBold';
@@ -356,7 +360,8 @@
             }
 
             section#preview {
-                margin-left: 50px
+                margin: auto;
+                overflow: hidden;
             }
         }
 
@@ -461,6 +466,13 @@
             background-color: #8d054b;
             color: #fff;
         }
+
+        fieldset {
+            border: 0;
+            outline: 0;
+            padding: 0;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -483,9 +495,12 @@
                         will be filled out
                         automatically!
                     </p>
-                    <input type="url" name="articleUrlInput" id="articleUrlInput"
-                        placeholder="Paste an aah-magazine.co.uk URL here">
-                    <input type="button" value="Generate" id="wizardSubmitButton">
+                    <fieldset>
+                        <input type="url" name="articleUrlInput" id="articleUrlInput"
+                            placeholder="Paste an aah-magazine.co.uk URL here">
+                        <input type="button" value="Generate" id="wizardSubmitButton">
+                    </fieldset>
+
                     <p id="didNotWork">That URL doesn't look right. Make sure you're pasting in the link to the article.
                     </p>
                     <p id="orFillOut">Or, if you'd prefer, you can </p>
@@ -502,137 +517,162 @@
 
             <form action="POST" id="formElement">
 
-
-                <h3 id="typeTheHeadline">1. Type the headline of the article</h3>
-                <p id="howManyLines">Six or seven lines maximum, ideally less</p>
-                <input type="text" id="headline" placeholder="Headline..." required><br>
-                <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Replace the
-                    word
-                    <span style="font-variant-ligatures: none;">'aAh'</span> with the aah logo</label>
-
-
-                <h3 id="chooseAnImage">2. Choose an image for the story</h3>
-                <p id="complicatedReasons">For annoying technical reasons, this app can't automatically place the
-                    article image on to the
-                    template. But you can <a href="#" id="imageDownloadLink" target="_blank" download="true">open
-                        the article's
-                        featured
-                        image,</a> download it, and then upload it below.</p>
-                <div id="fileChoices"><label for="file" class="fileButton">
-                        Choose file
-                    </label>
-
-                    <p id="fileLabel">&nbsp;</p>
-                </div>
+                <fieldset>
+                    <h3 id="typeTheHeadline">1. Type the headline of the article</h3>
+                    <p id="howManyLines">Six or seven lines maximum, ideally less</p>
+                    <input type="text" id="headline" placeholder="Headline..." required><br>
+                    <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Replace
+                        the
+                        word
+                        <span style="font-variant-ligatures: none;">'aAh'</span> with the aah logo</label>
 
 
+                </fieldset>
+                <fieldset>
+                    <h3 id="chooseAnImage">2. Choose an image for the story</h3>
+                    <p id="complicatedReasons">For annoying technical reasons, this app can't automatically place the
+                        article image on to the
+                        template. But you can <a href="#" id="imageDownloadLink" target="_blank" download="true">open
+                            the article's
+                            featured
+                            image,</a> download it, and then upload it below.</p>
+                    <div id="fileChoices"><label for="file" class="fileButton">
+                            Choose file
+                        </label>
 
-
-                <input type="file" name="file" id="file" accept="image/*" required>
-                <div id="xPositionChoices" style="display:none;">
-                    <p>The image is wider than the box, choose which part to display</p>
-                    <input type="radio" id="xPositionChoice1" name="xPosition" value="left" class="positionChoice">
-                    <label for="xPositionChoice1" class="positionLabel"><img src="images/pictograms/left.svg"
-                            class="positionIcon">
-                        Left</label>
-                    <input type="radio" id="xPositionChoice2" name="xPosition" value="center" class="positionChoice"
-                        checked required>
-                    <label for="xPositionChoice2" class="positionLabel"><img src="images/pictograms/center.svg"
-                            class="positionIcon">Center</label>
-                    <input type="radio" id="xPositionChoice3" name="xPosition" value="right" class="positionChoice">
-                    <label for="xPositionChoice3" class="positionLabel"><img src="images/pictograms/right.svg"
-                            class="positionIcon">Right</label>
-                </div><br>
-                <div id="yPositionChoices" style="display:none;">
-                    <p>The image is taller than the box, choose which part to display</p>
-                    <input type="radio" id="yPositionChoice1" name="yPosition" value="top" class="positionChoice">
-                    <label for="yPositionChoice1" class="positionLabel"><img src="images/pictograms/top.svg"
-                            class="positionIcon">Top</label>
-                    <input type="radio" id="yPositionChoice2" name="yPosition" value="middle" class="positionChoice"
-                        checked required>
-                    <label for="yPositionChoice2" class="positionLabel"><img src="images/pictograms/middle.svg"
-                            class="positionIcon">Middle</label>
-                    <input type="radio" id="yPositionChoice3" name="yPosition" value="bottom" class="positionChoice">
-                    <label for="yPositionChoice3" class="positionLabel"><img src="images/pictograms/bottom.svg"
-                            class="positionIcon">Bottom</label>
-                </div>
-
-
-
-
-
-
-                <h3 id="pickTheColour">3. Pick the colour scheme</h3>
-                <p id="pinkIs">Pink is the house style, or use blue or orange for a bit of variety</p>
-                <div class="radiosRow">
-                    <div class="radiosGroup"><input type="radio" id="colourChoice1" name="colour" value="pink" checked
-                            required>
-                        <label for="colourChoice1" class="colourLabel">Pink</label>
+                        <p id="fileLabel">&nbsp;</p>
                     </div>
-                    <div class="radiosGroup">
-                        <input type="radio" id="colourChoice2" name="colour" value="blue">
-                        <label for="colourChoice2" class="colourLabel">Blue</label>
+
+
+
+
+                    <input type="file" name="file" id="file" accept="image/*" required>
+                    <div id="xPositionChoices" style="display:none;">
+                        <p>The image is wider than the box, choose which part to display</p>
+                        <input type="radio" id="xPositionChoice1" name="xPosition" value="left" class="positionChoice">
+                        <label for="xPositionChoice1" class="positionLabel"><img src="images/pictograms/left.svg"
+                                class="positionIcon">
+                            Left</label>
+                        <input type="radio" id="xPositionChoice2" name="xPosition" value="center" class="positionChoice"
+                            checked required>
+                        <label for="xPositionChoice2" class="positionLabel"><img src="images/pictograms/center.svg"
+                                class="positionIcon">Center</label>
+                        <input type="radio" id="xPositionChoice3" name="xPosition" value="right" class="positionChoice">
+                        <label for="xPositionChoice3" class="positionLabel"><img src="images/pictograms/right.svg"
+                                class="positionIcon">Right</label>
+                    </div><br>
+                    <div id="yPositionChoices" style="display:none;">
+                        <p>The image is taller than the box, choose which part to display</p>
+                        <input type="radio" id="yPositionChoice1" name="yPosition" value="top" class="positionChoice">
+                        <label for="yPositionChoice1" class="positionLabel"><img src="images/pictograms/top.svg"
+                                class="positionIcon">Top</label>
+                        <input type="radio" id="yPositionChoice2" name="yPosition" value="middle" class="positionChoice"
+                            checked required>
+                        <label for="yPositionChoice2" class="positionLabel"><img src="images/pictograms/middle.svg"
+                                class="positionIcon">Middle</label>
+                        <input type="radio" id="yPositionChoice3" name="yPosition" value="bottom"
+                            class="positionChoice">
+                        <label for="yPositionChoice3" class="positionLabel"><img src="images/pictograms/bottom.svg"
+                                class="positionIcon">Bottom</label>
                     </div>
-                    <div class="radiosGroup">
-                        <input type="radio" id="colourChoice3" name="colour" value="orange">
-                        <label for="colourChoice3" class="colourLabel">Orange</label>
+
+                </fieldset>
+                <fieldset>
+                    <h3 id="pickTheColour">3. Pick the colour scheme</h3>
+                    <p id="pinkIs">Pink is the house style, or use blue or orange for a bit of variety</p>
+                    <div class="radiosRow">
+                        <div class="radiosGroup"><input type="radio" id="colourChoice1" name="colour" value="pink"
+                                checked required>
+                            <label for="colourChoice1" class="colourLabel">Pink</label>
+                        </div>
+                        <div class="radiosGroup">
+                            <input type="radio" id="colourChoice2" name="colour" value="blue">
+                            <label for="colourChoice2" class="colourLabel">Blue</label>
+                        </div>
+                        <div class="radiosGroup">
+                            <input type="radio" id="colourChoice3" name="colour" value="orange">
+                            <label for="colourChoice3" class="colourLabel">Orange</label>
+                        </div>
                     </div>
-                </div>
-                <br>
-                <p id="forFreshers">For posts about The Freshers Issue 2023, use one of these colours</p>
-                <div class="radiosRow">
-                    <div class="radiosGroup"><input type="radio" id="colourChoice4" name="colour" value="cherry">
-                        <label for="colourChoice4" class="colourLabel">Cherry</label>
+                    <br>
+                    <p id="forFreshers">For posts about The Freshers Issue 2023, use one of these colours</p>
+                    <div class="radiosRow">
+                        <div class="radiosGroup"><input type="radio" id="colourChoice4" name="colour" value="cherry">
+                            <label for="colourChoice4" class="colourLabel">Cherry</label>
+                        </div>
+                        <div class="radiosGroup">
+                            <input type="radio" id="colourChoice5" name="colour" value="mint">
+                            <label for="colourChoice5" class="colourLabel">Mint</label>
+                        </div>
+                        <div class="radiosGroup">
+                            <input type="radio" id="colourChoice6" name="colour" value="tomato">
+                            <label for="colourChoice6" class="colourLabel">Tomato</label>
+                        </div>
+                        <div class="radiosGroup"> <input type="radio" id="colourChoice7" name="colour" value="cream">
+                            <label for="colourChoice7" class="colourLabel">Cream</label>
+                        </div>
                     </div>
-                    <div class="radiosGroup">
-                        <input type="radio" id="colourChoice5" name="colour" value="mint">
-                        <label for="colourChoice5" class="colourLabel">Mint</label>
-                    </div>
-                    <div class="radiosGroup">
-                        <input type="radio" id="colourChoice6" name="colour" value="tomato">
-                        <label for="colourChoice6" class="colourLabel">Tomato</label>
-                    </div>
-                    <div class="radiosGroup"> <input type="radio" id="colourChoice7" name="colour" value="cream">
-                        <label for="colourChoice7" class="colourLabel">Cream</label>
-                    </div>
-                </div>
+
+                </fieldset>
+                <fieldset>
+                    <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
+                    <select name="storyStyle" id="styleDropdown" aria-labelledby="storyStyleLabel">
+
+                        <option value="normal">Normal style</option>
+                        <optgroup label="Freshers 2023">
+                            <option value="normal">Avant Garde</option>
+                            <option value="plainBlenny" style="font-family:'Blenny'">Blenny</option>
+
+
+                        </optgroup>
+                        <option value="christmas">🎄 Christmas</option>
+
+                    </select>
+
+                </fieldset>
+                <fieldset>
+                    <h3 id="decideFontSize">5. Decide on a font size</h3>
+                    <input type="radio" id="small" name="size" value="small">
+                    <label for="small" class="sizeLabel" id="smallLabel">A</label>
+                    <br>
+                    <input type="radio" id="medium" name="size" value="medium" checked required>
+                    <label for="medium" class="sizeLabel" id="mediumLabel">A</label>
+                    <br>
+                    <input type="radio" id="large" name="size" value="large">
+                    <label for="large" class="sizeLabel" id="largeLabel">A</label>
+                    <p id="fontSizeTip">Generally stick with medium, but you can make it bigger or smaller if it would
+                        look
+                        better.</p>
+
+                </fieldset>
+
+                <fieldset>
+                    <h3 id="onceFinishedDownload">6. Once everything's finished, click Download and then add it to the
+                        Instagram</h3>
+                    <button id="downloadButton" type="button" onClick="download()">Download</button>
+                    <a id="download" download="download.png" href="#" class="inactive"
+                        style="display:none;">Download</a><br><br><br>
+
+                </fieldset>
 
 
 
-                <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
-                <select name="storyStyle" id="styleDropdown" aria-labelledby="storyStyleLabel">
-
-                    <option value="normal">Normal style</option>
-                    <optgroup label="Freshers 2023">
-                        <option value="normal">Avant Garde</option>
-                        <option value="plainBlenny" style="font-family:'Blenny'">Blenny</option>
-
-
-                    </optgroup>
-                    <option value="christmas">🎄 Christmas</option>
-
-                </select>
 
 
 
 
-                <h3 id="decideFontSize">5. Decide on a font size</h3>
-                <input type="radio" id="small" name="size" value="small">
-                <label for="small" class="sizeLabel" id="smallLabel">A</label>
-                <br>
-                <input type="radio" id="medium" name="size" value="medium" checked required>
-                <label for="medium" class="sizeLabel" id="mediumLabel">A</label>
-                <br>
-                <input type="radio" id="large" name="size" value="large">
-                <label for="large" class="sizeLabel" id="largeLabel">A</label>
-                <p id="fontSizeTip">Generally stick with medium, but you can make it bigger or smaller if it would look
-                    better.</p>
 
-                <h3 id="onceFinishedDownload">6. Once everything's finished, click Download and then add it to the
-                    Instagram</h3>
-                <button id="downloadButton" type="button" onClick="download()">Download</button>
-                <a id="download" download="download.png" href="#" class="inactive"
-                    style="display:none;">Download</a><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
 
             </form>
         </section>
@@ -646,7 +686,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 3.3.1, built 2023-11-08. <a
+        <p>Version 3.3.2, built 2023-11-08. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -1029,7 +1069,7 @@
                     document.getElementById("loading").style.display = "none";
                     document.getElementById("hopefully").style.marginBLockStart = "10px";
                     document.getElementById("hopefully").style.display = "block";
-                    document.getElementById("formElement").style.display = "block";
+                    document.getElementById("formElement").style.display = "flex";
 
                     document.querySelector("#fileChoices > label").innerHTML = "Upload image";
 
@@ -1041,7 +1081,6 @@
                     document.querySelector("#chooseAnImage").style.marginLeft = "30px";
                     document.querySelector("#pickTheColour").innerHTML = "Colour scheme";
                     document.querySelector("#pickTheColour").style.marginLeft = "30px";
-                    document.querySelector("#pickTheColour").style.marginBlockStart = "0";
                     document.querySelector("#storyStyleLabel").innerHTML = "Story style";
                     document.querySelector("#storyStyleLabel").style.marginLeft = "30px";
                     document.querySelector("#decideFontSize").innerHTML = "Font size";
@@ -1065,7 +1104,7 @@
 
             document.getElementById("wizardFormElement").style.display = "none";
 
-            document.getElementById("formElement").style.display = "block";
+            document.getElementById("formElement").style.display = "flex";
         }
         document.getElementById("manualButton").addEventListener("click", fillOutManually);
 
