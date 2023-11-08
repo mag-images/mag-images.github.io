@@ -310,6 +310,7 @@
             font: 15px 'AAHITCAvantGardeProBold';
         }
 
+
         #preview {
             margin: 20px;
         }
@@ -610,7 +611,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 3.2.2, built 2023-11-08. <a
+        <p>Version 3.3, built 2023-11-08. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -937,7 +938,7 @@
                     console.log(openGraph);
                     var articleTitle = openGraph.htmlInferred.site_name;
                     console.log(articleTitle);
-                    var articleImageUrl = openGraph.htmlInferred.images[1];
+                    var tempArticleImageUrl = openGraph.htmlInferred.images[1];
                     console.log(articleImageUrl);
                     document.getElementById("imageDownloadLink").href = articleImageUrl;
 
@@ -966,7 +967,21 @@
                         }
                     } */
 
+                    var encodedScreenshotUrl = encodeURIComponent(tempArticleImageUrl);
+                    console.log(encodedScreenshotUrl);
+                    var imageScreenshotRequestUrl = "https://opengraph.io/api/1.1/screenshot/" + encodedScreenshotUrl + "?accept_lang=auto&use_proxy=true&quality=80&dimensions=sm&full_page=true&app_id=08403b1a-b864-4f36-971a-aeca3978e71a"
+                    async function fetchImage() {
+                        console.log("bingo");
+                        const response = await fetch(imageScreenshotRequestUrl);
+                        const imageScreenshot = await response.json();
+                        console.log(imageScreenshot);
+                        var fetchedImage = imageScreenshot.screenshotUrl
+                        console.log("fetched image", fetchedImage);
+                        articleImageUrl = fetchedImage;
+                        generate();
 
+                    }
+                    fetchImage();
 
 
 
