@@ -279,7 +279,7 @@
         }
 
         aside.wizard {
-            border: 6px solid var(--aah-pink);
+            border: 6px solid #8d054b;
             background-color: var(--aah-pink);
             padding: 24px;
             border-radius: 12px;
@@ -430,6 +430,37 @@
             margin: unset;
 
         }
+
+        aside.wizard {
+            position: relative;
+            z-index: 90;
+        }
+
+        .ribbon-wrapper {
+            width: 85px;
+            height: 88px;
+            overflow: hidden;
+            position: absolute;
+            top: -3px;
+            right: -3px;
+        }
+
+        .ribbon {
+            font: 15px 'AAHITCAvantGardeProBold';
+            color: #333;
+            text-align: center;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            position: relative;
+            padding: 7px 0;
+            top: 15px;
+            right: 0px;
+            width: 120px;
+            background-color: #8d054b;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -445,6 +476,9 @@
             <h2 id="blurb">A simple tool to generate an Instagram story image for aAh Magazine.</h2>
             <form action="POST" id="wizardFormElement">
                 <aside class="wizard">
+                    <div class="ribbon-wrapper">
+                        <div class="ribbon">BETA</div>
+                    </div>
                     <p id="pasteInBelow"><span class="new">✨ NEW</span> Paste in an article URL below, and the template
                         will be filled out
                         automatically!
@@ -459,6 +493,7 @@
                     <p id="loading">Loading...</p>
 
                     <p id="hopefully">Hopefully that worked. If not, make changes below.</p>
+
                 </aside>
 
             </form>
@@ -611,7 +646,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 3.3, built 2023-11-08. <a
+        <p>Version 3.3.1, built 2023-11-08. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
