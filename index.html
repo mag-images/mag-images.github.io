@@ -610,7 +610,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 3.2, built 2023-11-07. <a
+        <p>Version 3.2.1, built 2023-11-08. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -937,7 +937,7 @@
                     console.log(openGraph);
                     var articleTitle = openGraph.htmlInferred.site_name;
                     console.log(articleTitle);
-                    var articleImageUrl = openGraph.openGraph.image.url;
+                    articleImageUrl = openGraph.htmlInferred.images[1];
                     console.log(articleImageUrl);
                     document.getElementById("imageDownloadLink").href = articleImageUrl;
 
