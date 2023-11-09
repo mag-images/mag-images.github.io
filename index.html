@@ -686,7 +686,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 3.3.2, built 2023-11-08. <a
+        <p>Version 3.3.3, built 2023-11-09. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -860,6 +860,7 @@
             }
 
             const photo = new Image();
+            photo.crossOrigin = "anonymous"
             photo.onload = function () {
                 var photoHeight = photo.height;
                 var photoWidth = photo.width;
