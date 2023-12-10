@@ -473,6 +473,58 @@
             padding: 0;
             margin: 0;
         }
+
+        fieldset.storyStyle div.storyStyleChoices {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-inline-start: 30px;
+        }
+
+        fieldset.storyStyle label {
+            flex-grow: 1;
+            height: 150px;
+            width: 150px;
+            padding: 10px;
+            background-color: var(--aah-pink);
+            display: flex;
+            align-items: flex-end;
+            border-radius: 10px;
+            margin: 0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right;
+            color: white;
+        }
+
+        fieldset.storyStyle label input {
+            display: none;
+        }
+
+        fieldset.storyStyle label:has(input:checked) {
+            background-color: #8d054b;
+        }
+
+        fieldset.storyStyle label:has(input#styleChoice1) {
+            background-image: url(images/styles/normal.png);
+        }
+
+        fieldset.storyStyle label:has(input#styleChoice2) {
+            background-image: url(images/styles/christmas.png);
+        }
+
+        fieldset.storyStyle label:has(input#styleChoice3) {
+            background-image: url(images/styles/blenny.png);
+        }
+
+        fieldset.storyStyle label:has(input#styleChoice4) {
+            background-image: url(images/styles/upsidedown.png);
+        }
+
+        fieldset.storyStyle label:has(input#styleChoice5) {
+            background-image: url(images/styles/review.png);
+        }
     </style>
 </head>
 
@@ -614,21 +666,32 @@
                     </div>
 
                 </fieldset>
-                <fieldset>
+                <fieldset class="storyStyle">
                     <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
-                    <select name="storyStyle" id="styleDropdown" aria-labelledby="storyStyleLabel">
-
-                        <option value="normal">Normal style</option>
-                        <optgroup label="Freshers 2023">
-                            <option value="normal">Avant Garde</option>
-                            <option value="plainBlenny" style="font-family:'Blenny'">Blenny</option>
-
-
-                        </optgroup>
-                        <option value="christmas">🎄 Christmas</option>
-
-                    </select>
-
+                    <p id="noteAboutStyles">This feature is new; if the image appears twice on the preview, click again
+                        and it should right itself.</p>
+                    <div class="storyStyleChoices">
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice1" value="Normal" checked>
+                            Normal
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice2" value="Christmas">
+                            Christmas
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice3" value="Blenny">
+                            Blenny
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice4" value="UpsideDown">
+                            Upside down
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice5" value="Review">
+                            Music
+                        </label>
+                    </div>
                 </fieldset>
                 <fieldset>
                     <h3 id="decideFontSize">5. Decide on a font size</h3>
@@ -686,7 +749,7 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 3.3.3, built 2023-11-09. <a
+        <p>Version 3.4, built 2023-12-10. <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
     </footer>
     <script>
@@ -698,17 +761,16 @@
         document.getElementById("formElement").addEventListener("keyup", generate);
         document.getElementById("file").addEventListener("change", generate);
 
-        generate();
         function generate() {
             //get inputs
             var headline = document.getElementById("headline").value;
-
+            var styleChoice = document.getElementsByName("storyStyleChoice");
             var picture = document.getElementById("file");
             var colour = document.getElementsByName("colour");
             var xPositionB = document.getElementsByName("xPosition");
             var yPositionB = document.getElementsByName("yPosition");
-            var styleChoice = document.getElementById("styleDropdown").value;
             var picPosition;
+            var textPosition;
             var trimSrc;
             var ligatureChoice = document.getElementById("ligature");
             var size = document.getElementsByName("size");
@@ -718,6 +780,11 @@
             var fileLabel = document.getElementById("fileLabel");
             var fontColour;
 
+            // set story style
+            for (j = 0; j < styleChoice.length; j++) {
+                if (styleChoice[j].checked)
+                    styleChoice = j;
+            }
 
             // set story colour
             for (i = 0; i < colour.length; i++) {
@@ -750,19 +817,35 @@
 
 
             // set rules for each style
-            if (styleChoice === 'normal') {
+            console.log("stylechoice", styleChoice);
+            if (styleChoice === 0) {
                 picPosition = 1230;
-            } else if (styleChoice === 'christmas') {
+                textPosition = 300;
+            } else if (styleChoice === 1) {
                 picPosition = 860;
+                textPosition = 300;
                 let trimSrc = 'images/trim/christmas.png';
                 const trim = new Image();
                 trim.onload = function () {
                     ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
                 }
                 trim.src = trimSrc;
-            } else if (styleChoice === 'plainBlenny') {
+            } else if (styleChoice === 2) {
                 picPosition = 1230;
+                textPosition = 300;
                 typeface = 'blenny';
+            } else if (styleChoice === 3) {
+                picPosition = 150;
+                textPosition = 900;
+            } else if (styleChoice === 4) {
+                picPosition = 1020;
+                textPosition = 300;
+                let trimSrc = 'images/trim/review.png';
+                const trim = new Image();
+                trim.onload = function () {
+                    ctx.drawImage(trim, 50, 1680, 500, 250);
+                }
+                trim.src = trimSrc;
             }
 
 
@@ -811,6 +894,7 @@
                 ctx.fillText(line, x, y);
             }
 
+
             // choose whether or not to use ligatures 
             if (ligatureChoice.checked) {
                 document.getElementById("generatedImage").style.fontVariantLigatures = "normal";
@@ -841,7 +925,7 @@
             ctx.fillStyle = fontColour;
             ctx.font = size + ' ' + typeface;
 
-            wrapText(ctx, headline, 50, 300, 900, height);
+            wrapText(ctx, headline, 50, textPosition, 900, height);
             var downloadLink = document.getElementById("download");
 
 
@@ -956,6 +1040,9 @@
 
 
         }
+
+        generate();
+
         function waitThenGenerate() {
             setTimeout(generate, 1000);
         }
