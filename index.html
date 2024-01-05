@@ -7,26 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>aAh! Instagram Story Generator</title>
-    <meta name="title" content="aAh! Instagram Story Generator">
+    <title>aAh! Design Studio</title>
+    <meta name="title" content="aAh! Design Studio">
     <meta name="description"
-        content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
+        content="A set of tools to assist in the creation of consistent graphics for aAh! magazine, including for Instagram stories and the website.">
     <meta name="theme-color" content="#da0974">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mag-images.github.io/">
-    <meta property="og:title" content="aAh! Instagram Story Generator">
+    <meta property="og:title" content="aAh! Design Studio">
     <meta property="og:description"
-        content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
+        content="A set of tools to assist in the creation of consistent graphics for aAh! magazine, including for Instagram stories and the website.">
     <meta property="og:image" content="https://mag-images.github.io/images/meta.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://mag-images.github.io/">
-    <meta property="twitter:title" content="aAh! Instagram Story Generator">
+    <meta property="twitter:title" content="aAh! Design Studio">
     <meta property="twitter:description"
-        content="A simple tool to generate an Instagram story image for aAh Magazine. Simply fill in the details of the article below and then a story image will be produced">
+        content="A set of tools to assist in the creation of consistent graphics for aAh! magazine, including for Instagram stories and the website.">
     <meta property="twitter:image" content="https://mag-images.github.io/images/meta.png">
 
     <!-- Icons -->
@@ -37,8 +37,6 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
 
-    <!--Blenny-->
-    <link rel="stylesheet" href="https://use.typekit.net/lzt3qvd.css">
 
     <style>
         :root {
@@ -61,14 +59,7 @@
             src: url(fonts/AAHITCAvantGardeProBold.eot) format("embedded-opentype"), url(fonts/AAHITCAvantGardeProBold.woff2) format("woff2"), url(fonts/AAHITCAvantGardeProBold.woff) format("woff"), url(fonts/AAHITCAvantGardeProBold.ttf) format("truetype"), url(fonts/AAHITCAvantGardeProBold.svg#AAHITCAvantGardeProBold) format("svg")
         }
 
-        canvas#generatedImage {
-            outline: 1px solid var(--grey);
-            transform: scale(0.5);
-            transform-origin: top left;
-            margin: 0;
-            margin-right: -540px;
-            margin-bottom: -960px;
-        }
+
 
         body {
             font-family: "AAHITCAvantGardeProBold", sans-serif;
@@ -76,11 +67,6 @@
             padding: 0
         }
 
-        main {
-            display: flex;
-            flex-direction: row;
-            accent-color: var(--aah-pink)
-        }
 
         h3 {
             color: var(--aah-pink);
@@ -113,12 +99,6 @@
             color: var(--grey)
         }
 
-        #formElement {
-            display: none;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
 
 
 
@@ -127,35 +107,8 @@
             color: #fff
         }
 
-        #controls {
-            margin: 20px
-        }
 
-        input {
-            padding: 10px;
-            border-radius: 10px
-        }
 
-        input[type="file"] {
-            display: none
-        }
-
-        input#headline {
-            font: 20px 'AAHITCAvantGardeProBold';
-            max-width: calc(100vw - 60px)
-        }
-
-        main button,
-        main a,
-        .fileButton {
-            background-color: var(--aah-pink);
-            outline: 0;
-            border: 0;
-            padding: 10px;
-            border-radius: 10px;
-            color: #fff;
-            font: 20px "AAHITCAvantGardeProBold", sans-serif
-        }
 
         main a.inactive {
             background-color: var(--grey)
@@ -166,103 +119,11 @@
             text-decoration: none
         }
 
-        .fileButton {
-            display: inline-block
-        }
 
-        form p,
-        form label,
-        form input,
-        form button,
-        form a {
-            margin-left: 30px
-        }
 
-        .colourLabel,
-        .positionLabel {
-            margin-left: unset;
-            font-size: 1.2rem;
-            bottom: 4px;
-            position: relative;
-        }
 
-        input#colourChoice1,
-        input#colourChoice2,
-        input#colourChoice3,
-        input#colourChoice4,
-        input#colourChoice5,
-        input#colourChoice6,
-        input#colourChoice7,
-        input#small,
-        input#medium,
-        input#large,
-        input.positionChoice {
-            appearance: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            transition: .2s all linear;
-            margin-right: 5px;
-            position: relative;
-            top: 4px;
-            border: 2px var(--grey) solid;
-            padding: unset
-        }
 
-        input#colourChoice1:checked,
-        input#small:checked,
-        input#medium:checked,
-        input#large:checked,
-        input.positionChoice:checked {
-            border: 10px var(--aah-pink) solid
-        }
 
-        input#colourChoice2:checked {
-            border: 10px var(--aah-blue) solid
-        }
-
-        input#colourChoice3:checked {
-            border: 10px var(--aah-orange) solid
-        }
-
-        input#colourChoice4:checked {
-            border: 10px var(--freshers23-cherry) solid
-        }
-
-        input#colourChoice5:checked {
-            border: 10px var(--freshers23-mint) solid
-        }
-
-        input#colourChoice6:checked {
-            border: 10px var(--freshers23-tomato) solid
-        }
-
-        input#colourChoice7:checked {
-            border: 10px var(--freshers23-cream) solid
-        }
-
-        #smallLabel {
-            font-size: 12px
-        }
-
-        #mediumLabel {
-            font-size: 20px
-        }
-
-        #largeLabel {
-            font-size: 30px
-        }
-
-        #styleDropdown {
-            margin-left: 30px;
-            background-color: var(--aah-pink);
-            outline: none;
-            border: none;
-            padding: 10px;
-            border-radius: 12px;
-            color: #fff;
-            font: 20px 'AAHITCAvantGardeProBold'
-        }
 
         footer {
             color: var(--grey);
@@ -281,89 +142,15 @@
             font-size: 1.3rem
         }
 
-        aside.wizard {
-            border: 6px solid #8d054b;
-            background-color: var(--aah-pink);
-            padding: 24px;
-            border-radius: 12px;
-            margin-block: 10px;
-            font-size: 1.3rem
-        }
 
-        aside.wizard p {
-            color: black;
-            margin-inline-start: 0;
-        }
-
-        aside.wizard #articleUrlInput {
-            margin-inline: 0;
-            width: calc(100% - 30px);
-            max-width: 45ch;
-            border: 0;
-            outline: 0;
-            font: 15px 'AAHITCAvantGardeProBold';
-            font-variant-ligatures: none;
-        }
-
-        aside.wizard #wizardSubmitButton {
-            background-color: black;
-            color: white;
-            border: 0;
-            outline: 0;
-            margin: 0;
-            font: 15px 'AAHITCAvantGardeProBold';
-        }
-
-
-        #preview {
-            margin: 20px;
-        }
-
-        #preview h2 {
-            margin-top: 0;
-            padding-top: 26px;
-            font-size: 1.3rem
-        }
 
         .logo {
             font-size: 3rem
         }
 
-        #ligature {
-            margin-top: 10px;
-            width: 30px;
-            height: 30px
-        }
 
-        #ligature:checked {
-            background-color: var(--aah-pink)
-        }
 
-        #lig {
-            color: var(--grey);
-            margin: 5px;
-            position: relative;
-            bottom: 8px;
-        }
 
-        span#direction::after {
-            content: "to the right."
-        }
-
-        @media screen and (max-width:960px) {
-            main {
-                flex-direction: column
-            }
-
-            span#direction::after {
-                content: "below."
-            }
-
-            section#preview {
-                margin: auto;
-                overflow: hidden;
-            }
-        }
 
         .new {
             color: transparent;
@@ -371,83 +158,16 @@
             text-transform: uppercase;
         }
 
-        #fileChoices {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
 
-        }
 
-        #fileLabel {
-            margin-block: 0;
-
-        }
-
-        .positionIcon {
-            height: 15px;
-            margin-right: 10px;
-        }
-
-        .radiosGroup {
-            display: inline-block;
-
-        }
-
-        #orFillOut {
-            font-size: 1rem;
-            display: inline-block;
-            margin-block-start: 30px;
-            color: white;
-        }
-
-        #hopefully,
-        #loading,
-        #didNotWork {
-            margin-block-start: 10px;
-            display: none;
-        }
-
-        #manualButton {
-            display: inline;
-            background-color: black;
-            color: white;
-            border: 0;
-            outline: 0;
-            margin: 0;
-            font: 15px 'AAHITCAvantGardeProBold';
-
-        }
-
-        input[type="button"] {
-            cursor: pointer;
-        }
-
-        #complicatedReasons {
-            display: none;
-        }
-
-        #imageDownloadLink {
-            background-color: unset;
-            padding: unset;
-            font: unset;
-            color: var(--aah-pink);
-            margin: unset;
-
-        }
-
-        aside.wizard {
-            position: relative;
-            z-index: 90;
-        }
 
         .ribbon-wrapper {
-            width: 85px;
-            height: 88px;
+            width: 185px;
+            height: 188px;
             overflow: hidden;
             position: absolute;
-            top: -3px;
-            right: -3px;
+            top: 0px;
+            right: 0px;
         }
 
         .ribbon {
@@ -460,70 +180,79 @@
             -o-transform: rotate(45deg);
             position: relative;
             padding: 7px 0;
-            top: 15px;
+            top: 40px;
             right: 0px;
-            width: 120px;
+            width: 250px;
             background-color: #8d054b;
             color: #fff;
+            box-shadow: 10px 5px 5px var(--aah-pink);
+
         }
 
-        fieldset {
-            border: 0;
-            outline: 0;
-            padding: 0;
-            margin: 0;
-        }
+        main {
 
-        fieldset.storyStyle div.storyStyleChoices {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-inline-start: 30px;
-        }
-
-        fieldset.storyStyle label {
-            flex-grow: 1;
-            height: 150px;
-            width: 150px;
+            accent-color: var(--aah-pink);
             padding: 10px;
+            margin: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        main>a {
+            position: relative;
+            z-index: 90;
+            min-height: 40vh;
+            border-radius: 10px;
+            min-width: 500px;
+            flex-grow: 1;
             background-color: var(--aah-pink);
+            color: white;
+            padding: 20px;
             display: flex;
             align-items: flex-end;
-            border-radius: 10px;
-            margin: 0;
-            background-size: contain;
-            background-repeat: no-repeat;
+            transition: .5s;
+            text-decoration-color: #da0974;
+            background-size: auto 100%;
             background-position: right;
-            color: white;
+            background-repeat: no-repeat;
+            background-blend-mode: multiply;
         }
 
-        fieldset.storyStyle label input {
-            display: none;
-        }
-
-        fieldset.storyStyle label:has(input:checked) {
+        main a:hover {
             background-color: #8d054b;
+            text-decoration-color: #ffffff;
         }
 
-        fieldset.storyStyle label:has(input#styleChoice1) {
-            background-image: url(images/styles/normal.png);
+        main a h2 {
+            margin-block: 0;
         }
 
-        fieldset.storyStyle label:has(input#styleChoice2) {
-            background-image: url(images/styles/christmas.png);
+        @media screen and (max-width: 560px) {
+            main a {
+                width: 100%;
+                min-width: unset;
+            }
         }
 
-        fieldset.storyStyle label:has(input#styleChoice3) {
-            background-image: url(images/styles/blenny.png);
+        a#story {
+            background-image: url('/images/story.png');
+
         }
 
-        fieldset.storyStyle label:has(input#styleChoice4) {
-            background-image: url(images/styles/upsidedown.png);
+        a#guidelines {
+            background-image: url('/images/guidelines.png');
+
         }
 
-        fieldset.storyStyle label:has(input#styleChoice5) {
-            background-image: url(images/styles/review.png);
+        a#featured {
+            background-image: url('/images/featured.png');
+
+        }
+
+        a#bank {
+            background-image: url('/images/bank.png');
+
         }
     </style>
 </head>
@@ -531,672 +260,49 @@
 <body>
     <header>
 
-        <h1><span class="logo">aah</span> Instagram Story Generator</h1>
+        <h1><span class="logo">aah</span> Design Studio</h1>
 
     </header>
     <main>
-        <section id="controls">
+        <a href="/story/" id="story">
+            <article class="panel">
+                <h2><span class="logo">aah</span> Instagram Story Generator</h2>
+            </article>
+        </a>
+        <a href="#" id="featured">
+            <article class="panel">
+                <div class="ribbon-wrapper">
+                    <div class="ribbon">COMING SOON</div>
+                </div>
+                <h2><span class="logo">aah</span> Featured Image Guide</h2>
+            </article>
+        </a>
+        <a href="#" id="guidelines">
+            <article class="panel">
+                <div class="ribbon-wrapper">
+                    <div class="ribbon">COMING SOON</div>
+                </div>
+                <h2><span class="logo">aah</span> Brand Guidelines</h2>
+            </article>
+        </a>
+        <a href="https://drive.google.com/drive/folders/1OBRGjMT2rUOKndo6foIfVYJd3H-vvZP6?usp=sharing" id="bank">
+            <article class="panel">
 
-            <h2 id="blurb">A simple tool to generate an Instagram story image for aAh Magazine.</h2>
-            <form action="POST" id="wizardFormElement">
-                <aside class="wizard">
-                    <div class="ribbon-wrapper">
-                        <div class="ribbon">BETA</div>
-                    </div>
-                    <p id="pasteInBelow"><span class="new">✨ NEW</span> Paste in an article URL below, and the template
-                        will be filled out
-                        automatically!
-                    </p>
-                    <fieldset>
-                        <input type="url" name="articleUrlInput" id="articleUrlInput"
-                            placeholder="Paste an aah-magazine.co.uk URL here">
-                        <input type="button" value="Generate" id="wizardSubmitButton">
-                    </fieldset>
+                <h2><span class="logo">aah</span> Image Bank</h2>
+            </article>
+        </a>
 
-                    <p id="didNotWork">That URL doesn't look right. Make sure you're pasting in the link to the article.
-                    </p>
-                    <p id="orFillOut">Or, if you'd prefer, you can </p>
-                    <input type="button" value="fill out the form manually" id="manualButton">
-                    <p id="loading">Loading...</p>
-
-                    <p id="hopefully">Hopefully that worked. If not, make changes below.</p>
-
-                </aside>
-
-            </form>
-
-
-
-            <form action="POST" id="formElement">
-
-                <fieldset>
-                    <h3 id="typeTheHeadline">1. Type the headline of the article</h3>
-                    <p id="howManyLines">Six or seven lines maximum, ideally less</p>
-                    <input type="text" id="headline" placeholder="Headline..." required><br>
-                    <input type="checkbox" name="ligature" id="ligature" checked><label for="ligature" id="lig">Replace
-                        the
-                        word
-                        <span style="font-variant-ligatures: none;">'aAh'</span> with the aah logo</label>
-
-
-                </fieldset>
-                <fieldset>
-                    <h3 id="chooseAnImage">2. Choose an image for the story</h3>
-                    <p id="complicatedReasons">For annoying technical reasons, this app can't automatically place the
-                        article image on to the
-                        template. But you can <a href="#" id="imageDownloadLink" target="_blank" download="true">open
-                            the article's
-                            featured
-                            image,</a> download it, and then upload it below.</p>
-                    <div id="fileChoices"><label for="file" class="fileButton">
-                            Choose file
-                        </label>
-
-                        <p id="fileLabel">&nbsp;</p>
-                    </div>
-
-
-
-
-                    <input type="file" name="file" id="file" accept="image/*" required>
-                    <div id="xPositionChoices" style="display:none;">
-                        <p>The image is wider than the box, choose which part to display</p>
-                        <input type="radio" id="xPositionChoice1" name="xPosition" value="left" class="positionChoice">
-                        <label for="xPositionChoice1" class="positionLabel"><img src="images/pictograms/left.svg"
-                                class="positionIcon">
-                            Left</label>
-                        <input type="radio" id="xPositionChoice2" name="xPosition" value="center" class="positionChoice"
-                            checked required>
-                        <label for="xPositionChoice2" class="positionLabel"><img src="images/pictograms/center.svg"
-                                class="positionIcon">Center</label>
-                        <input type="radio" id="xPositionChoice3" name="xPosition" value="right" class="positionChoice">
-                        <label for="xPositionChoice3" class="positionLabel"><img src="images/pictograms/right.svg"
-                                class="positionIcon">Right</label>
-                    </div><br>
-                    <div id="yPositionChoices" style="display:none;">
-                        <p>The image is taller than the box, choose which part to display</p>
-                        <input type="radio" id="yPositionChoice1" name="yPosition" value="top" class="positionChoice">
-                        <label for="yPositionChoice1" class="positionLabel"><img src="images/pictograms/top.svg"
-                                class="positionIcon">Top</label>
-                        <input type="radio" id="yPositionChoice2" name="yPosition" value="middle" class="positionChoice"
-                            checked required>
-                        <label for="yPositionChoice2" class="positionLabel"><img src="images/pictograms/middle.svg"
-                                class="positionIcon">Middle</label>
-                        <input type="radio" id="yPositionChoice3" name="yPosition" value="bottom"
-                            class="positionChoice">
-                        <label for="yPositionChoice3" class="positionLabel"><img src="images/pictograms/bottom.svg"
-                                class="positionIcon">Bottom</label>
-                    </div>
-
-                </fieldset>
-                <fieldset>
-                    <h3 id="pickTheColour">3. Pick the colour scheme</h3>
-                    <p id="pinkIs">Pink is the house style, or use blue or orange for a bit of variety</p>
-                    <div class="radiosRow">
-                        <div class="radiosGroup"><input type="radio" id="colourChoice1" name="colour" value="pink"
-                                checked required>
-                            <label for="colourChoice1" class="colourLabel">Pink</label>
-                        </div>
-                        <div class="radiosGroup">
-                            <input type="radio" id="colourChoice2" name="colour" value="blue">
-                            <label for="colourChoice2" class="colourLabel">Blue</label>
-                        </div>
-                        <div class="radiosGroup">
-                            <input type="radio" id="colourChoice3" name="colour" value="orange">
-                            <label for="colourChoice3" class="colourLabel">Orange</label>
-                        </div>
-                    </div>
-                    <br>
-                    <p id="forFreshers">For posts about The Freshers Issue 2023, use one of these colours</p>
-                    <div class="radiosRow">
-                        <div class="radiosGroup"><input type="radio" id="colourChoice4" name="colour" value="cherry">
-                            <label for="colourChoice4" class="colourLabel">Cherry</label>
-                        </div>
-                        <div class="radiosGroup">
-                            <input type="radio" id="colourChoice5" name="colour" value="mint">
-                            <label for="colourChoice5" class="colourLabel">Mint</label>
-                        </div>
-                        <div class="radiosGroup">
-                            <input type="radio" id="colourChoice6" name="colour" value="tomato">
-                            <label for="colourChoice6" class="colourLabel">Tomato</label>
-                        </div>
-                        <div class="radiosGroup"> <input type="radio" id="colourChoice7" name="colour" value="cream">
-                            <label for="colourChoice7" class="colourLabel">Cream</label>
-                        </div>
-                    </div>
-
-                </fieldset>
-                <fieldset class="storyStyle">
-                    <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
-                    <p id="noteAboutStyles">This feature is new; if the image appears twice on the preview, click again
-                        and it should right itself.</p>
-                    <div class="storyStyleChoices">
-                        <label>
-                            <input type="radio" name="storyStyleChoice" id="styleChoice1" value="Normal" checked>
-                            Normal
-                        </label>
-                        <label>
-                            <input type="radio" name="storyStyleChoice" id="styleChoice2" value="Christmas">
-                            Christmas
-                        </label>
-                        <label>
-                            <input type="radio" name="storyStyleChoice" id="styleChoice3" value="Blenny">
-                            Blenny
-                        </label>
-                        <label>
-                            <input type="radio" name="storyStyleChoice" id="styleChoice4" value="UpsideDown">
-                            Upside down
-                        </label>
-                        <label>
-                            <input type="radio" name="storyStyleChoice" id="styleChoice5" value="Review">
-                            Music
-                        </label>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <h3 id="decideFontSize">5. Decide on a font size</h3>
-                    <input type="radio" id="small" name="size" value="small">
-                    <label for="small" class="sizeLabel" id="smallLabel">A</label>
-                    <br>
-                    <input type="radio" id="medium" name="size" value="medium" checked required>
-                    <label for="medium" class="sizeLabel" id="mediumLabel">A</label>
-                    <br>
-                    <input type="radio" id="large" name="size" value="large">
-                    <label for="large" class="sizeLabel" id="largeLabel">A</label>
-                    <p id="fontSizeTip">Generally stick with medium, but you can make it bigger or smaller if it would
-                        look
-                        better.</p>
-
-                </fieldset>
-
-                <fieldset>
-                    <h3 id="onceFinishedDownload">6. Once everything's finished, click Download and then add it to the
-                        Instagram</h3>
-                    <button id="downloadButton" type="button" onClick="download()">Download</button>
-                    <a id="download" download="download.png" href="#" class="inactive"
-                        style="display:none;">Download</a><br><br><br>
-
-                </fieldset>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </form>
-        </section>
-        <section id="preview">
-            <h2>Preview</h2><canvas id="generatedImage" width="1080" height="1920">hello</canvas>
-        </section>
-
-        <div id="measure"></div>
     </main>
     <footer>
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 3.4, built 2023-12-10. <a
-                href="https://github.com/mag-images/mag-images.github.io/commits/main">Changelog</a></p>
+        <p>Version 4.0, built 2024-01-05. See <a
+                href="https://github.com/mag-images/mag-images.github.io/commits/main">changelog</a> for most recent
+            updates.</p>
+        <p>Illustrations above by Lucy Vincent and Ross Westgate.</p>
     </footer>
-    <script>
-        var canvas = document.getElementById("generatedImage");
 
-        var articleImageUrl = null;
-
-        document.getElementById("formElement").addEventListener("click", generate);
-        document.getElementById("formElement").addEventListener("keyup", generate);
-        document.getElementById("file").addEventListener("change", generate);
-
-        function generate() {
-            //get inputs
-            var headline = document.getElementById("headline").value;
-            var styleChoice = document.getElementsByName("storyStyleChoice");
-            var picture = document.getElementById("file");
-            var colour = document.getElementsByName("colour");
-            var xPositionB = document.getElementsByName("xPosition");
-            var yPositionB = document.getElementsByName("yPosition");
-            var picPosition;
-            var textPosition;
-            var trimSrc;
-            var ligatureChoice = document.getElementById("ligature");
-            var size = document.getElementsByName("size");
-            var height;
-            var typeface = "AAHITCAvantGardeProBold";
-            var root = getComputedStyle(document.documentElement);
-            var fileLabel = document.getElementById("fileLabel");
-            var fontColour;
-
-            // set story style
-            for (j = 0; j < styleChoice.length; j++) {
-                if (styleChoice[j].checked)
-                    styleChoice = j;
-            }
-
-            // set story colour
-            for (i = 0; i < colour.length; i++) {
-                if (colour[i].checked)
-                    colour = i;
-            }
-
-            if (colour === 0) {
-                colour = '--aah-pink';
-                fontColour = 'white';
-            } else if (colour === 1) {
-                colour = '--aah-blue';
-                fontColour = 'white';
-            } else if (colour === 2) {
-                colour = '--aah-orange';
-                fontColour = 'white';
-            } else if (colour === 3) {
-                colour = '--freshers23-cherry';
-                fontColour = 'white';
-            } else if (colour === 4) {
-                colour = '--freshers23-mint';
-                fontColour = 'white';
-            } else if (colour === 5) {
-                colour = '--freshers23-tomato';
-                fontColour = 'white';
-            } else if (colour === 6) {
-                colour = '--freshers23-cream';
-                fontColour = 'black';
-            }
-
-
-            // set rules for each style
-            console.log("stylechoice", styleChoice);
-            if (styleChoice === 0) {
-                picPosition = 1230;
-                textPosition = 300;
-            } else if (styleChoice === 1) {
-                picPosition = 860;
-                textPosition = 300;
-                let trimSrc = 'images/trim/christmas.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
-                }
-                trim.src = trimSrc;
-            } else if (styleChoice === 2) {
-                picPosition = 1230;
-                textPosition = 300;
-                typeface = 'blenny';
-            } else if (styleChoice === 3) {
-                picPosition = 150;
-                textPosition = 900;
-            } else if (styleChoice === 4) {
-                picPosition = 1020;
-                textPosition = 300;
-                let trimSrc = 'images/trim/review.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 50, 1680, 500, 250);
-                }
-                trim.src = trimSrc;
-            }
-
-
-
-            /* else if (styleChoice === 'energyRegular') {
-                picPosition = 1230;
-                typeface = 'fragile-bombers';
-            } else if (styleChoice === 'energyAttack') {
-                picPosition = 1230;
-                typeface = 'fragile-bombers-attack';
-            } else if (styleChoice === 'energyDown') {
-                picPosition = 1230;
-                typeface = 'fragile-bombers-down';
-            } else if (styleChoice === 'energyFolk') {
-                picPosition = 1230;
-                typeface = 'ff-folk';
-            } else if (styleChoice === 'energyRough') {
-                picPosition = 1230;
-                typeface = 'ff-folk-rough';
-            } */
-
-
-            // set up canvas and background
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = root.getPropertyValue(colour);
-            ctx.fillRect(0, 0, 1080, 1920);
-
-            // split headline into multiple lines
-            function wrapText(context, text, x, y, maxWidth, lineHeight) {
-                var words = text.split(' ');
-                var line = '';
-
-                for (var n = 0; n < words.length; n++) {
-                    var testLine = line + words[n] + ' ';
-                    var metrics = context.measureText(testLine);
-                    var testWidth = metrics.width;
-                    if (testWidth > maxWidth && n > 0) {
-                        ctx.fillText(line, x, y);
-                        line = words[n] + ' ';
-                        y += lineHeight;
-                    }
-                    else {
-                        line = testLine;
-                    }
-                }
-                ctx.fillText(line, x, y);
-            }
-
-
-            // choose whether or not to use ligatures 
-            if (ligatureChoice.checked) {
-                document.getElementById("generatedImage").style.fontVariantLigatures = "normal";
-                document.getElementById("preview").style.fontVariantLigatures = "normal";
-            } else {
-                document.getElementById("generatedImage").style.fontVariantLigatures = "none";
-                document.getElementById("preview").style.fontVariantLigatures = "none";
-            };
-
-            // set font size
-            for (i = 0; i < size.length; i++) {
-                if (size[i].checked)
-                    size = i;
-            }
-
-            if (size === 0) {
-                size = '50px';
-                height = 50;
-            } else if (size === 1) {
-                size = '70px';
-                height = 70;
-            } else if (size === 2) {
-                size = '90px';
-                height = 90;
-            }
-
-            // add headline
-            ctx.fillStyle = fontColour;
-            ctx.font = size + ' ' + typeface;
-
-            wrapText(ctx, headline, 50, textPosition, 900, height);
-            var downloadLink = document.getElementById("download");
-
-
-            var truncatedHeadline = headline.substring(0, 30);
-            downloadLink.setAttribute("download", "Instagram story " + truncatedHeadline + ".png")
-
-
-
-            // add image
-            let photoSrc = '';
-            if (articleImageUrl !== null) {
-                photoSrc = articleImageUrl;
-            }
-            if (picture.value !== '') {
-                photoSrc = window.URL.createObjectURL(picture.files[0]);
-            }
-
-            const photo = new Image();
-            photo.crossOrigin = "anonymous"
-            photo.onload = function () {
-                var photoHeight = photo.height;
-                var photoWidth = photo.width;
-                var photoAspectRatio = photoWidth / photoHeight;
-                var sixteenByNine = 16 / 9;
-                var resizedWidth;
-                var resizedHeight;
-                var xPosition;
-                var yPosition;
-
-
-                for (i = 0; i < xPositionB.length; i++) {
-                    if (xPositionB[i].checked)
-                        xPositionB = i;
-                }
-                if (xPositionB === 0) {
-                    xPosition = "left";
-                } else if (xPositionB === 1) {
-                    xPosition = "center";
-                } else if (xPositionB === 2) {
-                    xPosition = "right";
-                }
-                for (i = 0; i < yPositionB.length; i++) {
-                    if (yPositionB[i].checked)
-                        yPositionB = i;
-                }
-                if (yPositionB === 0) {
-                    yPosition = "top";
-                } else if (yPositionB === 1) {
-                    yPosition = "middle";
-                } else if (yPositionB === 2) {
-                    yPosition = "bottom";
-                }
-
-
-
-
-                if (photoAspectRatio > sixteenByNine) {
-                    // Image is wider than the canvas, so clip the sides
-                    resizedWidth = photoHeight * sixteenByNine;
-                    resizedHeight = photoHeight;
-                    document.getElementById("xPositionChoices").style.display = "initial";
-                    document.getElementById("yPositionChoices").style.display = "none";
-                    if (xPosition === "center") {
-                        x = (photoWidth - resizedWidth) / 2;
-                    } else if (xPosition === "left") {
-                        x = 0;
-                    } else if (xPosition === "right") {
-                        x = (photoWidth - resizedWidth);
-                    }
-                    //console.log(x);
-                    y = 0;
-                    //console.log(y);
-                } else if (photoAspectRatio < sixteenByNine) {
-                    // Image is taller than the canvas, so clip the top/bottom
-                    resizedWidth = photoWidth;
-                    resizedHeight = photoWidth / sixteenByNine;
-                    document.getElementById("yPositionChoices").style.display = "initial";
-                    document.getElementById("xPositionChoices").style.display = "none";
-                    x = 0;
-                    //console.log(x);
-                    if (yPosition === "middle") {
-                        y = (photoHeight - resizedHeight) / 2;
-                    } else if (yPosition === "top") {
-                        y = 0;
-                    } else if (yPosition === "bottom") {
-                        y = (photoHeight - resizedHeight);
-                    }
-                    //console.log(y);
-                } else {
-                    resizedWidth = photoWidth;
-                    resizedHeight = photoWidth / sixteenByNine;
-                    document.getElementById("yPositionChoices").style.display = "none";
-                    document.getElementById("xPositionChoices").style.display = "initial";
-                    document.getElementById("xPositionChoices").innerHTML = "<p>The image fits perfectly within the box without needing to crop</p>";
-                    x = 0;
-                    y = 0;
-                }
-
-                // Draw the clipped image on the canvas
-                ctx.drawImage(photo, x, y, resizedWidth, resizedHeight, 0, picPosition, 1080, 607.5);
-
-                document.querySelector("#fileChoices > label").innerHTML = "Change image"
-
-                document.querySelector("#complicatedReasons").style.display = "none";
-            }
-            photo.src = photoSrc;
-            fileLabel.innerHTML = picture.value.split("fakepath\\").pop();
-
-
-
-
-
-
-        }
-
-        generate();
-
-        function waitThenGenerate() {
-            setTimeout(generate, 1000);
-        }
-        function download() {
-            setTimeout(waitThenDownload, 1000);
-            function waitThenDownload() {
-                // generate download link
-                var downloadLink = document.getElementById("download");
-                var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-                downloadLink.setAttribute("href", img);
-                const event = new MouseEvent('click', {
-                    view: window,
-                    bubbles: true,
-                    cancelable: true
-                });
-                downloadLink.dispatchEvent(event);
-
-
-            }
-
-
-
-
-        }
-
-
-        document.getElementById("wizardSubmitButton").addEventListener("click", generateFromUrl);
-        document.getElementById("wizardSubmitButton").addEventListener("keyup", generateFromUrl);
-
-        document.getElementById('wizardFormElement').addEventListener('keypress', function (e) {
-            if (e.keyCode === 13) {
-                e.preventDefault();
-                generateFromUrl();
-            }
-        });
-
-        function generateFromUrl() {
-
-            document.getElementById("manualButton").style.display = "none";
-            document.getElementById("didNotWork").style.display = "none";
-            document.getElementById("orFillOut").style.display = "none";
-            document.getElementById("loading").style.marginBLockStart = "10px";
-            document.getElementById("loading").style.display = "block";
-            document.getElementById("loading").style.color = "white";
-
-            var articleUrl = document.getElementById("articleUrlInput").value;
-            console.log(articleUrl);
-            if (articleUrl.includes("aah-magazine.co.uk")) {
-                var encodedArticleUrl = encodeURIComponent(articleUrl);
-                console.log(encodedArticleUrl);
-                var fetchUrl = "https://opengraph.io/api/1.1/site/" + encodedArticleUrl + "?accept_lang=auto&app_id=08403b1a-b864-4f36-971a-aeca3978e71a"
-                console.log(fetchUrl);
-                async function fetchOG() {
-                    const response = await fetch(fetchUrl);
-                    const openGraph = await response.json();
-                    console.log(openGraph);
-                    var articleTitle = openGraph.htmlInferred.site_name;
-                    console.log(articleTitle);
-                    var tempArticleImageUrl = openGraph.htmlInferred.images[1];
-                    console.log(articleImageUrl);
-                    document.getElementById("imageDownloadLink").href = articleImageUrl;
-
-
-                    /* articleImageWidth = openGraph.openGraph.image.width;
-                    articleImageHeight = openGraph.openGraph.image.height;
-
-
-                     var tempImageCanvas = document.createElement("canvas");
-                    context = tempImageCanvas.getContext('2d');
-                    tempImageCanvas.width = articleImageWidth;
-                    tempImageCanvas.height = articleImageHeight;
-
-                    make_base();
-
-                    function make_base() {
-                        base_image = new Image();
-                        base_image.src = articleTempImageUrl;
-                        base_image.crossOrigin = '*';
-                        base_image.onload = function () {
-                            context.drawImage(base_image, articleImageHeight, articleImageWidth);
-                            console.log(tempImageCanvas);
-                            var pngUrl = tempImageCanvas.toDataURL("image/png");
-                            console.log(pngUrl);
-                            articleImageUrl = pngUrl;
-                        }
-                    } */
-
-                    var encodedScreenshotUrl = encodeURIComponent(tempArticleImageUrl);
-                    console.log(encodedScreenshotUrl);
-                    var imageScreenshotRequestUrl = "https://opengraph.io/api/1.1/screenshot/" + encodedScreenshotUrl + "?accept_lang=auto&use_proxy=true&quality=80&dimensions=sm&full_page=true&app_id=08403b1a-b864-4f36-971a-aeca3978e71a"
-                    async function fetchImage() {
-                        console.log("bingo");
-                        const response = await fetch(imageScreenshotRequestUrl);
-                        const imageScreenshot = await response.json();
-                        console.log(imageScreenshot);
-                        var fetchedImage = imageScreenshot.screenshotUrl
-                        console.log("fetched image", fetchedImage);
-                        articleImageUrl = fetchedImage;
-                        generate();
-
-                    }
-                    fetchImage();
-
-
-
-                    document.getElementById("headline").value = articleTitle;
-                    generate();
-
-
-
-
-                    document.getElementById("loading").style.display = "none";
-                    document.getElementById("hopefully").style.marginBLockStart = "10px";
-                    document.getElementById("hopefully").style.display = "block";
-                    document.getElementById("formElement").style.display = "flex";
-
-                    document.querySelector("#fileChoices > label").innerHTML = "Upload image";
-
-                    document.querySelector("#typeTheHeadline").innerHTML = "Headline";
-                    document.querySelector("#typeTheHeadline").style.marginLeft = "30px";
-                    document.querySelector("#complicatedReasons").style.display = "block";
-                    document.querySelector("#howManyLines").style.display = "none";
-                    document.querySelector("#chooseAnImage").innerHTML = "Featured image";
-                    document.querySelector("#chooseAnImage").style.marginLeft = "30px";
-                    document.querySelector("#pickTheColour").innerHTML = "Colour scheme";
-                    document.querySelector("#pickTheColour").style.marginLeft = "30px";
-                    document.querySelector("#storyStyleLabel").innerHTML = "Story style";
-                    document.querySelector("#storyStyleLabel").style.marginLeft = "30px";
-                    document.querySelector("#decideFontSize").innerHTML = "Font size";
-                    document.querySelector("#decideFontSize").style.marginLeft = "30px";
-                    document.querySelector("#fontSizeTip").style.display = "none";
-                    document.querySelector("#onceFinishedDownload").innerHTML = "Finally, click Download and then add the story to the Instagram";
-                    document.querySelector("#onceFinishedDownload").style.marginLeft = "30px";
-                }
-                fetchOG();
-            } else {
-                document.getElementById("loading").style.display = "none";
-
-                document.getElementById("orFillOut").style.display = "inline-block";
-                document.getElementById("didNotWork").style.marginBLockStart = "10px";
-                document.getElementById("didNotWork").style.display = "block";
-                document.getElementById("manualButton").style.display = "inline";
-            }
-
-        }
-        function fillOutManually() {
-
-            document.getElementById("wizardFormElement").style.display = "none";
-
-            document.getElementById("formElement").style.display = "flex";
-        }
-        document.getElementById("manualButton").addEventListener("click", fillOutManually);
-
-    </script>
     <script>
         if (navigator && navigator.serviceWorker) {
             navigator.serviceWorker.register('sw.js');
