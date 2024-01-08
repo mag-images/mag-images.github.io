@@ -37,224 +37,9 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
 
+    <!---->
+    <link rel="stylesheet" href="/style/style.css">
 
-    <style>
-        :root {
-            --aah-pink: #da0974;
-            --aah-blue: #195f72;
-            --aah-orange: #fb5012;
-            --grey: #444;
-            --energy-yellow: #e1ad01;
-            --energy-green: #00a693;
-            --energy-terracota: #d47553;
-            --freshers23-tomato: #eb5a4d;
-            --freshers23-cherry: #a7191d;
-            --freshers23-mint: #61a5a0;
-            --freshers23-cream: #f6e7ce;
-        }
-
-        @font-face {
-            font-family: 'AAHITCAvantGardeProBold';
-            src: url(fonts/AAHITCAvantGardeProBold.eot);
-            src: url(fonts/AAHITCAvantGardeProBold.eot) format("embedded-opentype"), url(fonts/AAHITCAvantGardeProBold.woff2) format("woff2"), url(fonts/AAHITCAvantGardeProBold.woff) format("woff"), url(fonts/AAHITCAvantGardeProBold.ttf) format("truetype"), url(fonts/AAHITCAvantGardeProBold.svg#AAHITCAvantGardeProBold) format("svg")
-        }
-
-
-
-        body {
-            font-family: "AAHITCAvantGardeProBold", sans-serif;
-            margin: 0;
-            padding: 0
-        }
-
-
-        h3 {
-            color: var(--aah-pink);
-            font-size: 1.5rem;
-            margin-bottom: 10px
-        }
-
-        header {
-            padding: 20px 20px 20px 50px;
-            background-color: var(--aah-pink);
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 20px
-        }
-
-        header img,
-        header h1 {
-            display: inline-block;
-            margin: 0
-        }
-
-        h1 {
-            color: #fff
-        }
-
-        p {
-            color: var(--grey)
-        }
-
-
-
-
-
-        header p {
-            color: #fff
-        }
-
-
-
-
-        main a.inactive {
-            background-color: var(--grey)
-        }
-
-        main a.active {
-            background-color: var(--aah-pink);
-            text-decoration: none
-        }
-
-
-
-
-
-
-
-        footer {
-            color: var(--grey);
-            padding-left: 20px
-        }
-
-        footer a {
-            color: var(--aah-pink)
-        }
-
-        #blurb {
-            border: 6px solid var(--aah-pink);
-            padding: 24px;
-            border-radius: 12px;
-            margin: 0;
-            font-size: 1.3rem
-        }
-
-
-
-        .logo {
-            font-size: 3rem
-        }
-
-
-
-
-
-        .new {
-            color: transparent;
-            text-shadow: 0 0 0 white;
-            text-transform: uppercase;
-        }
-
-
-
-
-        .ribbon-wrapper {
-            width: 185px;
-            height: 188px;
-            overflow: hidden;
-            position: absolute;
-            top: 0px;
-            right: 0px;
-        }
-
-        .ribbon {
-            font: 15px 'AAHITCAvantGardeProBold';
-            color: #333;
-            text-align: center;
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            -o-transform: rotate(45deg);
-            position: relative;
-            padding: 7px 0;
-            top: 40px;
-            right: 0px;
-            width: 250px;
-            background-color: #8d054b;
-            color: #fff;
-            box-shadow: 10px 5px 5px var(--aah-pink);
-
-        }
-
-        main {
-
-            accent-color: var(--aah-pink);
-            padding: 10px;
-            margin: 10px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        main>a {
-            position: relative;
-            z-index: 90;
-            min-height: 40vh;
-            border-radius: 10px;
-            min-width: 500px;
-            flex-grow: 1;
-            background-color: var(--aah-pink);
-            color: white;
-            padding: 20px;
-            display: flex;
-            align-items: flex-end;
-            transition: .5s;
-            text-decoration-color: #da0974;
-            background-size: auto 100%;
-            background-position: right;
-            background-repeat: no-repeat;
-            background-blend-mode: multiply;
-        }
-
-        main a:hover {
-            background-color: #8d054b;
-            text-decoration-color: #ffffff;
-        }
-
-        main a h2 {
-            margin-block: 0;
-        }
-
-        @media screen and (max-width: 560px) {
-            main a {
-                width: 100%;
-                min-width: unset;
-            }
-        }
-
-        a#story {
-            background-image: url('/images/story.png');
-
-        }
-
-        a#guidelines {
-            background-image: url('/images/guidelines.png');
-
-        }
-
-        a#featured {
-            background-image: url('/images/featured.png');
-
-        }
-
-        a#bank {
-            background-image: url('/images/bank.png');
-
-        }
-    </style>
 </head>
 
 <body>
@@ -263,29 +48,36 @@
         <h1><span class="logo">aah</span> Design Studio</h1>
 
     </header>
-    <main>
-        <a href="/story/" id="story">
+    <main class="tiles">
+        <a href="/story/" id="story" class="tile">
             <article class="panel">
                 <h2><span class="logo">aah</span> Instagram Story Generator</h2>
             </article>
         </a>
-        <a href="#" id="featured">
+        <a href="/featured/" id="featured" class="tile">
             <article class="panel">
-                <div class="ribbon-wrapper">
-                    <div class="ribbon">COMING SOON</div>
-                </div>
+
                 <h2><span class="logo">aah</span> Featured Image Guide</h2>
             </article>
         </a>
-        <a href="#" id="guidelines">
+        <a href="#" id="guidelines" class="tile">
             <article class="panel">
-                <div class="ribbon-wrapper">
-                    <div class="ribbon">COMING SOON</div>
+                <div class="ribbon-wrapper wide">
+                    <div class="ribbon wide">COMING SOON</div>
                 </div>
                 <h2><span class="logo">aah</span> Brand Guidelines</h2>
             </article>
         </a>
-        <a href="https://drive.google.com/drive/folders/1OBRGjMT2rUOKndo6foIfVYJd3H-vvZP6?usp=sharing" id="bank">
+        <a href="#" id="duotone" class="tile">
+            <article class="panel">
+                <div class="ribbon-wrapper wide">
+                    <div class="ribbon wide">COMING SOON</div>
+                </div>
+                <h2><span class="logo">aah</span> Photography Duotone Generator</h2>
+            </article>
+        </a>
+        <a href="https://drive.google.com/drive/folders/1OBRGjMT2rUOKndo6foIfVYJd3H-vvZP6?usp=sharing" id="bank"
+            class="tile">
             <article class="panel">
 
                 <h2><span class="logo">aah</span> Image Bank</h2>
@@ -297,15 +89,16 @@
         <p>Site created by <a href="https://www.bradleysans.uk">Bradley Sansom</a>. Send me a message on Teams if you
             have any
             problems.</p>
-        <p>Version 4.0.1, built 2024-01-08. See <a
+        <p>Version 4.0.2, built 2024-01-08. See <a
                 href="https://github.com/mag-images/mag-images.github.io/commits/main">changelog</a> for most recent
             updates.</p>
-        <p>Illustrations above by Lucy Vincent and Ross Westgate.</p>
+        <p>Illustrations above by Lucy Vincent and Ross Westgate. Guidelines by Lisa Silva. Photography by Fran
+            Tremper-Jeschke.</p>
     </footer>
 
     <script>
         if (navigator && navigator.serviceWorker) {
-            navigator.serviceWorker.register('sw.js');
+            navigator.serviceWorker.register('/sw.js');
         }
     </script>
 </body>

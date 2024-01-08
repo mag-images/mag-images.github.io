@@ -6,7 +6,7 @@
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/story/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
