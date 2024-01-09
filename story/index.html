@@ -211,6 +211,30 @@
                             <input type="radio" name="storyStyleChoice" id="styleChoice5" value="Review">
                             Music
                         </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice6" value="WriteFor">
+                            Write for aah
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice7" value="DesignFor">
+                            Design for aah
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice8" value="IllustrateFor">
+                            Illustrate for aah
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice9" value="Rise">
+                            RISE
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice10" value="FutureMe">
+                            Future Me
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice11" value="TwoHundred">
+                            MMU 200
+                        </label>
                     </div>
                 </fieldset>
                 <fieldset>
@@ -346,7 +370,64 @@
                     ctx.drawImage(trim, 50, 1680, 500, 250);
                 }
                 trim.src = trimSrc;
+            } else if (styleChoice === 5) {
+                picPosition = 950;
+                textPosition = 300;
+                let trimSrc = '/images/trim/writeFor.png';
+                const trim = new Image();
+                trim.onload = function () {
+                    ctx.drawImage(trim, 0, 0, 1080, 1920);
+                }
+                trim.src = trimSrc;
+            } else if (styleChoice === 6) {
+                picPosition = 950;
+                textPosition = 300;
+                let trimSrc = '/images/trim/designFor.png';
+                const trim = new Image();
+                trim.onload = function () {
+                    ctx.drawImage(trim, 0, 0, 1080, 1920);
+                }
+                trim.src = trimSrc;
+            } else if (styleChoice === 7) {
+                picPosition = 950;
+                textPosition = 300;
+                let trimSrc = '/images/trim/illustrateFor.png';
+                const trim = new Image();
+                trim.onload = function () {
+                    ctx.drawImage(trim, 0, 0, 1080, 1920);
+                }
+                trim.src = trimSrc;
+            } else if (styleChoice === 8) {
+                picPosition = 920;
+                textPosition = 300;
+                let trimSrc = '/images/trim/Rise.png';
+                const trim = new Image();
+                trim.onload = function () {
+                    ctx.drawImage(trim, 0, 0, 1080, 1920);
+                }
+                trim.src = trimSrc;
             }
+            else if (styleChoice === 9) {
+                picPosition = 980;
+                textPosition = 300;
+                let trimSrc = '/images/trim/FutureMe.png';
+                const trim = new Image();
+                trim.onload = function () {
+                    ctx.drawImage(trim, 0, 0, 1080, 1920);
+                }
+                trim.src = trimSrc;
+            } else if (styleChoice === 10) {
+                picPosition = 870;
+                textPosition = 300;
+                let trimSrc = '/images/trim/TwoHundred.png';
+                const trim = new Image();
+                trim.onload = function () {
+                    ctx.drawImage(trim, 0, 0, 1080, 1920);
+                }
+                trim.src = trimSrc;
+            }
+
+
 
 
 

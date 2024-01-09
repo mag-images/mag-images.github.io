@@ -474,8 +474,9 @@
 
  fieldset.storyStyle label {
      flex-grow: 1;
+     flex-shrink: 0;
      height: 150px;
-     width: 150px;
+     width: 180px;
      padding: 10px;
      background-color: var(--aah-pink);
      display: flex;
@@ -514,6 +515,30 @@
 
  fieldset.storyStyle label:has(input#styleChoice5) {
      background-image: url('/images/styles/review.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice6) {
+     background-image: url('/images/styles/writeFor.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice7) {
+     background-image: url('/images/styles/designFor.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice8) {
+     background-image: url('/images/styles/illustrateFor.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice9) {
+     background-image: url('/images/styles/Rise.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice10) {
+     background-image: url('/images/styles/FutureMe.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice11) {
+     background-image: url('/images/styles/TwoHundred.png');
  }
 
  main.tiles {
