@@ -176,6 +176,7 @@
  input#small,
  input#medium,
  input#large,
+ input#extraLarge,
  input.positionChoice {
      appearance: none;
      border-radius: 50%;
@@ -193,6 +194,7 @@
  input#small:checked,
  input#medium:checked,
  input#large:checked,
+ input#extraLarge:checked,
  input.positionChoice:checked {
      border: 10px var(--aah-pink) solid
  }
@@ -231,6 +233,10 @@
 
  #largeLabel {
      font-size: 30px
+ }
+
+ #extraLargeLabel {
+     font-size: 45px
  }
 
  #styleDropdown {
@@ -530,14 +536,26 @@
  }
 
  fieldset.storyStyle label:has(input#styleChoice9) {
-     background-image: url('/images/styles/Rise.png');
+     background-image: url('/images/styles/writeForBg.png');
  }
 
  fieldset.storyStyle label:has(input#styleChoice10) {
-     background-image: url('/images/styles/FutureMe.png');
+     background-image: url('/images/styles/designForBg.png');
  }
 
  fieldset.storyStyle label:has(input#styleChoice11) {
+     background-image: url('/images/styles/illustrateForBg.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice12) {
+     background-image: url('/images/styles/Rise.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice13) {
+     background-image: url('/images/styles/FutureMe.png');
+ }
+
+ fieldset.storyStyle label:has(input#styleChoice14) {
      background-image: url('/images/styles/TwoHundred.png');
  }
 

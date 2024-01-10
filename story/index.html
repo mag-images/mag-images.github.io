@@ -188,8 +188,8 @@
                 </fieldset>
                 <fieldset class="storyStyle">
                     <h3 id="storyStyleLabel">4. Choose a style for the story</h3>
-                    <p id="noteAboutStyles">This feature is new; if the image appears twice on the preview, click again
-                        and it should right itself.</p>
+                    <!--<p id="noteAboutStyles">This feature is new; if the image appears twice on the preview, click again
+                        and it should right itself.</p>-->
                     <div class="storyStyleChoices">
                         <label>
                             <input type="radio" name="storyStyleChoice" id="styleChoice1" value="Normal" checked>
@@ -224,15 +224,27 @@
                             Illustrate for aah
                         </label>
                         <label>
-                            <input type="radio" name="storyStyleChoice" id="styleChoice9" value="Rise">
+                            <input type="radio" name="storyStyleChoice" id="styleChoice9" value="WriteFor">
+                            Write for aah
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice10" value="DesignFor">
+                            Design for aah
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice11" value="IllustrateFor">
+                            Illustrate for aah
+                        </label>
+                        <label>
+                            <input type="radio" name="storyStyleChoice" id="styleChoice12" value="Rise">
                             RISE
                         </label>
                         <label>
-                            <input type="radio" name="storyStyleChoice" id="styleChoice10" value="FutureMe">
+                            <input type="radio" name="storyStyleChoice" id="styleChoice13" value="FutureMe">
                             Future Me
                         </label>
                         <label>
-                            <input type="radio" name="storyStyleChoice" id="styleChoice11" value="TwoHundred">
+                            <input type="radio" name="storyStyleChoice" id="styleChoice14" value="TwoHundred">
                             MMU 200
                         </label>
                     </div>
@@ -247,6 +259,9 @@
                     <br>
                     <input type="radio" id="large" name="size" value="large">
                     <label for="large" class="sizeLabel" id="largeLabel">A</label>
+                    <br>
+                    <input type="radio" id="extraLarge" name="size" value="extraLarge">
+                    <label for="extraLarge" class="sizeLabel" id="extraLargeLabel">A</label>
                     <p id="fontSizeTip">Generally stick with medium, but you can make it bigger or smaller if it would
                         look
                         better.</p>
@@ -296,6 +311,7 @@
             var picPosition;
             var textPosition;
             var trimSrc;
+            var overlay;
             var ligatureChoice = document.getElementById("ligature");
             var size = document.getElementsByName("size");
             var height;
@@ -345,86 +361,72 @@
             if (styleChoice === 0) {
                 picPosition = 1230;
                 textPosition = 300;
+                overlay = '/images/trim/blank.png';
             } else if (styleChoice === 1) {
                 picPosition = 860;
                 textPosition = 300;
-                let trimSrc = '/images/trim/christmas.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 0, 1312.5, 1080, 607.5);
-                }
-                trim.src = trimSrc;
+                overlay = '/images/trim/Christmas.png';
+
             } else if (styleChoice === 2) {
                 picPosition = 1230;
                 textPosition = 300;
                 typeface = 'blenny';
+                overlay = '/images/trim/blank.png';
             } else if (styleChoice === 3) {
                 picPosition = 150;
                 textPosition = 900;
+                overlay = '/images/trim/blank.png';
             } else if (styleChoice === 4) {
                 picPosition = 1020;
                 textPosition = 300;
-                let trimSrc = '/images/trim/review.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 50, 1680, 500, 250);
-                }
-                trim.src = trimSrc;
+                overlay = '/images/trim/Live.png';
+
             } else if (styleChoice === 5) {
                 picPosition = 950;
                 textPosition = 300;
-                let trimSrc = '/images/trim/writeFor.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 0, 0, 1080, 1920);
-                }
-                trim.src = trimSrc;
+                overlay = '/images/trim/writeFor.png';
+
             } else if (styleChoice === 6) {
                 picPosition = 950;
                 textPosition = 300;
-                let trimSrc = '/images/trim/designFor.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 0, 0, 1080, 1920);
-                }
-                trim.src = trimSrc;
+                overlay = '/images/trim/designFor.png';
+
             } else if (styleChoice === 7) {
                 picPosition = 950;
                 textPosition = 300;
-                let trimSrc = '/images/trim/illustrateFor.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 0, 0, 1080, 1920);
-                }
-                trim.src = trimSrc;
+                overlay = '/images/trim/illustrateFor.png';
+
             } else if (styleChoice === 8) {
+                picPosition = 950;
+                textPosition = 300;
+                overlay = '/images/trim/writeForBg.png';
+
+            } else if (styleChoice === 9) {
+                picPosition = 950;
+                textPosition = 300;
+                overlay = '/images/trim/designForBg.png';
+
+            } else if (styleChoice === 10) {
+                picPosition = 950;
+                textPosition = 300;
+                overlay = '/images/trim/illustrateForBg.png';
+
+            } else if (styleChoice === 11) {
                 picPosition = 920;
                 textPosition = 300;
-                let trimSrc = '/images/trim/Rise.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 0, 0, 1080, 1920);
-                }
-                trim.src = trimSrc;
+                overlay = '/images/trim/Rise.png';
+
             }
-            else if (styleChoice === 9) {
+            else if (styleChoice === 12) {
                 picPosition = 980;
                 textPosition = 300;
-                let trimSrc = '/images/trim/FutureMe.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 0, 0, 1080, 1920);
-                }
-                trim.src = trimSrc;
-            } else if (styleChoice === 10) {
+                overlay = '/images/trim/FutureMe.png';
+
+            } else if (styleChoice === 13) {
                 picPosition = 870;
                 textPosition = 300;
-                let trimSrc = '/images/trim/TwoHundred.png';
-                const trim = new Image();
-                trim.onload = function () {
-                    ctx.drawImage(trim, 0, 0, 1080, 1920);
-                }
-                trim.src = trimSrc;
+                overlay = '/images/trim/TwoHundred.png';
+
             }
 
 
@@ -451,6 +453,8 @@
 
             // set up canvas and background
             const ctx = canvas.getContext('2d');
+
+            ctx.clearRect(0, 0, 1080, 1920);
             ctx.fillStyle = root.getPropertyValue(colour);
             ctx.fillRect(0, 0, 1080, 1920);
 
@@ -500,127 +504,148 @@
             } else if (size === 2) {
                 size = '90px';
                 height = 90;
+            } else if (size === 3) {
+                size = '140px';
+                height = 140;
             }
 
-            // add headline
-            ctx.fillStyle = fontColour;
-            ctx.font = size + ' ' + typeface;
+            // define overlay
+            var overlayImg = new Image();
+            overlayImg.src = overlay;
+            overlayImg.onload = function () {
 
-            wrapText(ctx, headline, 50, textPosition, 900, height);
-            var downloadLink = document.getElementById("download");
+                // waits until overlay image is loaded before painting rest of canvas 
 
+                // blanks everything first
+                ctx.clearRect(0, 0, 1080, 1920);
+                ctx.fillStyle = root.getPropertyValue(colour);
+                ctx.fillRect(0, 0, 1080, 1920);
 
-            var truncatedHeadline = headline.substring(0, 30);
-            downloadLink.setAttribute("download", "Instagram story " + truncatedHeadline + ".png")
+                // add overlay image 
+                ctx.drawImage(overlayImg, 0, 0, 1080, 1920);
 
+                // add headline
+                ctx.fillStyle = fontColour;
+                ctx.font = size + ' ' + typeface;
+                wrapText(ctx, headline, 50, textPosition, 900, height);
 
+                // set download filename
+                var downloadLink = document.getElementById("download");
+                var truncatedHeadline = headline.substring(0, 30);
+                downloadLink.setAttribute("download", "Instagram story " + truncatedHeadline + ".png")
 
-            // add image
-            let photoSrc = '';
-            if (articleImageUrl !== null) {
-                photoSrc = articleImageUrl;
-            }
-            if (picture.value !== '') {
-                photoSrc = window.URL.createObjectURL(picture.files[0]);
-            }
-
-            const photo = new Image();
-            photo.crossOrigin = "anonymous"
-            photo.onload = function () {
-                var photoHeight = photo.height;
-                var photoWidth = photo.width;
-                var photoAspectRatio = photoWidth / photoHeight;
-                var sixteenByNine = 16 / 9;
-                var resizedWidth;
-                var resizedHeight;
-                var xPosition;
-                var yPosition;
-
-
-                for (i = 0; i < xPositionB.length; i++) {
-                    if (xPositionB[i].checked)
-                        xPositionB = i;
+                // add image
+                let photoSrc = '';
+                if (articleImageUrl !== null) {
+                    photoSrc = articleImageUrl;
                 }
-                if (xPositionB === 0) {
-                    xPosition = "left";
-                } else if (xPositionB === 1) {
-                    xPosition = "center";
-                } else if (xPositionB === 2) {
-                    xPosition = "right";
-                }
-                for (i = 0; i < yPositionB.length; i++) {
-                    if (yPositionB[i].checked)
-                        yPositionB = i;
-                }
-                if (yPositionB === 0) {
-                    yPosition = "top";
-                } else if (yPositionB === 1) {
-                    yPosition = "middle";
-                } else if (yPositionB === 2) {
-                    yPosition = "bottom";
+                if (picture.value !== '') {
+                    photoSrc = window.URL.createObjectURL(picture.files[0]);
                 }
 
+                const photo = new Image();
+                photo.crossOrigin = "anonymous"
+                photo.onload = function () {
+
+                    var photoHeight = photo.height;
+                    var photoWidth = photo.width;
+                    var photoAspectRatio = photoWidth / photoHeight;
+                    var sixteenByNine = 16 / 9;
+                    var resizedWidth;
+                    var resizedHeight;
+                    var xPosition;
+                    var yPosition;
 
 
-
-                if (photoAspectRatio > sixteenByNine) {
-                    // Image is wider than the canvas, so clip the sides
-                    resizedWidth = photoHeight * sixteenByNine;
-                    resizedHeight = photoHeight;
-                    document.getElementById("xPositionChoices").style.display = "initial";
-                    document.getElementById("yPositionChoices").style.display = "none";
-                    if (xPosition === "center") {
-                        x = (photoWidth - resizedWidth) / 2;
-                    } else if (xPosition === "left") {
-                        x = 0;
-                    } else if (xPosition === "right") {
-                        x = (photoWidth - resizedWidth);
+                    for (i = 0; i < xPositionB.length; i++) {
+                        if (xPositionB[i].checked)
+                            xPositionB = i;
                     }
-                    //console.log(x);
-                    y = 0;
-                    //console.log(y);
-                } else if (photoAspectRatio < sixteenByNine) {
-                    // Image is taller than the canvas, so clip the top/bottom
-                    resizedWidth = photoWidth;
-                    resizedHeight = photoWidth / sixteenByNine;
-                    document.getElementById("yPositionChoices").style.display = "initial";
-                    document.getElementById("xPositionChoices").style.display = "none";
-                    x = 0;
-                    //console.log(x);
-                    if (yPosition === "middle") {
-                        y = (photoHeight - resizedHeight) / 2;
-                    } else if (yPosition === "top") {
+                    if (xPositionB === 0) {
+                        xPosition = "left";
+                    } else if (xPositionB === 1) {
+                        xPosition = "center";
+                    } else if (xPositionB === 2) {
+                        xPosition = "right";
+                    }
+                    for (i = 0; i < yPositionB.length; i++) {
+                        if (yPositionB[i].checked)
+                            yPositionB = i;
+                    }
+                    if (yPositionB === 0) {
+                        yPosition = "top";
+                    } else if (yPositionB === 1) {
+                        yPosition = "middle";
+                    } else if (yPositionB === 2) {
+                        yPosition = "bottom";
+                    }
+
+
+
+
+                    if (photoAspectRatio > sixteenByNine) {
+                        // Image is wider than the canvas, so clip the sides
+                        resizedWidth = photoHeight * sixteenByNine;
+                        resizedHeight = photoHeight;
+                        document.getElementById("xPositionChoices").style.display = "initial";
+                        document.getElementById("yPositionChoices").style.display = "none";
+                        if (xPosition === "center") {
+                            x = (photoWidth - resizedWidth) / 2;
+                        } else if (xPosition === "left") {
+                            x = 0;
+                        } else if (xPosition === "right") {
+                            x = (photoWidth - resizedWidth);
+                        }
+                        //console.log(x);
                         y = 0;
-                    } else if (yPosition === "bottom") {
-                        y = (photoHeight - resizedHeight);
+                        //console.log(y);
+                    } else if (photoAspectRatio < sixteenByNine) {
+                        // Image is taller than the canvas, so clip the top/bottom
+                        resizedWidth = photoWidth;
+                        resizedHeight = photoWidth / sixteenByNine;
+                        document.getElementById("yPositionChoices").style.display = "initial";
+                        document.getElementById("xPositionChoices").style.display = "none";
+                        x = 0;
+                        //console.log(x);
+                        if (yPosition === "middle") {
+                            y = (photoHeight - resizedHeight) / 2;
+                        } else if (yPosition === "top") {
+                            y = 0;
+                        } else if (yPosition === "bottom") {
+                            y = (photoHeight - resizedHeight);
+                        }
+                        //console.log(y);
+                    } else {
+                        resizedWidth = photoWidth;
+                        resizedHeight = photoWidth / sixteenByNine;
+                        document.getElementById("yPositionChoices").style.display = "none";
+                        document.getElementById("xPositionChoices").style.display = "initial";
+                        document.getElementById("xPositionChoices").innerHTML = "<p>The image fits perfectly within the box without needing to crop</p>";
+                        x = 0;
+                        y = 0;
                     }
-                    //console.log(y);
-                } else {
-                    resizedWidth = photoWidth;
-                    resizedHeight = photoWidth / sixteenByNine;
-                    document.getElementById("yPositionChoices").style.display = "none";
-                    document.getElementById("xPositionChoices").style.display = "initial";
-                    document.getElementById("xPositionChoices").innerHTML = "<p>The image fits perfectly within the box without needing to crop</p>";
-                    x = 0;
-                    y = 0;
+
+                    // Draw the clipped image on the canvas
+                    ctx.drawImage(photo, x, y, resizedWidth, resizedHeight, 0, picPosition, 1080, 607.5);
+
+                    document.querySelector("#fileChoices > label").innerHTML = "Change image"
+
+                    document.querySelector("#complicatedReasons").style.display = "none";
                 }
+                photo.src = photoSrc;
+                fileLabel.innerHTML = picture.value.split("fakepath\\").pop();
 
-                // Draw the clipped image on the canvas
-                ctx.drawImage(photo, x, y, resizedWidth, resizedHeight, 0, picPosition, 1080, 607.5);
 
-                document.querySelector("#fileChoices > label").innerHTML = "Change image"
 
-                document.querySelector("#complicatedReasons").style.display = "none";
+
+
+
+
             }
-            photo.src = photoSrc;
-            fileLabel.innerHTML = picture.value.split("fakepath\\").pop();
-
-
-
-
-
-
         }
+
+
+
 
         generate();
 
