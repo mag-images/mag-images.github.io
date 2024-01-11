@@ -147,7 +147,8 @@
  }
 
  .fileButton {
-     display: inline-block
+     display: inline-block;
+     cursor: pointer;
  }
 
  form p,
@@ -187,7 +188,8 @@
      position: relative;
      top: 4px;
      border: 2px var(--grey) solid;
-     padding: unset
+     padding: unset;
+     cursor: pointer;
  }
 
  input#colourChoice1:checked,
@@ -317,7 +319,8 @@
  #ligature {
      margin-top: 10px;
      width: 30px;
-     height: 30px
+     height: 30px;
+     cursor: pointer;
  }
 
  #ligature:checked {
@@ -329,6 +332,10 @@
      margin: 5px;
      position: relative;
      bottom: 8px;
+ }
+
+ .warning {
+     font-size: 0.8rem;
  }
 
  span#direction::after {
@@ -493,6 +500,11 @@
      background-repeat: no-repeat;
      background-position: right;
      color: #fff;
+     cursor: pointer;
+ }
+
+ fieldset.storyStyle label:has(.warning) {
+     padding-right: 100px;
  }
 
  fieldset.storyStyle label input {
@@ -557,6 +569,7 @@
 
  fieldset.storyStyle label:has(input#styleChoice14) {
      background-image: url('/images/styles/TwoHundred.png');
+     cursor: not-allowed;
  }
 
  main.tiles {
