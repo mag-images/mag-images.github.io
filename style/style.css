@@ -645,3 +645,252 @@
  h1 .subtitle {
      font-size: 1rem;
  }
+
+ main.guideline {
+     margin: auto;
+     display: block;
+     padding: 20px;
+ }
+
+ main.guideline section {
+     max-width: 1000px;
+     margin: auto;
+ }
+
+ main.guideline section.testers {
+     max-width: 100%;
+ }
+
+ main.guideline h2 {
+     color: var(--aah-pink);
+     font-size: 2rem;
+ }
+
+ main.guideline p {
+     color: #000;
+     font-size: 1.2rem;
+     line-height: 1.2;
+ }
+
+ main.guideline p a {
+     background: none;
+     padding: unset;
+     margin: unset;
+     color: unset;
+     font-variant-ligatures: none;
+     font-size: unset;
+
+ }
+
+ main.guideline section img.guidelineImage {
+     max-width: 80%;
+     margin: auto;
+ }
+
+ div.swatches {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     column-gap: 50px;
+     justify-content: space-around;
+ }
+
+ div.swatch {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     gap: 10px;
+     margin-block: 10px;
+ }
+
+ div.swatch .sample {
+     width: 100px;
+     height: 100px;
+     border-radius: 100%;
+     border: 1px solid grey;
+ }
+
+ .colourType {
+     color: grey;
+     padding-inline-end: 10px;
+ }
+
+
+
+ .sample.pink {
+     background-color: var(--aah-pink);
+ }
+
+ .sample.teal {
+     background-color: var(--aah-blue)
+ }
+
+ .sample.orange {
+     background-color: var(--aah-orange);
+ }
+
+ div.swatch aside h3 {
+     margin: 0;
+     color: unset;
+
+ }
+
+ #testersTitle {
+     max-width: 1000px;
+     margin: auto;
+     margin-block-end: 0.83em;
+ }
+
+ .testerHomepage {
+     max-width: 400px;
+     padding: 20px;
+     border: 1px solid black;
+     background-color: #f9f9f9;
+ }
+
+ .testerHomepageHeadline {
+     width: 95%;
+     color: rgb(51, 51, 51);
+     font-family: "Open Sans", sans-serif;
+     font-size: 25px;
+     margin-block: 0;
+ }
+
+ .testerHomepageHeadline img {
+     height: 20px;
+     padding-inline-end: 10px;
+
+ }
+
+ .testerHomepageImage {
+     width: 100%;
+     max-width: 400px;
+     aspect-ratio: auto 247 / 146;
+ }
+
+ main.guideline p.testerHomepageDate {
+     color: var(--aah-pink);
+     text-transform: uppercase;
+     font-size: 1rem;
+     font-family: "Source Sans Pro", "Helvetica Neue", arial, sans-serif;
+     font-weight: 600;
+
+ }
+
+ .testerArticle {
+     max-width: 700px;
+     padding: 20px;
+     border: 1px solid black;
+     background-color: #f9f9f9;
+ }
+
+ .testerArticleHeadline {
+     width: 95%;
+     color: rgb(51, 51, 51);
+     font-family: "Open Sans", sans-serif;
+     font-size: 25px;
+     margin-block: 0;
+ }
+
+ .testerArticleHeadlineContainer {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: nowrap;
+     padding-block-end: 20px;
+ }
+
+ .testerArticleHeadlineContainer img {
+     height: 60px;
+     padding-inline-end: 20px;
+
+ }
+
+ .testerArticleImage {
+     width: 100%;
+     aspect-ratio: 16/9;
+ }
+
+ main.guideline p.testerArticleDate {
+     color: var(--aah-pink);
+     text-transform: uppercase;
+     font-size: 1rem;
+     font-family: "Source Sans Pro", "Helvetica Neue", arial, sans-serif;
+     font-weight: 600;
+     display: inline;
+
+ }
+
+ main.guideline p.testerArticleAuthor {
+     display: inline;
+     color: var(--aah-pink);
+     font-style: italic;
+     font-size: 1rem;
+     font-family: "Source Sans Pro", "Helvetica Neue", arial, sans-serif;
+     font-weight: 600;
+     padding-inline-start: 10px;
+
+ }
+
+ main.guideline p.testerArticleAuthor img {
+     height: 1rem;
+     padding-inline: 5px;
+ }
+
+ div.testerStory {
+     max-width: 400px;
+     aspect-ratio: 9/16;
+     background-color: var(--aah-pink);
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+
+ }
+
+ main.guideline .testerStoryHeadline {
+     color: #fff;
+     margin: 100px 20px;
+     font-size: 1.5rem;
+ }
+
+ .testerStoryImage {
+     width: 100%;
+     aspect-ratio: 16/9;
+     margin-block-end: 50px
+ }
+
+ div.testerExamples {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     gap: 20px;
+     justify-content: space-around;
+ }
+
+ #testersIntro {
+     max-width: 1000px;
+     margin: auto;
+ }
+
+ div.testerUpload {
+     display: flex;
+     align-items: center
+ }
+
+ div.testerUpload div#fileChoices {
+     margin: auto;
+ }
+
+ a.anchor {
+     background-color: unset;
+     color: var(--aah-pink);
+     padding: unset;
+     margin: unset;
+     text-decoration-color: transparent;
+     transition: 0.2s;
+     text-decoration-thickness: 3px;
+ }
+
+ a.anchor:hover {
+     text-decoration-color: var(--grey);
+
+ }
