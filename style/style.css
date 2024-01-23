@@ -735,6 +735,10 @@
 
  }
 
+ main.guideline p.intro {
+     font-size: 3rem;
+ }
+
  #testersTitle {
      max-width: 1000px;
      margin: auto;
@@ -893,4 +897,9 @@
  a.anchor:hover {
      text-decoration-color: var(--grey);
 
+ }
+
+ body:has(main.guideline) header,
+ body:has(main.guideline) nav {
+     padding: 20px;
  }
